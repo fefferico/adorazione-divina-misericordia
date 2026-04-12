@@ -1,13 +1,15 @@
-<div class="flex h-screen bg-slate-100">
+<div class="flex h-[calc(100vh-64px)] mt-16 bg-slate-100 dark:bg-slate-900 transition-colors duration-300">
   <!-- Sidebar: Section List -->
-  <aside class="w-80 bg-white border-r border-slate-200 flex flex-col shadow-sm z-30">
-    <div class="p-6 border-b border-slate-100 flex items-center justify-between">
-      <button [routerLink]="['/']" class="p-2 hover:bg-slate-50 rounded-xl text-slate-400 transition-colors">
+  <aside
+    class="w-80 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 flex flex-col shadow-sm z-30 transition-colors duration-300">
+    <div class="p-6 border-b border-slate-100 dark:border-slate-900 flex items-center justify-between">
+      <button [routerLink]="['/']"
+        class="p-2 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl text-slate-400 transition-colors">
         <lucide-icon [name]="ChevronLeft" class="w-5 h-5"></lucide-icon>
       </button>
-      <h2 class="text-lg font-bold text-slate-800">Sezioni</h2>
+      <h2 class="text-lg font-bold text-slate-800 dark:text-slate-100">Sezioni</h2>
       <button (click)="addSection()"
-        class="p-2 bg-primary-50 text-primary-600 hover:bg-primary-100 rounded-xl transition-colors">
+        class="p-2 bg-primary-50 dark:bg-primary-950/30 text-primary-600 dark:text-primary-400 hover:bg-primary-100 dark:hover:bg-primary-900/50 rounded-xl transition-colors">
         <lucide-icon [name]="Plus" class="w-5 h-5"></lucide-icon>
       </button>
     </div>
@@ -15,22 +17,23 @@
     <div class="flex-1 overflow-y-auto p-4 space-y-2">
       @for (section of adoration().sections; track section.id) {
       <div (click)="selectSection(section.id)"
-        [ngClass]="{'ring-2 ring-primary-500 bg-primary-50': selectedSectionId() === section.id, 'hover:bg-slate-50': selectedSectionId() !== section.id}"
+        [ngClass]="{'ring-2 ring-primary-500 bg-primary-50 dark:bg-primary-950/20': selectedSectionId() === section.id, 'hover:bg-slate-50 dark:hover:bg-slate-900': selectedSectionId() !== section.id}"
         class="p-4 rounded-2xl cursor-pointer transition-all group border border-transparent">
         <div class="flex items-center justify-between mb-1">
-          <span class="text-xs font-bold uppercase tracking-widest text-slate-400">{{ section.type }}</span>
+          <span class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">{{ section.type
+            }}</span>
           @if (section.content) {
           <lucide-icon [name]="CheckCircle" class="w-4 h-4 text-green-500"></lucide-icon>
           }
         </div>
-        <h4 class="text-sm font-semibold text-slate-700 truncate">{{ section.title }}</h4>
+        <h4 class="text-sm font-semibold text-slate-700 dark:text-slate-300 truncate">{{ section.title }}</h4>
       </div>
       }
     </div>
 
-    <div class="p-4 border-t border-slate-100">
+    <div class="p-4 border-t border-slate-100 dark:border-slate-900 space-y-3">
       <button (click)="exportPdf()"
-        class="w-full py-3 bg-slate-900 hover:bg-black text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95">
+        class="w-full py-3 bg-slate-900 dark:bg-primary-600 hover:bg-black dark:hover:bg-primary-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95">
         <lucide-icon [name]="Download" class="w-5 h-5"></lucide-icon>
         Esporta PDF
       </button>
@@ -38,7 +41,7 @@
   </aside>
 
   <!-- Main Area: Editor -->
-  <main class="flex-1 overflow-y-auto relative">
+  <main class="flex-1 overflow-y-auto relative dark:bg-slate-900 transition-colors duration-300">
     @if (selectedSection) {
     <div class="max-w-4xl mx-auto p-10">
       <!-- Section Header -->
@@ -47,26 +50,27 @@
           <span class="text-primary-500 font-bold tracking-widest uppercase text-xs">Sezione {{ selectedSection.order +
             1 }}</span>
           <input [(ngModel)]="selectedSection.title" (ngModelChange)="updateSection({title: $event})"
-            class="block w-full text-4xl font-serif bg-transparent border-none focus:ring-0 p-0 text-slate-800 placeholder:text-slate-200"
+            class="block w-full text-4xl font-serif bg-transparent border-none focus:ring-0 p-0 text-slate-800 dark:text-slate-100 placeholder:text-slate-200 dark:placeholder:text-slate-800"
             placeholder="Titolo della sezione">
         </div>
         <button (click)="removeSection(selectedSection.id)"
-          class="p-3 text-slate-300 hover:text-red-500 transition-colors">
+          class="p-3 text-slate-300 dark:text-slate-700 hover:text-red-500 transition-colors">
           <lucide-icon [name]="Trash2"></lucide-icon>
         </button>
       </div>
 
-      <!-- Global Settings (only shown if needed or floating) -->
+      <!-- Global Settings -->
       <div class="glass p-6 rounded-3xl mb-10 flex flex-wrap gap-6 items-center">
         <div class="flex-1">
-          <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Titolo Adorazione</label>
+          <label class="block text-xs font-bold uppercase text-slate-400 dark:text-slate-500 mb-1">Titolo
+            Adorazione</label>
           <input [ngModel]="adoration().title" (ngModelChange)="updateGlobalTitle($event)"
-            class="w-full bg-tranparent border-b border-slate-200 focus:border-primary-500 outline-none pb-1">
+            class="w-full bg-transparent border-b border-slate-200 dark:border-slate-800 focus:border-primary-500 outline-none pb-1 dark:text-slate-100">
         </div>
         <div class="flex-1">
-          <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Tema Generale</label>
+          <label class="block text-xs font-bold uppercase text-slate-400 dark:text-slate-500 mb-1">Tema Generale</label>
           <input [ngModel]="adoration().theme" (ngModelChange)="updateGlobalTheme($event)"
-            class="w-full bg-tranparent border-b border-slate-200 focus:border-primary-500 outline-none pb-1"
+            class="w-full bg-transparent border-b border-slate-200 dark:border-slate-800 focus:border-primary-500 outline-none pb-1 dark:text-slate-100"
             placeholder="es. Misericordia">
         </div>
       </div>
@@ -74,39 +78,39 @@
       <!-- Toolbar -->
       <div class="flex gap-4 mb-6">
         <button (click)="openPicker()"
-          class="flex-1 py-4 bg-white hover:bg-primary-50 border-2 border-slate-100 hover:border-primary-200 rounded-2xl flex items-center justify-center gap-3 transition-all text-slate-600 font-semibold group">
+          class="flex-1 py-4 bg-white dark:bg-slate-950 hover:bg-primary-50 dark:hover:bg-primary-950/20 border-2 border-slate-100 dark:border-slate-800 hover:border-primary-200 dark:hover:border-primary-700 rounded-2xl flex items-center justify-center gap-3 transition-all text-slate-600 dark:text-slate-400 font-semibold group">
           <lucide-icon [name]="Search" class="group-hover:text-primary-500"></lucide-icon>
           Cerca nella Libreria
-        </button>
-        <button
-          class="px-6 py-4 bg-white border-2 border-slate-100 rounded-2xl flex items-center justify-center text-slate-400 hover:text-primary-500 transition-all">
-          <lucide-icon [name]="Edit3"></lucide-icon>
         </button>
       </div>
 
       <!-- Editor Content -->
-      <div class="bg-white rounded-[2rem] shadow-premium p-10 min-h-[500px]">
+      <div
+        class="bg-white dark:bg-slate-950 rounded-[2rem] shadow-premium p-10 min-h-[500px] border border-transparent dark:border-slate-800 transition-colors">
         <textarea [(ngModel)]="selectedSection.content" (ngModelChange)="updateSection({content: $event})"
           placeholder="Inizia a scrivere o seleziona un brano dalla libreria..."
-          class="w-full h-full min-h-[400px] border-none focus:ring-0 text-lg leading-relaxed text-slate-700 resize-none placeholder:text-slate-200"></textarea>
+          class="w-full h-full min-h-[400px] border-none focus:ring-0 text-lg leading-relaxed text-slate-700 dark:text-slate-200 bg-transparent resize-none placeholder:text-slate-200 dark:placeholder:text-slate-800"></textarea>
 
-        <div class="mt-10 pt-10 border-t border-slate-100">
+        <div class="mt-10 pt-10 border-t border-slate-100 dark:border-slate-900">
           <div class="flex items-center justify-between mb-4">
-            <h5 class="text-xs font-bold uppercase tracking-widest text-slate-300">Spunti di riflessione</h5>
-            <button (click)="addHint()" class="text-xs font-bold text-primary-500 hover:text-primary-600 flex items-center gap-1 transition-colors">
+            <h5 class="text-xs font-bold uppercase tracking-widest text-slate-300 dark:text-slate-700">Spunti di
+              riflessione</h5>
+            <button (click)="addHint()"
+              class="text-xs font-bold text-primary-500 hover:text-primary-600 flex items-center gap-1 transition-colors">
               <lucide-icon [name]="Plus" class="w-3 h-3"></lucide-icon>
               Aggiungi spunto
             </button>
           </div>
-          
+
           <div class="space-y-4">
             @for (hint of selectedSection.reflectionHints; track $index) {
             <div class="flex items-start gap-3 group">
-              <div class="mt-3 w-1.5 h-1.5 rounded-full bg-primary-300 flex-shrink-0"></div>
+              <div class="mt-3 w-1.5 h-1.5 rounded-full bg-primary-300 dark:bg-primary-800 flex-shrink-0"></div>
               <textarea [ngModel]="hint" (ngModelChange)="updateHint($index, $event)"
-                class="flex-1 bg-slate-50 border-none rounded-xl p-3 text-sm italic text-slate-600 focus:ring-1 focus:ring-primary-200 min-h-[60px] resize-none overflow-hidden"
+                class="flex-1 bg-slate-50 dark:bg-slate-900 border-none rounded-xl p-3 text-sm italic text-slate-600 dark:text-slate-400 focus:ring-1 focus:ring-primary-200 dark:focus:ring-primary-900 min-h-[60px] resize-none overflow-hidden"
                 placeholder="Inserisci uno spunto di riflessione..."></textarea>
-              <button (click)="removeHint($index)" class="p-2 text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all">
+              <button (click)="removeHint($index)"
+                class="p-2 text-slate-300 dark:text-slate-700 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all">
                 <lucide-icon [name]="X" class="w-4 h-4"></lucide-icon>
               </button>
             </div>
@@ -117,11 +121,11 @@
     </div>
     } @else {
     <div class="h-full flex flex-col items-center justify-center text-center p-10">
-      <div class="w-24 h-24 bg-slate-200 rounded-full flex items-center justify-center mb-6">
-        <lucide-icon [name]="Edit3" class="w-10 h-10 text-slate-400"></lucide-icon>
+      <div class="w-24 h-24 bg-slate-200 dark:bg-slate-800 rounded-full flex items-center justify-center mb-6">
+        <lucide-icon [name]="Edit3" class="w-10 h-10 text-slate-400 dark:text-slate-600"></lucide-icon>
       </div>
-      <h3 class="text-2xl text-slate-400">Seleziona una sezione per iniziare</h3>
-      <p class="text-slate-400 mt-2">Personalizza ogni momento della tua preghiera.</p>
+      <h3 class="text-2xl text-slate-400 dark:text-slate-600">Seleziona una sezione per iniziare</h3>
+      <p class="text-slate-400 dark:text-slate-600 mt-2">Personalizza ogni momento della tua preghiera.</p>
     </div>
     }
   </main>

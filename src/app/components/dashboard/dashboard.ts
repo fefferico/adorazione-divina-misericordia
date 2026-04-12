@@ -1,5 +1,5 @@
 import { Component, inject, computed } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { LucideAngularModule, Sparkles, BookOpen, Plus, Search, Sun, Moon, Minus } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../services/theme';
@@ -13,6 +13,7 @@ import { ThemeService } from '../../services/theme';
 })
 export class DashboardComponent {
   themeService = inject(ThemeService);
+  private router = inject(Router);
 
   readonly Sparkles = Sparkles;
   readonly BookOpen = BookOpen;
@@ -34,5 +35,9 @@ export class DashboardComponent {
   toggleTheme() {
     const next = this.themeService.theme() === 'dark' ? 'light' : 'dark';
     this.themeService.setTheme(next);
+  }
+
+  goToBuilder(theme: string) {
+    this.router.navigate(['/builder'], { queryParams: { theme } });
   }
 }

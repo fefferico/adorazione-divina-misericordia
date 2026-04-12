@@ -28,6 +28,10 @@
     @apply bg-slate-50 text-slate-900 font-sans selection:bg-primary-200 transition-colors duration-300;
   }
 
+  .dark {
+    color-scheme: dark;
+  }
+
   .dark body {
     @apply bg-slate-950 text-slate-50;
   }

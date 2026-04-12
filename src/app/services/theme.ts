@@ -56,14 +56,22 @@ export class ThemeService {
 
     if (isDark) {
       document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark');
     }
+    
+    // Force a small delay to ensure rendering
+    // This can help the browser pick up class changes in some scenarios
+    setTimeout(() => {
+        const check = document.documentElement.classList.contains('dark');
+        console.log('Theme applied: isDark?', check);
+    }, 0);
   }
 
   private applyFontSize(multiplier: number) {
     document.documentElement.style.setProperty('--app-font-multiplier', multiplier.toString());
-    // Apply globally to base font size
     document.documentElement.style.fontSize = `${16 * multiplier}px`;
   }
 }

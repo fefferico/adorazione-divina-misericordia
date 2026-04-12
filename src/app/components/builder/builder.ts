@@ -1,10 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LucideAngularModule, ChevronLeft, Save, Download, Search, Plus, Trash2, Edit3, CheckCircle, X } from 'lucide-angular';
-import { RouterLink } from '@angular/router';
+import { LucideAngularModule, ChevronLeft, Save, Download, Search, Plus, Trash2, Edit3, CheckCircle, X, Sun, Moon, Minus } from 'lucide-angular';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 import { AdorationStoreService, AdorationSection } from '../../services/adoration-store';
 import { PdfExportService } from '../../services/pdf-export';
+import { ThemeService } from '../../services/theme';
 import { ContentPickerComponent } from '../content-picker/content-picker';
 
 @Component({
@@ -14,9 +15,11 @@ import { ContentPickerComponent } from '../content-picker/content-picker';
   templateUrl: './builder.html',
   styleUrls: ['./builder.css']
 })
-export class BuilderComponent {
+export class BuilderComponent implements OnInit {
   private store = inject(AdorationStoreService);
   private pdfService = inject(PdfExportService);
+  private route = inject(ActivatedRoute);
+  themeService = inject(ThemeService);
 
   readonly ChevronLeft = ChevronLeft;
   readonly Save = Save;
@@ -27,6 +30,24 @@ export class BuilderComponent {
   readonly Edit3 = Edit3;
   readonly CheckCircle = CheckCircle;
   readonly X = X;
+  readonly Sun = Sun;
+  readonly Moon = Moon;
+  readonly Minus = Minus;
+
+  currentTheme = computed(() => this.themeService.theme());
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params['theme']) {
+        this.updateGlobalTheme(params['theme']);
+      }
+    });
+  }
+
+  toggleTheme() {
+    const next = this.themeService.theme() === 'dark' ? 'light' : 'dark';
+    this.themeService.setTheme(next);
+  }
 
   adoration = this.store.currentAdoration;
   selectedSectionId = signal<string | null>(null);
@@ -57,7 +78,7 @@ export class BuilderComponent {
       this.store.updateSection(sectionId, {
         content: item.content,
         reflectionHints: item.reflectionHints,
-        title: item.title // Optionally overwrite title
+        title: item.title
       });
     }
     this.showPicker.set(false);

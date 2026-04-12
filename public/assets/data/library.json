@@ -55,62 +55,6 @@
   ],
   "items": [
     {
-      "id": "v1",
-      "categoryId": "vangelo",
-      "themeId": "misericordia",
-      "title": "Luca 15, 1-7 - La pecora smarrita",
-      "content": "Si avvicinavano a lui tutti i pubblicani e i peccatori per ascoltarlo. I farisei e gli scribi mormoravano dicendo: «Costui accoglie i peccatori e mangia con loro». Ed egli raccontò loro questa parabola: «Chi di voi, se ha cento pecore e ne perde una, non lascia le novantanove nel deserto e va in cerca di quella perduta, finché non la trova? Quando l'ha trovata, pieno di gioia se la carica sulle spalle...»",
-      "reflectionHints": [
-        "Ti sei mai sentito come la pecora smarrita?",
-        "Qual è lo sguardo di Gesù quando ti ritrova?",
-        "Come sperimenti la gioia del Padre nel tuo quotidiano?"
-      ]
-    },
-    {
-      "id": "e1",
-      "categoryId": "enciclica",
-      "themeId": "creato",
-      "title": "Laudato Si', 13 - L'appello di Papa Francesco",
-      "content": "L'appello urgente di proteggere la nostra casa comune comprende la preoccupazione di unire tutta la famiglia umana nella ricerca di uno sviluppo sostenibile e integrale, poiché sappiamo che le cose possono cambiare. L'umanità ha ancora la capacità di collaborare per costruire la nostra casa comune. Desidero esprimere riconoscenza, incoraggiare e ringraziare tutti coloro che, nei più svariati settori dell'attività umana, stanno lavorando per garantire la protezione della casa che condividiamo.",
-      "reflectionHints": [
-        "In che modo mi prendo cura del creato come dono di Dio?",
-        "Cosa posso cambiare nel mio stile di vita oggi?",
-        "Riconosco la presenza di Dio nella bellezza della natura?"
-      ]
-    },
-    {
-      "id": "o1",
-      "categoryId": "omelia",
-      "themeId": "perdono",
-      "title": "S. Giovanni Paolo II - Omelia 2000",
-      "content": "Non abbiate paura di spalancare le porte a Cristo! Solo Lui sa cosa c'è nel cuore dell'uomo. Il perdono non è un segno di debolezza, ma di forza spirituale. È la vittoria dell'amore sull'odio, della vita sulla morte. Dio non si stanca mai di perdonarci, siamo noi che a volte ci stanchiamo di chiedere perdono.",
-      "reflectionHints": [
-        "C'è una porta del mio cuore che è ancora chiusa?",
-        "Ho il coraggio di chiedere perdono per le mie ferite?",
-        "Credo davvero che il perdono sia una vittoria?"
-      ]
-    },
-    {
-      "id": "a1",
-      "categoryId": "atti-lettere",
-      "themeId": "parola",
-      "title": "Atti 2, 42-47 - La prima comunità",
-      "content": "Erano perseveranti nell'insegnamento degli apostoli e nella comunione, nello spezzare il pane e nelle preghiere. Un senso di timore era in tutti, e prodigi e segni avvenivano per opera degli apostoli. Tutti i credenti stavano insieme e avevano ogni cosa in comune; vendevano le loro proprietà e sostanze e ne facevano parte a tutti, secondo il bisogno di ciascuno.",
-      "reflectionHints": [
-        "Come vivo la comunione nella mia comunità?",
-        "La Parola di Dio è il centro della mia giornata?",
-        "Sono capace di condividere ciò che ho con chi ha bisogno?"
-      ]
-    },
-    {
-      "id": "p1",
-      "categoryId": "preghiera",
-      "themeId": "misericordia",
-      "title": "Coroncina alla Divina Misericordia",
-      "content": "Padre Eterno, Ti offro il Corpo e il Sangue, l'Anima e la Divinità del Tuo dilettissimo Figlio e Signore nostro Gesù Cristo, in espiazione dei nostri peccati e di quelli del mondo intero. Per la Sua dolorosa Passione, abbi misericordia di noi e del mondo intero.",
-      "reflectionHints": []
-    },
-    {
       "id": "diario_1",
       "categoryId": "diario",
       "themeId": "misericordia",
@@ -7247,6 +7191,820 @@
       "reflectionHints": [
         "Cosa mi dice Gesù in questo brano?",
         "Come posso vivere la misericordia oggi?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_500",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Genealogia di Gesù (Mt 1,1-17)",
+      "content": "Libro della generazione di Gesù Cristo figlio di Davide, figlio di Abramo... In tutto, quindi, le generazioni da Abramo a Davide sono quattordici; da Davide fino alla deportazione in Babilonia sono quattordici; dalla deportazione in Babilonia a Cristo, quattordici.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_501",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Annuncio a Giuseppe (Mt 1,18-25)",
+      "content": "Giuseppe, suo sposo, poiché era uomo giusto e non voleva accusarla pubblicamente, pensò di ripudiarla in segreto... L'angelo gli disse: 'Giuseppe, figlio di Davide, non temere di prendere con te Maria, tua sposa. Infatti il bambino che è generato in lei viene dallo Spirito Santo'.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_502",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "I Magi (Mt 2,1-12)",
+      "content": "Nato Gesù a Betlemme di Giudea, al tempo del re Erode, ecco, alcuni Magi vennero da oriente a Gerusalemme... Entrati nella casa, videro il bambino con Maria sua madre, si prostrarono e lo adorarono.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_503",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Fuga in Egitto (Mt 2,13-15)",
+      "content": "Un angelo del Signore apparve in sogno a Giuseppe e gli disse: 'Alzati, prendi con te il bambino e sua madre, fuggi in Egitto e resta là finché non ti avvertirò'.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_504",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Battesimo al Giordano (Mt 3,13-17)",
+      "content": "Gesù dalla Galilea venne al Giordano da Giovanni, per farsi battezzare da lui... Ed ecco una voce dal cielo che diceva: 'Questi è il Figlio mio, l'amato: in lui mi sono compiaciuto'.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_505",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Tentazioni nel Deserto (Mt 4,1-11)",
+      "content": "Non di solo pane vivrà l'uomo, ma di ogni parola che esce dalla bocca di Dio... Vattene, satana! Sta scritto infatti: Il Signore, Dio tuo, adorerai: a lui solo renderai culto.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_506",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Chiamata dei primi discepoli (Mt 4,18-22)",
+      "content": "Mentre camminava lungo il mare di Galilea, vide due fratelli... e disse loro: 'Venite dietro a me, vi farò pescatori di uomini'.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_507",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "I Poveri in Spirito (Mt 5,3)",
+      "content": "Beati i poveri in spirito, perché di essi è il regno dei cieli.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_508",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "I Puri di Cuore (Mt 5,8)",
+      "content": "Beati i puri di cuore, perché vedranno Dio.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_509",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Sale e Luce (Mt 5,13-16)",
+      "content": "Voi siete il sale della terra... Voi siete la luce del mondo.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_510",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Compiimento della Legge (Mt 5,17-20)",
+      "content": "Non crediate che io sia venuto ad abolire la Legge o i Profeti; non sono venuto ad abolire, ma a dare pieno compimento.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_511",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Giuramenti e Verità (Mt 5,33-37)",
+      "content": "Sia invece il vostro parlare: 'Sì, sì', 'No, no'; il di più viene dal Maligno.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_512",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "L'Elemosina (Mt 6,1-4)",
+      "content": "Quando dunque fai l'elemosina, non suonare la tromba davanti a te... il Padre tuo, che vede nel segreto, ti ricompenserà.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_513",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "La Preghiera (Mt 6,5-15)",
+      "content": "Voi dunque pregate così: Padre nostro che sei nei cieli...",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_514",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Il Tesoro nel Cielo (Mt 6,19-21)",
+      "content": "Dov'è il tuo tesoro, là sarà anche il tuo cuore.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_515",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Abbandono alla Provvidenza (Mt 6,25-34)",
+      "content": "Guardate gli uccelli del cielo: non seminano e non mietono... Cercate invece, anzitutto, il regno di Dio e la sua giustizia.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_516",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Non giudicate (Mt 7,1-5)",
+      "content": "Non giudicate, per non essere giudicati... Perché guardi la pagliuzza che è nell'occhio del tuo fratello, e non t'accorgi della trave che è nel tuo occhio?",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_517",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Chiedete e vi sarà dato (Mt 7,7-11)",
+      "content": "Chiedete e vi sarà dato, cercate e troverete, bussate e vi sarà aperto.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_518",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "La Porta Stretta (Mt 7,13-14)",
+      "content": "Entrate per la porta stretta, perché larga è la porta e spaziosa la via che conduce alla perdizione.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_matte_519",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "La Casa sulla Roccia (Mt 7,24-27)",
+      "content": "Chiunque ascolta queste mie parole e le mette in pratica, sarà simile a un uomo saggio, che ha costruito la sua casa sulla roccia.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_500",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Il Magnificat (Lc 1,46-55)",
+      "content": "L'anima mia magnifica il Signore... Ha soccorso Israele, suo servo, ricordandosi della sua misericordia.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_501",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Benedictus (Lc 1,68-79)",
+      "content": "Benedetto il Signore, Dio d'Israele, perché ha visitato e redento il suo popolo...",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_502",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Nunc Dimittis (Lc 2,29-32)",
+      "content": "Ora puoi lasciare, o Signore, che il tuo servo vada in pace, secondo la tua parola...",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_503",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Discorso della Pianura (Lc 6,17-26)",
+      "content": "Beati voi, poveri, perché vostro è il regno di Dio. Beati voi, che ora avete fame, perché sarete saziati.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_504",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Amate i nemici (Lc 6,27-36)",
+      "content": "Amate i vostri nemici, fate del bene a quelli che vi odiano... Siate misericordiosi, come il Padre vostro è misericordioso.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_505",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "La Peccatrice perdonata (Lc 7,36-50)",
+      "content": "Le sono perdonati i suoi molti peccati, perché ha molto amato. Invece colui al quale si perdona poco, ama poco.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_506",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Parabola del Seminatore (Lc 8,4-15)",
+      "content": "Il seme è la parola di Dio... Quello caduto sulla terra buona sono coloro che... portano frutto con perseveranza.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_507",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "La Missione dei Settantadue (Lc 10,1-12)",
+      "content": "La messe è abbondante, ma sono pochi gli operai.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_508",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Marta e Maria (Lc 10,38-42)",
+      "content": "Maria ha scelto la parte migliore, che non le sarà tolta.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_509",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "La Pecora Smarrita (Lc 15,1-7)",
+      "content": "Ci sarà gioia in cielo per un solo peccatore che si converte, più che per novantanove giusti.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_510",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "La Moneta Ritrovata (Lc 15,8-10)",
+      "content": "Rallegratevi con me, perché ho ritrovato la moneta che avevo perduta.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_511",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Il Figlio Prodigo (Lc 15,11-32)",
+      "content": "Padre, ho peccato verso il Cielo e davanti a te... Bisognava far festa e rallegrarsi, perché questo tuo fratello era morto ed è tornato in vita.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_512",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Il Ricco e Lazzaro (Lc 16,19-31)",
+      "content": "Tra noi e voi è stato stabilito un grande abisso...",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_513",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "I Dieci Lebbrosi (Lc 17,11-19)",
+      "content": "Non ne sono stati guariti dieci? E gli altri nove dove sono?",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_514",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Il Fariseo e il Pubblicano (Lc 18,9-14)",
+      "content": "O Dio, abbi pietà di me peccatore... Questi, a differenza dell'altro, tornò a casa sua giustificato.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_515",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Gesù e i bambini (Lc 18,15-17)",
+      "content": "Lasciate che i bambini vengano a me... Chi non accoglie il regno di Dio come lo accoglie un bambino, non entrerà in esso.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_516",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Il Giovane Ricco (Lc 18,18-23)",
+      "content": "Vendi tutto quello che hai, distribuiscilo ai poveri e avrai un tesoro nei cieli.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_517",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Zaccheo (Lc 19,1-10)",
+      "content": "Oggi la salvezza è entrata in questa casa... Il Figlio dell'uomo infatti è venuto a cercare e a salvare ciò che era perduto.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_518",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Istituzione dell'Eucaristia (Lc 22,14-23)",
+      "content": "Questo è il mio corpo, che è dato per voi; fate questo in memoria di me.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_luke_519",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Il Buon Ladrone (Lc 23,39-43)",
+      "content": "In verità io ti dico: oggi con me sarai nel paradiso.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_500",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Il Verbo (Gv 1,1-5)",
+      "content": "In principio era il Verbo... e la luce splende nelle tenebre e le tenebre non l'hanno vinta.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_501",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Giovanni Battista (Gv 1,19-28)",
+      "content": "Io sono voce di uno che grida nel deserto: Rendete diritta la via del Signore.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_502",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "L'Agnello di Dio (Gv 1,29-34)",
+      "content": "Ecco l'agnello di Dio, colui che toglie il peccato del mondo!",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_503",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Cana di Galilea (Gv 2,1-12)",
+      "content": "Qualsiasi cosa vi dica, fatela.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_504",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Dialogo con Nicodemo (Gv 3,1-21)",
+      "content": "Se uno non nasce da acqua e Spirito, non può entrare nel regno di Dio.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_505",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "La Samaritana (Gv 4,1-42)",
+      "content": "Chi beve dell'acqua che io gli darò, non avrà più sete in eterno.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_506",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Guarigione del paralitico (Gv 5,1-18)",
+      "content": "Vuoi guarire? ... Alzati, prendi la tua barella e cammina.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_507",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Moltiplicazione dei Pani (Gv 6,1-15)",
+      "content": "Gesù prese i pani e, dopo aver reso grazie, li diede a quelli che erano seduti.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_508",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Cammino sulle acque (Gv 6,16-21)",
+      "content": "Sono io, non abbiate paura!",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_509",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Il Pane Disceso dal Cielo (Gv 6,35-40)",
+      "content": "Io sono il pane della vita; chi viene a me non avrà fame.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_510",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Le Parole di Vita Eterna (Gv 6,60-71)",
+      "content": "Signore, da chi andremo? Tu hai parole di vita eterna.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_511",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "L'Adultera (Gv 8,1-11)",
+      "content": "Chi di voi è senza peccato, getti per primo la pietra contro di lei... Neanch'io ti condanno; va' e d'ora in poi non peccare più.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_512",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "La Luce del Mondo (Gv 8,12)",
+      "content": "Io sono la luce del mondo; chi segue me, non camminerà nelle tenebre.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_513",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "La Verità vi farà liberi (Gv 8,31-38)",
+      "content": "Se rimanete nella mia parola, siete davvero miei discepoli; conoscerete la verità e la verità vi farà liberi.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_514",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Il Buon Pastore (Gv 10,1-10)",
+      "content": "Io sono la porta: se uno entra attraverso di me, sarà salvato.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_515",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Una sola cosa è necessaria (Gv 11)",
+      "content": "Io sono la risurrezione e la vita; chi crede in me, anche se muore, vivrà.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_516",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Il Comandamento Nuovo (Gv 13,31-35)",
+      "content": "Vi do un comandamento nuovo: che vi amiate gli uni agli altri. Come io ho amato voi, così amatevi anche voi gli uni agli altri.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_517",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "La Via, la Verità e la Vita (Gv 14,1-7)",
+      "content": "Io sono la via, la verità e la vita. Nessuno viene al Padre se non per mezzo di me.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_518",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "La Vite e i Tralci (Gv 15,1-8)",
+      "content": "Io sono la vite, voi i tralci. Chi rimane in me, e io in lui, porta molto frutto.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "vangelo_john_519",
+      "categoryId": "vangelo",
+      "themeId": "generale",
+      "title": "Il Consolatore (Gv 16,5-15)",
+      "content": "Quando verrà lui, lo Spirito della verità, vi guiderà a tutta la verità.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "enciclica_dives_500",
+      "categoryId": "enciclica",
+      "themeId": "generale",
+      "title": "Dives in Misericordia (Par. 1)",
+      "content": "Dio, ricco di misericordia, è colui che Gesù Cristo ci ha rivelato come Padre...",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "enciclica_dives_501",
+      "categoryId": "enciclica",
+      "themeId": "generale",
+      "title": "Dives in Misericordia (Par. 2)",
+      "content": "L'uomo contemporaneo sembra opporsi al Dio di misericordia e sembra voler togliere dalla vita e dal cuore umano l'idea stessa della misericordia...",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "enciclica_dives_502",
+      "categoryId": "enciclica",
+      "themeId": "generale",
+      "title": "Dives in Misericordia (Par. 4)",
+      "content": "Cristo, rivelando l'amore-misericordia di Dio, esigeva al tempo stesso dagli uomini che si lasciassero anch'essi guidare nella loro vita dall'amore e dalla misericordia.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "enciclica_dives_503",
+      "categoryId": "enciclica",
+      "themeId": "generale",
+      "title": "Dives in Misericordia (Par. 8)",
+      "content": "La misericordia nel suo aspetto autentico e proprio si manifesta come una forza che è capace di richiamare l'uomo a se stesso ed è capace di vincere il male con il bene.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "enciclica_dives_504",
+      "categoryId": "enciclica",
+      "themeId": "generale",
+      "title": "Dives in Misericordia (Par. 14)",
+      "content": "La Chiesa deve professare e proclamare la misericordia di Dio in tutta la sua verità.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "enciclica_dives_505",
+      "categoryId": "enciclica",
+      "themeId": "generale",
+      "title": "Misericordiae Vultus (Par. 1)",
+      "content": "Gesù Cristo è il volto della misericordia del Padre.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "enciclica_dives_506",
+      "categoryId": "enciclica",
+      "themeId": "generale",
+      "title": "Misericordiae Vultus (Par. 2)",
+      "content": "Sempre abbiamo bisogno di contemplare il mistero della misericordia. È condizione della nostra salvezza.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "enciclica_dives_507",
+      "categoryId": "enciclica",
+      "themeId": "generale",
+      "title": "Misericordiae Vultus (Par. 10)",
+      "content": "L'architrave che sorregge la vita della Chiesa è la misericordia.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "enciclica_dives_508",
+      "categoryId": "enciclica",
+      "themeId": "generale",
+      "title": "Misericordiae Vultus (Par. 12)",
+      "content": "La Chiesa ha la missione di annunciare la misericordia di Dio, cuore pulsante del Vangelo.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "enciclica_dives_509",
+      "categoryId": "enciclica",
+      "themeId": "generale",
+      "title": "Misericordiae Vultus (Par. 21)",
+      "content": "La misericordia non è contraria alla giustizia ma esprime il comportamento di Dio verso il peccatore.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "omelia_hom_500",
+      "categoryId": "omelia",
+      "themeId": "generale",
+      "title": "Sulla gioia del perdono",
+      "content": "C'è più gioia in cielo per un peccatore che si converte. Dio non si stanca mai di perdonarci, siamo noi che ci stanchiamo di chiedere la sua misericordia.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "omelia_hom_501",
+      "categoryId": "omelia",
+      "themeId": "generale",
+      "title": "Il tempo della misericordia",
+      "content": "Siamo nel tempo della misericordia. Questo è il tempo favorevole per curare le ferite, per non stancarci di incontrare quanti sono in attesa di vedere i segni della vicinanza di Dio.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "omelia_hom_502",
+      "categoryId": "omelia",
+      "themeId": "generale",
+      "title": "La carezza di Dio",
+      "content": "La misericordia di Dio è come una carezza, come l'abbraccio di un padre che accoglie il figlio che torna a casa.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
+      ]
+    },
+    {
+      "id": "omelia_hom_503",
+      "categoryId": "omelia",
+      "themeId": "generale",
+      "title": "Aprire il cuore",
+      "content": "Non abbiate paura della misericordia di Dio. Lasciatevi abbracciare da Lui, lasciatevi amare da Colui che è l'Amore stesso.",
+      "reflectionHints": [
+        "Cosa mi dice questa parola?",
+        "Come posso vivere questa misericordia?"
       ]
     }
   ]
