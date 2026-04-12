@@ -1,0 +1,87 @@
+{
+  "categories": [
+    { "id": "vangelo", "label": "Vangelo", "icon": "book-open" },
+    { "id": "diario", "label": "Diario di S. Faustina", "icon": "heart" },
+    { "id": "enciclica", "label": "Enciclica / Documenti Papali", "icon": "scroll" },
+    { "id": "omelia", "label": "Omelia / Scritti dei Santi", "icon": "mic" },
+    { "id": "atti-lettere", "label": "Atti / Lettere", "icon": "mail" },
+    { "id": "preghiera", "label": "Preghiere / Canti", "icon": "music" }
+  ],
+  "themes": [
+    { "id": "misericordia", "label": "Misericordia" },
+    { "id": "creato", "label": "Attenzione al Creato" },
+    { "id": "eucaristia", "label": "Eucaristia" },
+    { "id": "parola", "label": "La Parola" },
+    { "id": "perdono", "label": "Perdono e Riconciliazione" }
+  ],
+  "items": [
+    {
+      "id": "v1",
+      "categoryId": "vangelo",
+      "themeId": "misericordia",
+      "title": "Luca 15, 1-7 - La pecora smarrita",
+      "content": "Si avvicinavano a lui tutti i pubblicani e i peccatori per ascoltarlo. I farisei e gli scribi mormoravano dicendo: «Costui accoglie i peccatori e mangia con loro». Ed egli raccontò loro questa parabola: «Chi di voi, se ha cento pecore e ne perde una, non lascia le novantanove nel deserto e va in cerca di quella perduta, finché non la trova? Quando l'ha trovata, pieno di gioia se la carica sulle spalle...»",
+      "reflectionHints": [
+        "Ti sei mai sentito come la pecora smarrita?",
+        "Qual è lo sguardo di Gesù quando ti ritrova?",
+        "Come sperimenti la gioia del Padre nel tuo quotidiano?"
+      ]
+    },
+    {
+      "id": "d1",
+      "categoryId": "diario",
+      "themeId": "misericordia",
+      "title": "Quaderno I, 301 - L'abisso della Misericordia",
+      "content": "Oh, mio Gesù, ognuno di noi deve ricordare quello che Tu hai fatto per noi. Tu, o Signore, hai versato per noi fino all'ultima goccia del Tuo Sangue, e noi, nonostante tutto questo, Ti offendiamo. Eppure la Tua Misericordia è senza limiti, più grande di ogni nostra miseria. L'anima che si fida della Tua Misericordia è la più felice, perché Tu stesso Ti prendi cura di lei.",
+      "reflectionHints": [
+        "Riesco a fidarmi totalmente della Misericordia di Dio?",
+        "Cosa significa consegnare la propria miseria a Gesù?",
+        "La mia felicità dipende dalla mia fiducia in Lui?"
+      ]
+    },
+    {
+      "id": "e1",
+      "categoryId": "enciclica",
+      "themeId": "creato",
+      "title": "Laudato Si', 13 - L'appello di Papa Francesco",
+      "content": "L'appello urgente di proteggere la nostra casa comune comprende la preoccupazione di unire tutta la famiglia umana nella ricerca di uno sviluppo sostenibile e integrale, poiché sappiamo che le cose possono cambiare. L'umanità ha ancora la capacità di collaborare per costruire la nostra casa comune. Desidero esprimere riconoscenza, incoraggiare e ringraziare tutti coloro che, nei più svariati settori dell'attività umana, stanno lavorando per garantire la protezione della casa che condividiamo.",
+      "reflectionHints": [
+        "In che modo mi prendo cura del creato come dono di Dio?",
+        "Cosa posso cambiare nel mio stile di vita oggi?",
+        "Riconosco la presenza di Dio nella bellezza della natura?"
+      ]
+    },
+    {
+      "id": "o1",
+      "categoryId": "omelia",
+      "themeId": "perdono",
+      "title": "S. Giovanni Paolo II - Omelia 2000",
+      "content": "Non abbiate paura di spalancare le porte a Cristo! Solo Lui sa cosa c'è nel cuore dell'uomo. Il perdono non è un segno di debolezza, ma di forza spirituale. È la vittoria dell'amore sull'odio, della vita sulla morte. Dio non si stanca mai di perdonarci, siamo noi che a volte ci stanchiamo di chiedere perdono.",
+      "reflectionHints": [
+        "C'è una porta del mio cuore che è ancora chiusa?",
+        "Ho il coraggio di chiedere perdono per le mie ferite?",
+        "Credo davvero che il perdono sia una vittoria?"
+      ]
+    },
+    {
+      "id": "a1",
+      "categoryId": "atti-lettere",
+      "themeId": "parola",
+      "title": "Atti 2, 42-47 - La prima comunità",
+      "content": "Erano perseveranti nell'insegnamento degli apostoli e nella comunione, nello spezzare il pane e nelle preghiere. Un senso di timore era in tutti, e prodigi e segni avvenivano per opera degli apostoli. Tutti i credenti stavano insieme e avevano ogni cosa in comune; vendevano le loro proprietà e sostanze e ne facevano parte a tutti, secondo il bisogno di ciascuno.",
+      "reflectionHints": [
+        "Come vivo la comunione nella mia comunità?",
+        "La Parola di Dio è il centro della mia giornata?",
+        "Sono capace di condividere ciò che ho con chi ha bisogno?"
+      ]
+    },
+    {
+      "id": "p1",
+      "categoryId": "preghiera",
+      "themeId": "misericordia",
+      "title": "Coroncina alla Divina Misericordia",
+      "content": "Padre Eterno, Ti offro il Corpo e il Sangue, l'Anima e la Divinità del Tuo dilettissimo Figlio e Signore nostro Gesù Cristo, in espiazione dei nostri peccati e di quelli del mondo intero. Per la Sua dolorosa Passione, abbi misericordia di noi e del mondo intero.",
+      "reflectionHints": []
+    }
+  ]
+}
