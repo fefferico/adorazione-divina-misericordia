@@ -1,4 +1,4 @@
-import { Injectable, signal, effect } from '@angular/core';
+import { Injectable, signal, effect, inject, Renderer2, RendererFactory2 } from '@angular/core';
 
 export type Theme = 'light' | 'dark' | 'system';
 
@@ -6,10 +6,12 @@ export type Theme = 'light' | 'dark' | 'system';
   providedIn: 'root'
 })
 export class ThemeService {
+  private renderer: Renderer2;
   theme = signal<Theme>(this.getInitialTheme());
   fontSizeMultiplier = signal<number>(this.getInitialFontSize());
 
-  constructor() {
+  constructor(rendererFactory: RendererFactory2) {
+    this.renderer = rendererFactory.createRenderer(null, null);
     effect(() => {
       const currentTheme = this.theme();
       const multiplier = this.fontSizeMultiplier();
@@ -54,20 +56,24 @@ export class ThemeService {
       isDark = theme === 'dark';
     }
 
+    const html = document.documentElement;
+    const body = document.body;
+
     if (isDark) {
-      document.documentElement.classList.add('dark');
-      document.body.classList.add('dark');
+      this.renderer.addClass(html, 'dark');
+      this.renderer.addClass(body, 'dark');
+      this.renderer.setAttribute(html, 'data-theme', 'dark');
+      this.renderer.setAttribute(body, 'data-theme', 'dark');
     } else {
-      document.documentElement.classList.remove('dark');
-      document.body.classList.remove('dark');
+      this.renderer.removeClass(html, 'dark');
+      this.renderer.removeClass(body, 'dark');
+      this.renderer.setAttribute(html, 'data-theme', 'light');
+      this.renderer.setAttribute(body, 'data-theme', 'light');
     }
     
-    // Force a small delay to ensure rendering
-    // This can help the browser pick up class changes in some scenarios
-    setTimeout(() => {
-        const check = document.documentElement.classList.contains('dark');
-        console.log('Theme applied: isDark?', check);
-    }, 0);
+    // Debug log
+    console.log(`[ThemeService] Applied ${theme} theme. effective isDark: ${isDark}`);
+    console.log(`[ThemeService] HTML classes: ${html.className}`);
   }
 
   private applyFontSize(multiplier: number) {

@@ -1,3 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import 'tailwindcss';
+
+@import './theme.css';
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans selection:bg-primary-200 transition-colors duration-300;
+  }
+
+  :is(.dark, [data-theme='dark']) body {
+    @apply bg-slate-950 text-slate-50;
+  }
+  
+  .dark {
+    color-scheme: dark;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif font-semibold tracking-tight;
+  }
+}
