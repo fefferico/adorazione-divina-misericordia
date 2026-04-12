@@ -1,14 +1,21 @@
 import { Injectable, signal } from '@angular/core';
 
+export interface AdorationItem {
+  id: string;
+  title: string;
+  content: string;
+}
+
 export interface AdorationSection {
   id: string;
   type: 'intro' | 'reading' | 'reflection' | 'song' | 'prayer' | 'conclusion';
   title: string;
-  content: string;
+  items: AdorationItem[];
   reflectionHints?: string[];
   order: number;
   category?: string; // e.g. 'Vangelo', 'Diario'
 }
+
 
 export interface Adoration {
   title: string;
@@ -67,14 +74,15 @@ export class AdorationStoreService {
 
   private getDefaultSections(): AdorationSection[] {
     return [
-      { id: 'sec_intro', type: 'intro', title: 'Introduzione', content: '', order: 0 },
-      { id: 'sec_1', type: 'reading', title: '1° Brano: Vangelo', content: '', order: 1, category: 'vangelo' },
-      { id: 'sec_2', type: 'reading', title: '2° Brano: Diario', content: '', order: 2, category: 'diario' },
-      { id: 'sec_3', type: 'reading', title: '3° Brano: Enciclica', content: '', order: 3, category: 'enciclica' },
-      { id: 'sec_4', type: 'reading', title: '4° Brano: Omelia/Santo', content: '', order: 4, category: 'omelia' },
-      { id: 'sec_5', type: 'reading', title: '5° Brano: Atti/Lettere', content: '', order: 5, category: 'atti-lettere' },
-      { id: 'sec_conclusion', type: 'conclusion', title: 'Riflessione conclusiva', content: '', order: 6 },
-      { id: 'sec_thanks', type: 'prayer', title: 'Preghiera di ringraziamento', content: '', order: 7 }
+      { id: 'sec_intro', type: 'intro', title: 'Introduzione', items: [], order: 0 },
+      { id: 'sec_1', type: 'reading', title: '1° Brano: Vangelo', items: [], order: 1, category: 'vangelo' },
+      { id: 'sec_2', type: 'reading', title: '2° Brano: Diario', items: [], order: 2, category: 'diario' },
+      { id: 'sec_3', type: 'reading', title: '3° Brano: Enciclica', items: [], order: 3, category: 'enciclica' },
+      { id: 'sec_4', type: 'reading', title: '4° Brano: Omelia/Santo', items: [], order: 4, category: 'omelia' },
+      { id: 'sec_5', type: 'reading', title: '5° Brano: Atti/Lettere', items: [], order: 5, category: 'atti-lettere' },
+      { id: 'sec_conclusion', type: 'conclusion', title: 'Riflessione conclusiva', items: [], order: 6 },
+      { id: 'sec_thanks', type: 'prayer', title: 'Preghiera di ringraziamento', items: [], order: 7 }
     ];
   }
+
 }

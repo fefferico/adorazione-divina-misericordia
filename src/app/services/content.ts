@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, shareReplay } from 'rxjs';
+import { Observable, map, shareReplay, forkJoin, of, catchError } from 'rxjs';
 
 export interface Category {
   id: string;
@@ -33,9 +33,24 @@ export interface Library {
 })
 export class ContentService {
   private http = inject(HttpClient);
-  private libraryUrl = 'assets/data/library.json';
+  private libraryFiles = ['assets/data/library.json', 'assets/data/francesco.json'];
 
-  private library$ = this.http.get<Library>(this.libraryUrl).pipe(
+  private library$ = forkJoin(
+    this.libraryFiles.map(url => this.http.get<any>(url).pipe(
+      catchError(() => of({ items: [], categories: [], themes: [] }))
+    ))
+  ).pipe(
+    map(results => {
+      const merged: Library = { categories: [], themes: [], items: [] };
+      results.forEach(res => {
+        if (res.categories) merged.categories.push(...res.categories);
+        if (res.themes) merged.themes.push(...res.themes);
+        if (res.items) merged.items.push(...res.items);
+      });
+      // Deduplicate items just in case
+      merged.items = Array.from(new Map(merged.items.map(i => [i.id, i])).values());
+      return merged;
+    }),
     shareReplay(1)
   );
 

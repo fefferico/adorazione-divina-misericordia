@@ -7,7 +7,7 @@ import os
 
 BASE_URL = "https://www.vatican.va"
 FRANCESCO_URL = f"{BASE_URL}/content/francesco/it"
-LIBRARY_PATH = "public/assets/data/library.json"
+LIBRARY_PATH = "public/assets/data/francesco.json"
 
 def clean_text(text):
     # Remove noise

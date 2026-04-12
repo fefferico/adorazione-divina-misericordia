@@ -75,14 +75,24 @@ export class BuilderComponent implements OnInit {
   onContentSelected(item: any) {
     const sectionId = this.selectedSectionId();
     if (sectionId) {
-      this.store.updateSection(sectionId, {
-        content: item.content,
-        reflectionHints: item.reflectionHints,
-        title: item.title
-      });
+      const section = this.selectedSection;
+      if (section) {
+        const newItem = {
+          id: `item_${Date.now()}`,
+          title: item.title,
+          content: item.content
+        };
+        const updatedItems = [...(section.items || []), newItem];
+        this.store.updateSection(sectionId, {
+          items: updatedItems,
+          // Merge reflection hints if they don't exist
+          reflectionHints: [...(section.reflectionHints || []), ...(item.reflectionHints || [])]
+        });
+      }
     }
     this.showPicker.set(false);
   }
+
 
   exportPdf() {
     this.pdfService.exportToPdf(this.adoration());
@@ -95,11 +105,12 @@ export class BuilderComponent implements OnInit {
       id: newId,
       type: 'reading',
       title: 'Nuovo Brano',
-      content: '',
+      items: [],
       order: newOrder
     });
     this.selectedSectionId.set(newId);
   }
+
 
   removeSection(id: string) {
     this.store.removeSection(id);
@@ -114,6 +125,36 @@ export class BuilderComponent implements OnInit {
 
   updateGlobalTitle(title: string) {
     this.store.updateTitle(title);
+  }
+
+  addManualItem() {
+    const section = this.selectedSection;
+    if (section) {
+      const newItem = {
+        id: `item_${Date.now()}`,
+        title: 'Nuovo frammento',
+        content: ''
+      };
+      const updatedItems = [...(section.items || []), newItem];
+      this.updateSection({ items: updatedItems });
+    }
+  }
+
+  updateItem(index: number, updates: any) {
+    const section = this.selectedSection;
+    if (section && section.items) {
+      const items = [...section.items];
+      items[index] = { ...items[index], ...updates };
+      this.updateSection({ items });
+    }
+  }
+
+  removeItem(index: number) {
+    const section = this.selectedSection;
+    if (section && section.items) {
+      const items = section.items.filter((_, i) => i !== index);
+      this.updateSection({ items });
+    }
   }
 
   addHint() {
@@ -141,3 +182,4 @@ export class BuilderComponent implements OnInit {
     }
   }
 }
+

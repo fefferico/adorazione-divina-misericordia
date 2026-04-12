@@ -1,35 +1,37 @@
-<nav class="fixed top-0 left-0 right-0 z-[100] px-6 py-3 transition-all duration-300"
-  [ngClass]="{'bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm': !isDashboard(), 'bg-transparent': isDashboard()}">
+<nav class="fixed top-0 left-0 right-0 z-[100] px-6 py-3 transition-all duration-300" [ngClass]="{
+    'bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm': !isDashboard() || isScrolled(), 
+    'bg-transparent': isDashboard() && !isScrolled()
+  }">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
     <!-- Logo/Brand -->
     <a routerLink="/" class="flex items-center gap-3 group">
       <div class="relative">
-        <div class="w-8 h-8 rounded-xl bg-accent-gold flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+        <div
+          class="w-8 h-8 rounded-xl bg-accent-gold flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
           <lucide-icon [name]="Sparkles" class="w-5 h-5 text-primary-950"></lucide-icon>
         </div>
         <div class="absolute -inset-1 bg-accent-gold/20 blur-md rounded-xl"></div>
       </div>
       <div class="flex flex-col">
-        <span class="text-sm font-bold tracking-tight text-slate-800 dark:text-white"
-          [ngClass]="{'text-white': isDashboard()}">Adorazione Divina</span>
-        <span class="text-[10px] uppercase font-bold tracking-[0.2em] text-accent-gold"
-          [ngClass]="{'text-accent-gold': isDashboard()}">Misericordia</span>
+        <span class="text-sm font-bold tracking-tight dark:text-white text-slate-800">Adorazione Divina</span>
+        <span class="text-[10px] uppercase font-bold tracking-[0.2em] text-accent-gold">Misericordia</span>
       </div>
     </a>
 
     <!-- Controls -->
     <div class="flex items-center gap-4">
       <!-- Font Size Controls -->
-      <div class="flex items-center bg-slate-100/80 dark:bg-slate-800/80 backdrop-blur-md rounded-2xl p-1 border border-slate-200 dark:border-slate-700 shadow-inner"
-        [ngClass]="{'bg-white/10 dark:bg-white/5 border-white/20 dark:border-white/10 text-white': isDashboard()}">
+      <div
+        class="flex items-center bg-slate-100/80 dark:bg-slate-800/80 backdrop-blur-md rounded-2xl p-1 border border-slate-200 dark:border-slate-700 shadow-inner text-slate-600 dark:text-slate-300"
+        [ngClass]="{'bg-white/10 dark:bg-white/5 border-white/20 dark:border-white/10 dark:text-white text-slate-800': isDashboard() && !isScrolled()}">
         <button (click)="themeService.decrementFontSize()"
-          class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-xl transition-all hover:shadow-md active:scale-95" 
+          class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-xl transition-all hover:shadow-md active:scale-95"
           title="Riduci font">
           <lucide-icon [name]="Minus" class="w-4 h-4"></lucide-icon>
         </button>
         <div class="w-px h-4 bg-slate-300 dark:bg-slate-700 mx-1" [ngClass]="{'bg-white/20': isDashboard()}"></div>
         <button (click)="themeService.incrementFontSize()"
-          class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-xl transition-all hover:shadow-md active:scale-95" 
+          class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-xl transition-all hover:shadow-md active:scale-95"
           title="Aumenta font">
           <lucide-icon [name]="Plus" class="w-4 h-4"></lucide-icon>
         </button>
@@ -39,8 +41,8 @@
       <button (click)="toggleTheme()"
         class="p-3 rounded-2xl transition-all active:scale-90 shadow-lg border relative overflow-hidden group"
         [ngClass]="{
-          'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300': !isDashboard(),
-          'bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20': isDashboard()
+          'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-white': !isDashboard() || isScrolled(),
+          'bg-white/10 dark:bg-slate-800/40 backdrop-blur-md border-white/20 dark:border-white/10 dark:text-white text-slate-800 hover:bg-white/20': isDashboard() && !isScrolled()
         }">
         <lucide-icon [name]="currentTheme() === 'dark' ? Sun : Moon" class="w-5 h-5 relative z-10"></lucide-icon>
         <div class="absolute inset-0 bg-accent-gold/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>

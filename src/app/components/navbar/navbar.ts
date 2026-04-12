@@ -1,4 +1,4 @@
-import { Component, inject, computed } from '@angular/core';
+import { Component, inject, computed, signal, HostListener } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { LucideAngularModule, Sun, Moon, Plus, Minus, Sparkles } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
@@ -24,6 +24,12 @@ export class NavbarComponent {
   currentTheme = computed(() => this.themeService.theme());
   
   isDashboard = computed(() => this.router.url === '/' || this.router.url === '/dashboard');
+  isScrolled = signal(false);
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled.set(window.scrollY > 20);
+  }
 
   toggleTheme() {
     const next = this.themeService.theme() === 'dark' ? 'light' : 'dark';

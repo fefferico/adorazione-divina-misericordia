@@ -58,11 +58,31 @@ export class PdfExportService {
       // Section Content
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(11);
-      doc.setTextColor(0, 0, 0);
+      doc.setTextColor(52, 73, 94);
 
-      const lines = doc.splitTextToSize(section.content || ' ', contentWidth);
-      doc.text(lines, margin, cursorY);
-      cursorY += (lines.length * 5) + 5;
+      (section.items || []).forEach((item, itemIdx) => {
+        // Optional item title if it's not the same as section title or generic
+        if (item.title && item.title !== section.title && (section.items.length > 1)) {
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(10);
+          doc.text(item.title, margin, cursorY);
+          cursorY += 5;
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(11);
+        }
+
+        const lines = doc.splitTextToSize(item.content || ' ', contentWidth);
+        
+        // Handle page break within item content
+        if (cursorY + (lines.length * 5) > 280) {
+          doc.addPage();
+          cursorY = margin;
+        }
+
+        doc.text(lines, margin, cursorY);
+        cursorY += (lines.length * 5) + 6;
+      });
+
 
       // Reflection Hints
       const validHints = (section.reflectionHints || []).filter(h => h && h.trim().length > 0);
