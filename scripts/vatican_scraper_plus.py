@@ -18,14 +18,21 @@ def clean_text(text):
     
     lines = text.split('\n')
     clean_lines = []
+    # common navigation words that appear alone on a line
+    nav_words = {'Français', 'English', 'Italiano', 'Português', 'Español', 'Deutsch', 'Polski', 'العربيّة', '中文', 'Latine', '×'}
+    
     for line in lines:
         line = line.strip()
         if not line: continue
         if len(line) < 3: continue
-        if any(x in line for x in ['Fran\u00e7ais', 'English', 'Italiano', 'Portugu\u00eas', 'Espa\u00f1ol']): continue
+        if line in nav_words: continue
+        if "La Santa Sede" in line and len(line) < 20: continue
+        if any(keyword in line for keyword in ['Magisterium', 'Calendario', 'Celebrazioni Liturgiche']): continue
+        
         clean_lines.append(line)
         
     return '\n\n'.join(clean_lines)
+
 
 def chunk_text(text, max_chars=1000):
     paragraphs = text.split('\n\n')
@@ -84,15 +91,24 @@ def scrape_doc(url):
         response.raise_for_status()
         soup = BeautifulSoup(response.content, 'html.parser')
         
-        content = soup.select_one('.document-content') or soup.select_one('#document-content') or soup.select_one('body')
+        # Modern Vatican site uses .vaticanrichtext, .document-content, or #document-content
+        content = (
+            soup.select_one('.document-content') or 
+            soup.select_one('#document-content') or 
+            soup.select_one('.vaticanrichtext') or
+            soup.select_one('.default') or
+            soup.select_one('body')
+        )
         
         if not content: return ""
             
-        for tag in content.select('.header, .footer, nav, script, style, .languages, .breadcrumb'):
+        # Clean up specific elements
+        for tag in content.select('.header, .footer, nav, script, style, .languages, .breadcrumb, .headerpdf, .zoom-text'):
             tag.decompose()
             
         text = content.get_text(separator='\n')
         return clean_text(text)
+
     except Exception as e:
         print(f"Error scraping {url}: {e}")
         return ""
