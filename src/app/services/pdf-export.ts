@@ -65,12 +65,13 @@ export class PdfExportService {
       cursorY += (lines.length * 5) + 5;
 
       // Reflection Hints
-      if (section.reflectionHints && section.reflectionHints.length > 0) {
+      const validHints = (section.reflectionHints || []).filter(h => h && h.trim().length > 0);
+      if (validHints.length > 0) {
         doc.setFont('helvetica', 'italic');
         doc.setFontSize(10);
         doc.setTextColor(100, 100, 100);
 
-        section.reflectionHints.forEach(hint => {
+        validHints.forEach(hint => {
           if (cursorY > 275) {
             doc.addPage();
             cursorY = margin;

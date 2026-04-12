@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LucideAngularModule, ChevronLeft, Save, Download, Search, Plus, Trash2, Edit3, CheckCircle } from 'lucide-angular';
+import { LucideAngularModule, ChevronLeft, Save, Download, Search, Plus, Trash2, Edit3, CheckCircle, X } from 'lucide-angular';
 import { RouterLink } from '@angular/router';
 import { AdorationStoreService, AdorationSection } from '../../services/adoration-store';
 import { PdfExportService } from '../../services/pdf-export';
@@ -26,6 +26,7 @@ export class BuilderComponent {
   readonly Trash2 = Trash2;
   readonly Edit3 = Edit3;
   readonly CheckCircle = CheckCircle;
+  readonly X = X;
 
   adoration = this.store.currentAdoration;
   selectedSectionId = signal<string | null>(null);
@@ -92,5 +93,30 @@ export class BuilderComponent {
 
   updateGlobalTitle(title: string) {
     this.store.updateTitle(title);
+  }
+
+  addHint() {
+    const section = this.selectedSection;
+    if (section) {
+      const hints = [...(section.reflectionHints || []), ''];
+      this.updateSection({ reflectionHints: hints });
+    }
+  }
+
+  updateHint(index: number, value: string) {
+    const section = this.selectedSection;
+    if (section && section.reflectionHints) {
+      const hints = [...section.reflectionHints];
+      hints[index] = value;
+      this.updateSection({ reflectionHints: hints });
+    }
+  }
+
+  removeHint(index: number) {
+    const section = this.selectedSection;
+    if (section && section.reflectionHints) {
+      const hints = section.reflectionHints.filter((_, i) => i !== index);
+      this.updateSection({ reflectionHints: hints });
+    }
   }
 }
