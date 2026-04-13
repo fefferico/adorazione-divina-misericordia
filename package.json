@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng build --base-href /adorazione-divina-misericordia/ && npx angular-cli-ghpages --dir dist/adorazione-app/browser --nojekyll --branch gh-pages"
+    "deploy": "ng build --base-href /adorazione-divina-misericordia/ && npx angular-cli-ghpages --dir dist/adorazione-app/browser"
   },
   "private": true,
   "packageManager": "npm@11.9.0",
@@ -22,6 +22,7 @@
     "@tailwindcss/typography": "^0.5.19",
     "@tiptap/core": "^3.22.3",
     "@tiptap/starter-kit": "^3.22.3",
+    "angular-cli-ghpages": "^3.0.2",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.7",
