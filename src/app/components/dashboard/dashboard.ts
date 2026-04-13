@@ -60,66 +60,76 @@ export class DashboardComponent {
   }
 
   goToBuilder(themeName: string) {
-    // 1. Find the actual theme ID if possible, otherwise use the name
     const themeId = themeName.toLowerCase();
 
-    this.contentService.searchItems(undefined, themeId).subscribe(items => {
-      // 1. Reset and initialize the adoration first
-      this.store.reset();
-      this.store.updateTheme(themeName);
-      this.store.updateTitle(`Adorazione: ${themeName}`);
-
-      if (items.length === 0) {
-        console.warn('No items found for theme:', themeId);
-        this.router.navigate(['/builder']);
-        return;
-      }
-
-      // 2. Map existing sections to thematic items
-      const currentAdoration = this.store.currentAdoration();
-      const usedIds = new Set<string>();
-      
-      currentAdoration.sections.forEach(section => {
-        if (section.category) {
-          // Filter items that match the section's target category and haven't been used yet
-          let matchingItems = items.filter(item => 
-            item.categoryId.toLowerCase() === section.category?.toLowerCase() &&
-            !usedIds.has(item.id)
-          );
-
-          // Fallback if no specific category match, pick something else thematic
-          if (matchingItems.length === 0) {
-             matchingItems = items.filter(item => !usedIds.has(item.id));
+    // Fetch thematic items and all songs to have a fallback
+    this.contentService.searchItems(undefined, themeId).subscribe(thematicItems => {
+      this.contentService.searchItems('canto').subscribe(allSongs => {
+        const items = [...thematicItems];
+        // Add songs that are not already in thematicItems
+        const thematicSongIds = new Set(thematicItems.filter(i => i.categoryId === 'canto').map(i => i.id));
+        allSongs.forEach(song => {
+          if (!thematicSongIds.has(song.id)) {
+            items.push(song);
           }
+        });
 
-          if (matchingItems.length > 0) {
-            // Pick 1-2 random fragments for variety
-            const count = (section.category === 'diario' || section.category === 'omelia') ? 1 : 1; 
-            const shuffled = [...matchingItems].sort(() => 0.5 - Math.random());
-            const selectedSet = shuffled.slice(0, count);
+        // 1. Reset and initialize the adoration first
+        this.store.reset();
+        this.store.updateTheme(themeName);
+        this.store.updateTitle(`Adorazione: ${themeName}`);
 
-            const adorationItems = selectedSet.map(selected => {
-              usedIds.add(selected.id);
-              return {
-                id: selected.id,
-                title: selected.title,
-                content: selected.content
-              };
-            });
-
-            // Merge reflection hints from all selected items
-            const hints = selectedSet.reduce((acc, curr) => [...acc, ...(curr.reflectionHints || [])], [] as string[]);
-
-            this.store.updateSection(section.id, {
-              items: adorationItems,
-              reflectionHints: Array.from(new Set(hints)).slice(0, 3) // max 3 hints
-            });
-          }
+        if (items.length === 0) {
+          console.warn('No items found for theme:', themeId);
+          this.router.navigate(['/builder']);
+          return;
         }
-      });
 
-      // 3. Navigate to the builder
-      this.router.navigate(['/builder']);
+        // 2. Map existing sections to thematic items
+        const currentAdoration = this.store.currentAdoration();
+        const usedIds = new Set<string>();
+        
+        currentAdoration.sections.forEach(section => {
+          if (section.category) {
+            // Filter items that match the section's target category and haven't been used yet
+            let matchingItems = items.filter(item => {
+              const isUnused = !usedIds.has(item.id);
+              if (!isUnused) return false;
+
+              // Handle multi-category match for "atti-lettere"
+              if (section.category === 'atti-lettere') {
+                return item.categoryId === 'atti' || item.categoryId === 'lettere';
+              }
+              
+              return item.categoryId.toLowerCase() === section.category?.toLowerCase();
+            });
+
+            // Fallback if no specific category match, pick something else thematic (but avoid cross-picking songs/readings)
+            if (matchingItems.length === 0 && section.category !== 'canti') {
+               matchingItems = items.filter(item => !usedIds.has(item.id) && item.categoryId !== 'canto');
+            }
+
+            if (matchingItems.length > 0) {
+              const shuffled = [...matchingItems].sort(() => 0.5 - Math.random());
+              const selected = shuffled[0];
+
+              usedIds.add(selected.id);
+              
+              this.store.updateSection(section.id, {
+                items: [{
+                  id: selected.id,
+                  title: selected.title,
+                  content: selected.content
+                }],
+                reflectionHints: (selected.reflectionHints || []).slice(0, 3)
+              });
+            }
+          }
+        });
+
+        // 3. Navigate to the builder
+        this.router.navigate(['/builder']);
+      });
     });
   }
 }

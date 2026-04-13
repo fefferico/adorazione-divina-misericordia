@@ -35,6 +35,16 @@
 
         </div>
         <h4 class="text-sm font-semibold text-slate-700 dark:text-slate-300 truncate">{{ section.title }}</h4>
+        @if (section.items && section.items.length > 0) {
+        <div class="mt-2 space-y-1 border-t border-slate-100 dark:border-slate-900/50 pt-2">
+          @for (item of section.items; track item.id) {
+          <p class="text-[12px] text-slate-500 dark:text-slate-400 truncate flex items-center gap-1.5 leading-tight">
+            <span class="w-1 h-1 rounded-full bg-primary-400/50 flex-shrink-0"></span>
+            {{ item.title }}
+          </p>
+          }
+        </div>
+        }
       </div>
       }
     </div>
