@@ -61,5 +61,14 @@
 }
 
 .custom-editor .ProseMirror blockquote {
-  @apply border-l-4 border-primary-200 dark:border-primary-800 pl-4 italic text-slate-500 my-4;
+  @apply border-l-4 border-primary-400 dark:border-primary-600 pl-8 pr-4 py-4 my-6 italic bg-slate-50 dark:bg-slate-900/40 rounded-r-2xl text-slate-700 dark:text-slate-300 relative shadow-inner;
+}
+
+.custom-editor .ProseMirror blockquote::before {
+  content: '“';
+  @apply absolute left-2 top-0 text-4xl text-primary-200 dark:text-primary-800 font-serif leading-none;
+}
+
+.custom-editor .ProseMirror blockquote p {
+  @apply m-0 leading-relaxed;
 }

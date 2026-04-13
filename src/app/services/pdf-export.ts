@@ -138,6 +138,10 @@ export class PdfExportService {
       // Close div/p tags with newlines
       .replace(/<\/div>/gi, '\n')
       .replace(/<\/p>/gi, '\n\n')
+      // Handle Blockquotes
+      .replace(/<blockquote>/gi, '\n\n')
+      .replace(/<\/blockquote>/gi, '\n\n')
+
       // Handle Lists
       .replace(/<ul>/gi, '\n')
       .replace(/<\/ul>/gi, '\n')
