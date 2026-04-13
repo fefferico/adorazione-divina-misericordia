@@ -78,28 +78,28 @@ export class PdfExportService {
           let currentPara = para.trim();
           if (!currentPara) return;
 
-          // Style logic based on markers
+          // Default styles
           let fontSize = 11;
           let fontStyle = 'normal';
           let xOffset = 0;
           let textColor = [51, 65, 85] as [number, number, number];
 
+          // Structural Markers Handling
           if (currentPara.startsWith('[[H1]]')) {
             currentPara = currentPara.replace('[[H1]]', '').trim();
-            fontSize = 15;
-            fontStyle = 'bold';
-            textColor = [15, 23, 42];
+            fontSize = 15; fontStyle = 'bold'; textColor = [15, 23, 42];
           } else if (currentPara.startsWith('[[H2]]')) {
             currentPara = currentPara.replace('[[H2]]', '').trim();
-            fontSize = 13;
-            fontStyle = 'bold';
-            textColor = [30, 41, 59];
+            fontSize = 13; fontStyle = 'bold'; textColor = [30, 41, 59];
+          } else if (currentPara.startsWith('[[LI_NUM]]') || currentPara.startsWith('[[LI_BULLET]]')) {
+            const isNum = currentPara.startsWith('[[LI_NUM]]');
+            currentPara = currentPara.replace(isNum ? '[[LI_NUM]]' : '[[LI_BULLET]]', '').trim();
+            xOffset = 6;
           } else if (currentPara.startsWith('[[QUOTE]]')) {
             currentPara = currentPara.replace('[[QUOTE]]', '').trim();
             fontStyle = 'italic';
             xOffset = 10;
             textColor = [71, 85, 105];
-            // Draw a quote border link
             doc.setDrawColor(203, 213, 225);
             doc.setLineWidth(0.8);
           }
@@ -108,20 +108,26 @@ export class PdfExportService {
           doc.setFontSize(fontSize);
           doc.setTextColor(textColor[0], textColor[1], textColor[2]);
 
-          const lines = doc.splitTextToSize(currentPara, contentWidth - xOffset);
-          const blockHeight = lines.length * (fontSize * 0.5);
+          // Handle multi-line drawing with possible inline styles
+          const rawLines = doc.splitTextToSize(currentPara, contentWidth - xOffset);
+          const blockHeight = rawLines.length * (fontSize * 0.55);
 
           if (cursorY + blockHeight > 275) {
             doc.addPage();
             cursorY = margin;
           }
 
-          if (xOffset > 0) {
-            doc.line(margin + 2, cursorY - 2, margin + 2, cursorY + blockHeight - 2);
+          if (xOffset >= 10 && fontStyle === 'italic') { // Quote border
+             doc.line(margin + 2, cursorY - 3, margin + 2, cursorY + blockHeight - 2);
           }
 
-          doc.text(lines, margin + xOffset, cursorY);
-          cursorY += blockHeight + 5;
+          // Use our new styled text renderer for each line to support [[B]] and [[I]]
+          rawLines.forEach((line: string, lineIdx: number) => {
+             this.drawStyledLine(doc, line, margin + xOffset, cursorY, fontStyle);
+             cursorY += (fontSize * 0.55);
+          });
+          
+          cursorY += 2; // Paragraph spacing
         });
 
         cursorY += 4;
@@ -179,19 +185,30 @@ export class PdfExportService {
       .replace(/<h2>(.*?)<\/h2>/gi, '\n[[H2]]$1\n')
       // Replace breaks with newlines
       .replace(/<br\s*\/?>/gi, '\n')
-      // Close div/p tags with newlines
-      .replace(/<\/div>/gi, '\n')
-      .replace(/<\/p>/gi, '\n\n')
       // Handle Blockquotes
       .replace(/<blockquote>([\s\S]*?)<\/blockquote>/gi, '\n[[QUOTE]]$1\n')
 
-      // Handle Lists
-      .replace(/<ul>/gi, '\n')
-      .replace(/<\/ul>/gi, '\n')
-      .replace(/<ol>/gi, '\n')
-      .replace(/<\/ol>/gi, '\n')
-      // Treat list items as lines with bullets
-      .replace(/<li>(.*?)<\/li>/gi, '\n• $1')
+      // Handle Ordered Lists (Numbered)
+      .replace(/<ol>([\s\S]*?)<\/ol>/gi, (match, items) => {
+        let count = 1;
+        // Temporary marker to avoid confusion with unordered lists
+        return items.replace(/<li>(.*?)<\/li>/gi, () => `\n[[LI_NUM]]${count++}. $1`);
+      })
+      // Handle Unordered Lists (Bullets)
+      .replace(/<ul>([\s\S]*?)<\/ul>/gi, (match, items) => {
+        return items.replace(/<li>(.*?)<\/li>/gi, '\n[[LI_BULLET]]• $1');
+      })
+
+      // Preserve Bold and Italic as markers
+      .replace(/<b>(.*?)<\/b>/gi, '[[B]]$1[[/B]]')
+      .replace(/<strong>(.*?)<\/strong>/gi, '[[B]]$1[[/B]]')
+      .replace(/<i>(.*?)<\/i>/gi, '[[I]]$1[[/I]]')
+      .replace(/<em>(.*?)<\/em>/gi, '[[I]]$1[[/I]]')
+
+      // Close div/p tags with newlines
+      .replace(/<\/div>/gi, '\n')
+      .replace(/<\/p>/gi, '\n\n')
+
       // Strip remaining tags
       .replace(/<[^>]+>/g, '');
 
@@ -254,5 +271,37 @@ export class PdfExportService {
       'gospel': 'Vangelo'
     };
     return map[type.toLowerCase()] || 'Sezione';
+  }
+
+  private drawStyledLine(doc: jsPDF, line: string, x: number, y: number, baseStyle: string) {
+    // Regex to find our markers: [[B]], [[/B]], [[I]], [[/I]]
+    const parts = line.split(/(\[\[\/?[BI]\]\])/g);
+    let currentX = x;
+    let isBold = baseStyle.includes('bold');
+    let isItalic = baseStyle.includes('italic');
+
+    parts.forEach(part => {
+      if (!part) return;
+
+      if (part === '[[B]]') {
+        isBold = true;
+      } else if (part === '[[/B]]') {
+        isBold = baseStyle.includes('bold');
+      } else if (part === '[[I]]') {
+        isItalic = true;
+      } else if (part === '[[/I]]') {
+        isItalic = baseStyle.includes('italic');
+      } else {
+        // Actual text to draw
+        const style = (isBold && isItalic) ? 'bolditalic' : (isBold ? 'bold' : (isItalic ? 'italic' : 'normal'));
+        doc.setFont('helvetica', style);
+        // Remove any leftover markers just in case
+        const cleanText = part.replace(/\[\[\/?[BIH12QUOTELIMB]+\]\]/g, '');
+        if (cleanText) {
+          doc.text(cleanText, currentX, y);
+          currentX += doc.getTextWidth(cleanText);
+        }
+      }
+    });
   }
 }
