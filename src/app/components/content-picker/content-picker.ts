@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output, inject, signal } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { switchMap, combineLatest, debounceTime, startWith, map, tap } from 'rxjs';
 import { LucideAngularModule, X, Search, Filter, BookOpen, Heart, Scroll, Mic, Mail, Music, Plus, Bell, Users, MessageSquare, FileText, User, Calendar } from 'lucide-angular';
 import { ContentService, LibraryItem, Category, Theme } from '../../services/content';
 
@@ -43,42 +45,61 @@ export class ContentPickerComponent implements OnInit {
   @Output() onSelect = new EventEmitter<LibraryItem>();
   @Output() onClose = new EventEmitter<void>();
 
-  categories = signal<Category[]>([]);
-  themes = signal<Theme[]>([]);
-  authors = signal<string[]>([]);
-  years = signal<string[]>([]);
-  results = signal<LibraryItem[]>([]);
-
+  // Base state
   selectedCategoryId = signal<string | null>(null);
   selectedThemeId = signal<string | null>(null);
   selectedAuthor = signal<string | null>(null);
   selectedYear = signal<string | null>(null);
   searchQuery = signal('');
 
+  // Reactive Data
+  categories = toSignal(this.contentService.getCategories(), { initialValue: [] });
+  
+  // Themes reactive to category
+  themes = toSignal(
+    toObservable(this.selectedCategoryId).pipe(
+      switchMap(catId => this.contentService.getThemes(catId || undefined))
+    ),
+    { initialValue: [] }
+  );
+
+  // Authors reactive to category
+  authors = toSignal(
+    toObservable(this.selectedCategoryId).pipe(
+      switchMap(catId => this.contentService.getAuthors(catId || undefined))
+    ),
+    { initialValue: [] }
+  );
+
+  // Years reactive to category
+  years = toSignal(
+    toObservable(this.selectedCategoryId).pipe(
+      switchMap(catId => this.contentService.getYears(catId || undefined))
+    ),
+    { initialValue: [] }
+  );
+
+  // Search Results
+  results = toSignal(
+    combineLatest([
+      toObservable(this.selectedCategoryId),
+      toObservable(this.selectedThemeId),
+      toObservable(this.searchQuery).pipe(debounceTime(300), startWith('')),
+      toObservable(this.selectedAuthor),
+      toObservable(this.selectedYear)
+    ]).pipe(
+      switchMap(([cat, theme, query, author, year]) => 
+        this.contentService.searchItems(cat || undefined, theme || undefined, query, author || undefined, year || undefined)
+      )
+    ),
+    { initialValue: [] }
+  );
+
   ngOnInit() {
-    this.contentService.getCategories().subscribe((c: Category[]) => this.categories.set(c));
-    this.contentService.getThemes().subscribe((t: Theme[]) => this.themes.set(t));
-    
-    // Auto-select category if provided
+    // Auto-select category if provided as input
     if (this.categoryFilter) {
       this.selectedCategoryId.set(this.categoryFilter);
     }
-
-    const initialCat = this.selectedCategoryId();
-    this.contentService.getAuthors(initialCat || undefined).subscribe((a: string[]) => this.authors.set(a));
-    this.contentService.getYears(initialCat || undefined).subscribe((y: string[]) => this.years.set(y));
-
-    this.performSearch();
-  }
-
-  performSearch() {
-    this.contentService.searchItems(
-      this.selectedCategoryId() || undefined,
-      this.selectedThemeId() || undefined,
-      this.searchQuery(),
-      this.selectedAuthor() || undefined,
-      this.selectedYear() || undefined
-    ).subscribe((items: LibraryItem[]) => this.results.set(items));
   }
 
   selectCategory(id: string | null) {
@@ -87,32 +108,22 @@ export class ContentPickerComponent implements OnInit {
     this.selectedAuthor.set(null);
     this.selectedYear.set(null);
     this.searchQuery.set('');
-    
-    // Refresh coherent filters
-    this.contentService.getAuthors(id || undefined).subscribe((a: string[]) => this.authors.set(a));
-    this.contentService.getYears(id || undefined).subscribe((y: string[]) => this.years.set(y));
-    
-    this.performSearch();
   }
 
   selectTheme(id: string | null) {
     this.selectedThemeId.set(this.selectedThemeId() === id ? null : id);
-    this.performSearch();
   }
 
   selectAuthor(author: string | null) {
     this.selectedAuthor.set(this.selectedAuthor() === author ? null : author);
-    this.performSearch();
   }
 
   selectYear(year: string | null) {
     this.selectedYear.set(this.selectedYear() === year ? null : year);
-    this.performSearch();
   }
 
   onSearchChange(query: string) {
     this.searchQuery.set(query);
-    this.performSearch();
   }
 
   selectItem(item: LibraryItem) {

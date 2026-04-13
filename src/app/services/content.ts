@@ -130,8 +130,21 @@ export class ContentService {
     return this.library$.pipe(map(l => l.categories));
   }
 
-  getThemes(): Observable<Theme[]> {
-    return this.library$.pipe(map(l => l.themes));
+  getThemes(categoryId?: string): Observable<Theme[]> {
+    return this.library$.pipe(
+      map(lib => {
+        if (!categoryId) return lib.themes;
+        // Filter themes that have at least one item in the current category
+        const themeIds = new Set(
+          lib.items
+            .filter(i => i.categoryId === categoryId)
+            .map(i => i.themeId)
+            .filter(t => !!t)
+        );
+        // Include themes that were explicitly registered for this category or are present in items
+        return lib.themes.filter(t => themeIds.has(t.id));
+      })
+    );
   }
 
   getAuthors(categoryId?: string): Observable<string[]> {
