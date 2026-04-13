@@ -1,0 +1,189 @@
+{
+  "categories": [
+    {
+      "path": "https://www.vatican.va/content/francesco/it/angelus",
+      "categoryId": "angelus",
+      "displayName": "Angelus - Regina Cæli",
+      "years": true
+    },
+    {
+      "path": "https://www.vatican.va/content/francesco/it/homilies",
+      "categoryId": "omelia",
+      "displayName": "Omelie",
+      "years": true
+    },
+    {
+      "path": "https://www.vatican.va/content/francesco/it/prayers",
+      "categoryId": "preghiera",
+      "displayName": "Preghiere",
+      "years": false
+    },
+    {
+      "path": "https://www.vatican.va/content/francesco/it/encyclicals",
+      "categoryId": "enciclica",
+      "displayName": "Encicliche",
+      "years": false
+    },
+    {
+      "path": "https://www.vatican.va/content/francesco/it/speeches",
+      "categoryId": "discorso",
+      "displayName": "Discorsi",
+      "years": true,
+      "months": true
+    },
+    {
+      "path": "https://www.vatican.va/content/francesco/it/letters",
+      "categoryId": "lettera",
+      "displayName": "Lettere",
+      "years": true
+    },
+    {
+      "path": "https://www.vatican.va/content/francesco/it/apost_letters",
+      "categoryId": "lettera_apostolica",
+      "displayName": "Lettere Apostoliche",
+      "years": false
+    },
+    {
+      "path": "https://www.vatican.va/content/francesco/it/cotidie",
+      "categoryId": "meditazione",
+      "displayName": "Meditazioni Quotidiane",
+      "years": true
+    },
+    {
+      "path": "https://www.vatican.va/content/francesco/it/apost_exhortations",
+      "categoryId": "esortazione_apostolica",
+      "displayName": "Esortazioni Apostoliche",
+      "years": false
+    },
+    {
+      "path": "https://www.vatican.va/content/francesco/it/messages",
+      "categoryId": "messaggio",
+      "displayName": "Messaggi",
+      "years": false,
+      "special": [
+        "pont-messages",
+        "urbi",
+        "lent",
+        "food",
+        "peace",
+        "poveri"
+      ]
+    },
+    {
+      "path": "https://www.vatican.va/content/francesco/it/audiences",
+      "categoryId": "udienza",
+      "displayName": "Udienze",
+      "years": true
+    },
+    {
+      "path": "https://www.vatican.va/content/francesco/it/bulls",
+      "categoryId": "bolla",
+      "displayName": "Bolle",
+      "years": false
+    },
+    {
+      "path": "https://www.vatican.va/content/francesco/it/apost_constitutions",
+      "categoryId": "costituzione_apostolica",
+      "displayName": "Costituzioni Apostoliche",
+      "years": false
+    }
+  ],
+  "items": [
+    {
+      "id": "omelia_a1b2c3d4e5f6",
+      "categoryId": "omelia",
+      "themeIds": [
+        "Misericordia",
+        "Fede",
+        "Amore"
+      ],
+      "title": "Il dono della Misericordia - Domenica della Divina Misericordia",
+      "content": "Cari fratelli e sorelle! Oggi celebriamo la Domenica della Divina Misericordia, che ci invita a contemplare il cuore traboccante di amore di Gesù. La misericordia non è semplicemente un sentimento passeggero, ma è la vera essenza dell'amore divino che ci avvolge. In questo tempo di sfide e incertezze, siamo chiamati a riscoprire la grandezza della misericordia di Dio.\n\nLa misericordia di Dio è infinita e non conosce limiti. Essa raggiunge i peccatori, i sofferenti, gli emarginati. Gesù, nella sua passione e nella sua morte, ci ha mostrato l'amore più grande: il dono di sé. Questa è la vera misericordia. Non è indulgenza o debolezza, ma è forza d'amore che trasforma i cuori e riconcilia l'uomo con Dio.\n\nFratelli e sorelle, lasciamoci toccare dal cuore misericordioso di Gesù. Impariamo da Lui a essere misericordiosi gli uni verso gli altri. La nostra fede si misura dalla nostra capacità di perdonare, di accogliere, di amare anche coloro che ci feriscono. Questo è il messaggio che oggi la Chiesa proclama al mondo.",
+      "author": "Papa Francesco",
+      "reflectionHints": [
+        "Cosa mi dice questa parola sulla misericordia?",
+        "Come posso vivere la misericordia nel mio quotidiano?",
+        "Quale conversione mi chiede questa riflessione?",
+        "Chi ha bisogno della mia misericordia oggi?"
+      ],
+      "source_url": "https://www.vatican.va/content/francesco/it/homilies/2023/documents/papa-francesco_20230409_omelia-domenica-misericordia.html",
+      "scraped_at": "2025-04-13T10:30:45.123456"
+    },
+    {
+      "id": "angelus_b2c3d4e5f6a7",
+      "categoryId": "angelus",
+      "themeIds": [
+        "Speranza",
+        "Fede"
+      ],
+      "title": "Angelus - La Risurrezione è la nostra speranza",
+      "content": "Cari fedeli! Il Signore Risorto è nostra speranza. In questo periodo di incertezze mondiali, la Risurrezione di Cristo ci ricorda che la vita vince sulla morte, che l'amore vince sull'odio, che la speranza non deve mai venire meno. La Pasqua non è solo una festa passata, ma è una realtà sempre viva e presente nel cuore della Chiesa.\n\nGesù Risorto cammina con noi. Egli non ci abbandona mai, anche nei momenti più difficili. La sua Risurrezione è garanzia della nostra risurrezione, della nostra speranza di vita eterna. Possa ogni cristiano portare nel proprio cuore questa consolante certezza: il male non ha l'ultima parola, la morte non è il fine, la speranza è fondata sulla roccia di Cristo Risorto.",
+      "author": "Papa Francesco",
+      "reflectionHints": [
+        "Cosa mi comunica la Risurrezione di Gesù?",
+        "Come la mia fede nella Risurrezione cambia la mia prospettiva?",
+        "Quali speranze posso affidare a Cristo Risorto?"
+      ],
+      "source_url": "https://www.vatican.va/content/francesco/it/angelus/2024/documents/papa-francesco_angelus_20240421.html",
+      "scraped_at": "2025-04-13T10:35:22.654321"
+    },
+    {
+      "id": "preghiera_c3d4e5f6a7b8",
+      "categoryId": "preghiera",
+      "themeIds": [
+        "Fede",
+        "Amore"
+      ],
+      "title": "Preghiera per la Pace nel Mondo",
+      "content": "Padre celeste, ascolta la nostra supplica per la pace nel mondo. In questo momento storico segnato da conflitti e sofferenze, ti chiediamo la grazia di guidare i cuori dei potenti verso soluzioni giuste e fraterne.\n\nDonaci la sapienza di costruire ponti anziché muri, la forza di perdonare le ingiustizie, il coraggio di lavorare per la giustizia. Insegnaci a vedere in ogni persona il volto di tuo Figlio Gesù, a riconoscere la dignità infinita di ogni essere umano.\n\nVieni, Spirito Santo, accendi nei nostri cuori la fiamma dell'amore che supera ogni barriera. Che la tua pace, che sorpassa ogni intelligenza, custodisca i nostri cuori e i nostri pensieri. Per Cristo nostro Signore. Amen.",
+      "author": "Papa Francesco",
+      "reflectionHints": [
+        "Come posso far mia questa preghiera?",
+        "Quali intenzioni aggiungo alle mie preghiere?",
+        "Come pregare per la pace con il cuore?"
+      ],
+      "source_url": "https://www.vatican.va/content/francesco/it/prayers/documents/papa-francesco_preghiera-pace.html",
+      "scraped_at": "2025-04-13T10:40:15.789012"
+    },
+    {
+      "id": "discorso_d4e5f6a7b8c9",
+      "categoryId": "discorso",
+      "themeIds": [
+        "Giustizia",
+        "Poveri",
+        "Amore"
+      ],
+      "title": "Discorso ai partecipanti della Conferenza Internazionale sulla Povertà",
+      "content": "Signore e signori, vi ringrazio di essere riuniti in questa importante conferenza dedicata alla lotta contro la povertà. Questo tema non è meramente economico o sociologico; è profondamente morale e spirituale. La povertà non è semplice mancanza di denaro, ma è privazione di dignità, di diritti, di speranza.\n\nLa Chiesa non può tacere davanti all'ingiustizia strutturale che condanna milioni di persone a vivere in condizioni disumane. Gesù stesso si è identificato con i poveri quando disse: \"Chi accoglie uno di questi bambini nel mio nome, accoglie me\". Non possiamo proclamare di amare Dio se poi ignoriamo il grido dei poveri.\n\nVi esorto a lavorare con coraggio per cambiare le strutture ingiuste, per creare sistemi economici che pongano la dignità umana al centro, per condividere le risorse di questo pianeta in modo equo. Questo non è comunismo, è semplicemente Vangelo.",
+      "author": "Papa Francesco",
+      "reflectionHints": [
+        "Quale insegnamento sulla povertà mi colpisce?",
+        "Come posso concretamente aiutare i poveri nel mio contesto?",
+        "Chi ha bisogno di sentire questo messaggio?"
+      ],
+      "source_url": "https://www.vatican.va/content/francesco/it/speeches/2023/documents/papa-francesco_20230915_discorso-povertà.html",
+      "scraped_at": "2025-04-13T10:45:33.234567"
+    },
+    {
+      "id": "meditazione_e5f6a7b8c9d0",
+      "categoryId": "meditazione",
+      "themeIds": [
+        "Fede",
+        "Speranza",
+        "Chiesa"
+      ],
+      "title": "Meditazione Quotidiana - Il Mustacchio di Dio",
+      "content": "Meditazione per il 15 settembre. Leggere il Vangelo di Matteo 18, 21-35.\n\nCaro fratello, cara sorella, oggi riflettiamo sulla parabola del servo senza pietà. Pietro chiede a Gesù: \"Quante volte dovrò perdonare mio fratello? Sette volte?\". Gesù risponde: \"Non ti dico sette volte, ma settanta volte sette\". Questa risposta non è semplicemente numerica; significa che il perdono deve essere illimitato, come illimitato è l'amore di Dio.\n\nLa parabola che segue è illuminante: un servo deve una somma enorme al suo padrone, che gli perdona tutto per compassione. Ma questo stesso servo, incontrando un collega che gli deve una piccola somma, lo afferra per la gola e lo fa imprigionare. Il padrone, sdegnato, lo consegna agli aguzzini. Così farà il Padre con noi se non perdoniamo di cuore.\n\nRifletti oggi: Chi hai difficoltà a perdonare? Qual è l'ostacolo al perdono nel tuo cuore? Ricorda che sei stato perdonato infinitamente da Dio.",
+      "author": "Papa Francesco",
+      "reflectionHints": [
+        "Quale verità emerge da questa meditazione?",
+        "Come contemplo il mistero del perdono?",
+        "Quale risposta mi chiedono queste parole sul perdono?"
+      ],
+      "source_url": "https://www.vatican.va/content/francesco/it/cotidie/2024/documents/papa-francesco_cotidie_20240915.html",
+      "scraped_at": "2025-04-13T10:50:01.567890"
+    }
+  ],
+  "lastUpdated": "2025-04-13T10:50:01.567890",
+  "totalItems": 5
+}

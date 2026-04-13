@@ -1,3 +1,596 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": "vatican-4db91f95f9d7",
+      "category": "omelia",
+      "title": "Domenica di Pasqua nella Risurrezione del Signore (20 aprile 2025) (Estratto 1)",
+      "content": "DOMENICA DI PASQUA NELLA RISURREZIONE DEL SIGNORE\n\nSANTA MESSA DEL GIORNO\n\nOMELIA DEL SANTO PADRE FRANCESCO\n\nLETTA DAL CARDINALE ANGELO COMASTRI\n\nPiazza San Pietro\n\nDomenica di Pasqua, 20 aprile 2025\n\nMultimedia\n\n______________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-193a518195b7",
+      "category": "omelia",
+      "title": "DE (Estratto 1)",
+      "content": "HOCHFEST DER AUFERSTEHUNG DES HERRN\n\nHEILIGE MESSE AM OSTERSONNTAG\n\nVON KARDINAL ANGELO COMASTRI\n\nVERLESENE PREDIGT VON PAPST FRANZISKUS\n\nPetersplatz\n\nOstersonntag, 20. April 2025\n\nMultimedia\n\n______________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-140169f27e09",
+      "category": "omelia",
+      "title": "EN (Estratto 1)",
+      "content": "EASTER SUNDAY\n\nMASS OF THE DAY\n\nHOMILY OF HIS HOLINESS POPE FRANCIS\n\nREAD BY CARDINAL ANGELO COMASTRI\n\nSaint Peter's Square\n\nEaster Sunday, 20 April 2025\n\nMultimedia\n\n_____________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-f659f020b709",
+      "category": "omelia",
+      "title": "ES (Estratto 1)",
+      "content": "DOMINGO DE RESURRECCIÓN\n\nSANTA MISA DEL DÍA\n\nHOMILÍA DEL SANTO PADRE FRANCISCO\n\nLEÍDA POR EL CARDENAL ANGELO COMASTRI\n\nPlaza de San Pedro\n\nDomingo de Pascua, 20 de abril de 2025\n\nMultimedia\n\n______________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-80aabb65b24d",
+      "category": "omelia",
+      "title": "PL (Estratto 1)",
+      "content": "UROCZYSTOŚĆ ZMARTWYCHWSTANIA PAŃSKIEGO\n\nMSZA W DZIEŃ\n\nHOMILIA OJCA ŚWIĘTEGO FRANCISZKA\n\nODCZYTANA PRZEZ KS. KARD. ANGELO COMASTRI\n\nNiedziela Zmartwychwstania Pańskiego, 20 kwietnia 2025 r.\n\nMultimedia\n\n______________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-2079baed65f4",
+      "category": "omelia",
+      "title": "PT (Estratto 1)",
+      "content": "DOMINGO DE PÁSCOA E DA RESSURREIÇÃO DO SENHOR\n\nSANTA MISSA\n\nHOMILIA DO PAPA FRANCISCO\n\nLIDA PELO CARDEAL ANGELO COMASTRI\n\nPraça São Pedro\n\nDomingo de Páscoa, 20 de abril de 2025\n\nMultimedia\n\n____________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-40d9d6ec12df",
+      "category": "omelia",
+      "title": "Veglia Pasquale nella Notte Santa (19 aprile 2025) (Estratto 1)",
+      "content": "VEGLIA PASQUALE NELLA NOTTE SANTA\n\nCAPPELLA PAPALE\n\nOMELIA DEL SANTO PADRE FRANCESCO\n\nLETTA DAL CARDINALE GIOVANNI BATTISTA RE\n\nBasilica di San Pietro\n\nSabato Santo, 19 aprile 2025\n\nMultimedia\n\n_______________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-355e4dca513e",
+      "category": "omelia",
+      "title": "AR (Estratto 1)",
+      "content": "عظة قداسة البابا فرنسيس\n\nألقاها الكاردينال جوفاني باتيستا ري\n\nفي القدّاس الإلهيّ\n\nعشيّة عيد القيامة المجيدة\n\n19 نيسان/أبريل 2025\n\nبازيليكا القدّيس بطرس\n\nMultimedia\n\n_______________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-03fd7e4d1504",
+      "category": "omelia",
+      "title": "EN (Estratto 1)",
+      "content": "EASTER VIGIL IN THE HOLY NIGHT OF EASTER\n\nHOMILY OF HIS HOLINESS POPE FRANCIS\n\nREAD BY CARDINAL GIOVANNI BATTISTA RE\n\nSt Peter's Basilica\n\nHoly Saturday, 19 April 2025\n\nMultimedia\n\n_______________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-b65e591268d4",
+      "category": "omelia",
+      "title": "ES (Estratto 1)",
+      "content": "VIGILIA PASCUAL EN LA NOCHE SANTA\n\nCAPILLA PAPAL\n\nHOMILÍA DEL SANTO PADRE FRANCISCO\n\nLEÍDA POR EL CARDENAL GIOVANNI BATTISTA RE\n\nBasílica de San Pedro\n\nSábado Santo, 19 de abril de 2025\n\nMultimedia\n\n_______________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-c6dfcab76469",
+      "category": "omelia",
+      "title": "FR (Estratto 1)",
+      "content": "VEILLÉE PASCALE DE LA SAINTE NUIT\n\nCHAPELLE PAPALE\n\nHOMÉLIE DU PAPE FRANÇOIS\n\nLUE PAR LE CARDINAL GIOVANNI BATTISTA RE\n\nBasilique Saint-Pierre\n\nSamedi Saint, 19 avril 2025\n\nMultimédia\n\n_______________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-7d73070ab75a",
+      "category": "omelia",
+      "title": "HR (Estratto 1)",
+      "content": "VAZMENO BDJENJE U SVETOJ NOĆI\n\nPAPINSKA KAPELA\n\nHOMILIJA SVETOG OCA FRANJE\n\nPROČITAO KARDINAL GIOVANNI BATTISTA RE\n\nBasilika svetog Petra\n\nVelika subota, 19. travnja 2025.\n\nMultimedia\n\n_______________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-b4ac1d1251e3",
+      "category": "omelia",
+      "title": "PL (Estratto 1)",
+      "content": "WIGILIA PASCHALNA WIELKIEJ NOCY\n\nHOMILIA OJCA ŚWIĘTEGO FRANCISZKA\n\nODCZYTANA PRZEZ KS. KARD. GIOVANNIEGO BATTISTĘ RE\n\nBazylika Świętego Piotra\n\nWielka Sobota, 19 kwietnia 2025 r.\n\nMultimedia\n\n_______________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-a2e351c1e684",
+      "category": "omelia",
+      "title": "PT (Estratto 1)",
+      "content": "VIGÍLIA PASCAL NA NOITE SANTA\n\nCAPELA PAPAL\n\nHOMILIA DEL PAPA FRANCISCO\n\nLIDA PELO CARDEAL GIOVANNI BATTISTA RE\n\nBasílica de São Pedro\n\nSábado Santo, 19 de abril de 2025\n\nMultimídia\n\n_______________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-972f3028b796",
+      "category": "omelia",
+      "title": "Santa Messa del Crisma (17 aprile 2025) (Estratto 1)",
+      "content": "SANTA MESSA DEL CRISMA\n\nOMELIA DEL SANTO PADRE FRANCESCO\n\nLETTA DAL CARDINALE DOMENICO CALCAGNO\n\nBasilica di San Pietro\n\nGiovedì Santo, 17 aprile 2025\n\nMultimedia\n\n___________________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-91d8d9c91869",
+      "category": "omelia",
+      "title": "AR (Estratto 1)",
+      "content": "عظة قداسة البابا فرنسيس\n\nألقاها الكاردينال دومينيكو كالكانيّو\n\nقدّاس الميرون المقدّس\n\nيوم خميس الأسرار 17 نيسان/أبريل 2025\n\nبازيليكا القدّيس بطرس\n\nMultimedia\n\n___________________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-720950807d07",
+      "category": "omelia",
+      "title": "ES (Estratto 1)",
+      "content": "SANTA MISA CRISMAL\n\nHOMILÍA DEL SANTO PADRE FRANCISCO\n\nLEÍDA POR EL CARDENAL DOMENICO CALCAGNO\n\nBasílica de San Pedro\n\nJueves Santo, 17 de abril de 2025\n\nMultimedia\n\n___________________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-1ab6871f4a53",
+      "category": "omelia",
+      "title": "PL (Estratto 1)",
+      "content": "MSZA KRZYŻMA\n\nHOMILIA OJCA ŚWIĘTEGO FRANCISZKA\n\nODCZYTANA PRZEZ KS. KARD. DOMENICO CALCAGNO\n\nBazylika Świętego Piotra\n\nWielki Czwartek, 17 kwietnia 2025 r.\n\nMultimedia\n\n___________________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-fe60a579fdee",
+      "category": "omelia",
+      "title": "PT (Estratto 1)",
+      "content": "SANTA MISSA CRISMAL\n\nHOMILIA DO PAPA FRANCISCO\n\nLIDA PELO CARDEAL DOMENICO CALCAGNO\n\nBasílica de São Pedro\n\nQuinta-feira Santa, 17 de abril de 2025\n\nMultimídia\n\n___________________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-10d244701183",
+      "category": "omelia",
+      "title": "Domenica delle Palme (13 aprile 2025) (Estratto 1)",
+      "content": "CELEBRAZIONE DELLA DOMENICA DELLE PALME\n\nE DELLA PASSIONE DEL SIGNORE\n\nOMELIA DEL SANTO PADRE FRANCESCO\n\nLETTA DAL CARDINALE LEONARDO SANDRI\n\nPiazza San Pietro\n\nDomenica, 13 aprile 2025\n\nMultimedia\n\n_______________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-dd6e636da9ad",
+      "category": "omelia",
+      "title": "DE (Estratto 1)",
+      "content": "PALMSONNTAG: SONNTAG DER PASSION DES HERRN\n\nVON KARDINAL LEONARDO SANDRI\n\nVERLESENE PREDIGT VON PAPST FRANZISKUS\n\nPetersplatz\n\nSonntag, 13. April 2025\n\nMultimedia\n\n_______________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-bf88acc09bdd",
+      "category": "omelia",
+      "title": "EN (Estratto 1)",
+      "content": "CELEBRATION OF PALM SUNDAY OF THE PASSION OF THE LORD\n\nHOMILY OF HIS HOLINESS POPE FRANCIS\n\nREAD BY CARDINAL LEONARDO SANDRI\n\nSt Peter's Square\n\nSunday, 13 April 2025\n\nMultimedia\n\n_______________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-5ee46dc6fb3d",
+      "category": "omelia",
+      "title": "ES (Estratto 1)",
+      "content": "CELEBRACIÓN DEL DOMINGO DE RAMOS\n\nY DE LA PASIÓN DEL SEÑOR\n\nHOMILÍA DEL SANTO PADRE FRANCISCO\n\nLEÍDA POR EL CARDENAL LEONARDO SANDRI\n\nPlaza de San Pedro\n\nDomingo, 13 de abril de 2025\n\nMultimedia\n\n_______________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-63e2a3bf9e31",
+      "category": "omelia",
+      "title": "FR (Estratto 1)",
+      "content": "CÉLÉBRATION DU DIMANCHE DES RAMEAUX\n\nET DE LA PASSION DU SEIGNEUR\n\nHOMÉLIE DU PAPE FRANÇOIS\n\nLUE PAR LE CARD. LEONARDO SANDRI\n\nPlace Saint-Pierre\n\nDimanche 13 avril 2025\n\nMultimédia\n\n_______________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-299993a746d9",
+      "category": "omelia",
+      "title": "PL (Estratto 1)",
+      "content": "MSZA ŚWIĘTA W NIEDZIELĘ PALMOWĄ CZYLI MĘKI PAŃSKIEJ\n\nHOMILIA OJCA ŚWIĘTEGO FRANCISZKA\n\nODCZYTANA PRZEZ KS. KARD. LEONARDA SANDRIEGO\n\nPlac św. Piotra\n\nNiedziela Palmowa, 13 kwietnia 2025 r.\n\nMultimedia\n\n_______________________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-ba71f14ff2d3",
+      "category": "omelia",
+      "title": "Giubileo degli Ammalati e del Mondo della Sanità - Santa Messa (6 aprile 2025) (Estratto 1)",
+      "content": "GIUBILEO DEGLI AMMALATI E DEL MONDO DELLA SANITÀ\n\nSANTA MESSA\n\nOMELIA DEL SANTO PADRE FRANCESCO\n\nLETTA DA S.E. MONS. RINO FISICHELLA\n\nPiazza San Pietro\n\nV Domenica di Quaresima, 6 aprile 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-d14b5f626af6",
+      "category": "omelia",
+      "title": "AR (Estratto 1)",
+      "content": "عظة قداسة البابا فرنسيس\n\nألقاها المطران سلفاتوري فيسيكيلا\n\nفي القدّاس الإلهيّ في سنة اليوبيل\n\nللمرضى والعامِلين في مجال الصِّحَّة\n\nيوم الأحد 6 نيسان/أبريل 2025\n\n(الأحد الخامس من الزَّمن الأربعينيّ)\n\nساحة القدّيس بطرس\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-77071d5a9736",
+      "category": "omelia",
+      "title": "DE (Estratto 1)",
+      "content": "HEILIG-JAHR-FEIER DER KRANKEN UND DER IM GESUNDHEITSWESEN TÄTIGEN\n\nHEILIGE MESSE\n\nVON ERZBISCHOF RINO FISICHELLA VERLESENE\n\nPREDIGT DES HEILIGEN VATERS\n\nPetersplatz\n\n5. Sonntag der Fastenzeit, 6. April 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-e14aa9dcd18e",
+      "category": "omelia",
+      "title": "EN (Estratto 1)",
+      "content": "JUBILEE OF THE SICK AND HEALTH CARE WORKERS\n\nHOLY MASS\n\nHOMILY OF THE HOLY FATHER\n\nREAD BY H.E. MSGR. RINO FISICHELLA\n\nSaint Peter's Square\n\n5th Sunday in Lent, 6 April 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-a088ef3acd4b",
+      "category": "omelia",
+      "title": "ES (Estratto 1)",
+      "content": "JUBILEO DE LOS ENFERMOS Y DEL MUNDO DE LA SANIDAD\n\nSANTA MISA\n\nHOMILÍA DEL SANTO PADRE FRANCISCO\n\nLEÍDA POR S.E. MONS. RINO FISICHELLA\n\nPlaza de San Pedro\n\nQuinto domingo de Cuaresma, 6 de abril de 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-2f3109d4fc36",
+      "category": "omelia",
+      "title": "FR (Estratto 1)",
+      "content": "JUBILÉ DES MALADES ET DU MONDE DE LA SANTÉ\n\nMESSE\n\nHOMÉLIE DU PAPE FRANÇOIS\n\nLUE PAR S.EXC. MGR RINO FISICHELLA\n\nPlace Saint-Pierre\n\ndimanche de Carême, 6 avril 2025\n\nMultimédia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-85088cd337cd",
+      "category": "omelia",
+      "title": "PL (Estratto 1)",
+      "content": "JUBILEUSZ CHORYCH I PRACOWNIKÓW SŁUŻBY ZDROWIA\n\nMSZA ŚWIĘTA\n\nHOMILIA OJCA ŚWIĘTEGO FRANCISZKA\n\nODCZYTANA PRZEZ KS. ABPA RINO FISICHELLĘ\n\nPlac Świętego Piotra\n\nV Niedziela Wielkiego Postu, 6 kwietnia 2025 r.\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-7b06b06833e1",
+      "category": "omelia",
+      "title": "PT (Estratto 1)",
+      "content": "JUBILEU DOS ENFERMOS E DO MUNDO DA SAÚDE\n\nSANTA MISSA\n\nHOMILIA DO PAPA FRANCISCO\n\nLIDA POR DOM RINO FISICHELLA\n\nPraça São Pedro\n\nV Domingo da Quaresma, 6 de abril de 2025\n\nMultimídia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-3583aee87d05",
+      "category": "omelia",
+      "title": "Giubileo del Mondo del Volontariato – Santa Messa (9 marzo 2025) (Estratto 1)",
+      "content": "GIUBILEO DEL MONDO DEL VOLONTARIATO\n\nSANTA MESSA\n\nOMELIA DEL SANTO PADRE FRANCESCO\n\nLETTA DAL CARDINALE MICHAEL CZERNY\n\nPiazza San Pietro\n\nI Domenica di Quaresima, 9 marzo 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-fb23ca309d5d",
+      "category": "omelia",
+      "title": "AR (Estratto 1)",
+      "content": "عظة قداسة البابا فرنسيس\n\nألقاها الكاردينال مايكل تشيرني\n\nفي القدّاس الإلهيّ في سنة اليوبيل\n\nلعالم المتطوِّعين\n\nيوم الأحد 9 آذار/مارس 2025\n\n(الأحد الأوَّل من الزَّمن الأربعينيّ)\n\nساحة القدّيس بطرس\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-05532e48488d",
+      "category": "omelia",
+      "title": "DE (Estratto 1)",
+      "content": "JUBILÄUM DER EHRENAMTLICHEN\n\nHEILIGE MESSE\n\nVON KARDINAL MICHAEL CZERNY\n\nVERLESENE PREDIGT VON PAPST FRANZISKUS\n\nPetersplatz\n\n1. Sonntag der Fastenzeit, 9. März 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-63c84f7fe95b",
+      "category": "omelia",
+      "title": "EN (Estratto 1)",
+      "content": "JUBILEE OF THE WORLD OF VOLUNTEERING\n\nHOLY MASS\n\nHOMILY OF THE HOLY FATHER FRANCIS\n\nREAD BY CARDINAL MICHAEL CZERNY\n\nSaint Peter's Square\n\nSunday in the Season of Lent, 9 March 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-db13e51bc64c",
+      "category": "omelia",
+      "title": "ES (Estratto 1)",
+      "content": "JUBILEO DEL MUNDO DEL VOLUNTARIADO\n\nSANTA MISA\n\nHOMILÍA DEL SANTO PADRE FRANCISCO\n\nLEÍDA POR EL CARDENAL MICHAEL CZERNY\n\nPlaza de San Pedro\n\nPrimer domingo de Cuaresma, 9 de marzo de 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-b2eb024d4f84",
+      "category": "omelia",
+      "title": "FR (Estratto 1)",
+      "content": "JUBILÉ DU MONDE DU VOLONTARIAT\n\nMESSE\n\nHOMÉLIE DU PAPE FRANÇOIS\n\nLUE PAR LE CARDINAL MICHAEL CZERNY\n\nPlace Saint-Pierre\n\nPremier dimanche de Carême, 9 mars 2025\n\nMultimédia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-830d4aa3ad95",
+      "category": "omelia",
+      "title": "HR (Estratto 1)",
+      "content": "JUBILEJ SVIJETA VOLONTARIJATA\n\nHOMILIJA SVETOG OCA\n\nSveta misa prigodom Jubileja svijeta volonterstva\n\nTrg svetog Petra\n\nPrva korizmena nedjelja, 9. ožujka 2025.\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-1169916665d5",
+      "category": "omelia",
+      "title": "PL (Estratto 1)",
+      "content": "JUBILEUSZ WOLONTARIATU\n\nMSZA ŚWIĘTA\n\nHOMILIA OJCA ŚWIĘTEGO FRANCISZKA\n\nODCZYTANA PRZEZ KS. KARD. MICHAELA CZERNEGO\n\nPlac Świętego Piotra\n\nI Niedziela Wielkiego Postu, 9 marca 2025 r.\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-43cfa61bca0b",
+      "category": "omelia",
+      "title": "PT (Estratto 1)",
+      "content": "JUBILEU DO MUNDO DO VOLUNTARIADO\n\nSANTA MISSA\n\nHOMILIA DO PAPA FRANCISCO\n\nLIDA PELO CARDEAL MICHAEL CZERNY\n\nBasílica de São Pedro\n\nI Domingo da Quaresma, 9 de março de 2025\n\nMultimídia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-86d8bb644a54",
+      "category": "omelia",
+      "title": "Santa Messa, benedizione e imposizione delle Ceneri (5 marzo 2025) (Estratto 1)",
+      "content": "SANTA MESSA, BENEDIZIONE E IMPOSIZIONE DELLE CENERI\n\nOMELIA DEL SANTO PADRE FRANCESCO\n\nLETTA DAL CARDINALE ANGELO DE DONATIS\n\nBasilica di Santa Sabina\n\nMercoledì, 5 marzo 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-0381ff5704e4",
+      "category": "omelia",
+      "title": "EN (Estratto 1)",
+      "content": "HOLY MASS, BLESSING AND IMPOSITION OF THE ASHES\n\nHOMILY OF THE HOLY FATHER FRANCIS\n\nREAD BY CARDINAL ANGELO DE DONATIS\n\nBasilica of Santa Sabina\n\nWednesday, 5 March 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-e68a6ff2db1b",
+      "category": "omelia",
+      "title": "ES (Estratto 1)",
+      "content": "SANTA MISA, BENDICIÓN E IMPOSICIÓN DE LA CENIZA\n\nHOMILÍA DEL SANTO PADRE FRANCISCO\n\nLEÍDA POR EL CARDENAL ANGELO DE DONATIS\n\nBasílica de Santa Sabina\n\nMiércoles 5 de marzo de 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-344255356146",
+      "category": "omelia",
+      "title": "FR (Estratto 1)",
+      "content": "MESSE, BÉNÉDICTION ET IMPOSITION DES CENDRES\n\nHOMÉLIE DU PAPE FRANÇOIS\n\nLUE PAR LE CARDINAL ANGELO DE DONATIS\n\nBasilique Sainte-Sabine\n\nMercredi 5 mars 2025\n\nMultimédia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-135e15d6f540",
+      "category": "omelia",
+      "title": "PL (Estratto 1)",
+      "content": "MSZA ŚWIĘTA Z OBRZĘDEM BŁOGOSŁAWIEŃSTWA I POSYPANIA GŁÓW POPIOŁEM\n\nHOMILIA OJCA ŚWIĘTEGO FRANCISZKA\n\nODCZYTANA PRZEZ KS. KARD. ANGELO DE DONATISA\n\nBazylika Świętej Sabiny\n\nŚroda Popielcowa, 5 marca 2025 r.\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-20e9b87b35cd",
+      "category": "omelia",
+      "title": "PT (Estratto 1)",
+      "content": "SANTA MISSA, BÊNÇÃO E IMPOSIÇÃO DAS CINZAS\n\nHOMILIA DO PAPA FRANCISCO\n\nLIDA PELO CARDEAL ANGELO DE DONATIS\n\nBasílica de Santa Sabina\n\nQuarta-feira, 5 de março de 2025\n\nMultimídia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-bf5b4204f130",
+      "category": "omelia",
+      "title": "Giubileo dei Diaconi - Santa Messa con Ordinazioni diaconali (23 febbraio 2025) (Estratto 1)",
+      "content": "GIUBILEO DEI DIACONI\n\nSANTA MESSA E ORDINAZIONI DIACONALI\n\nOMELIA DEL SANTO PADRE FRANCESCO\n\nLETTA DA S.E. MONS. RINO FISICHELLA\n\nBasilica di San Pietro\n\nVII Domenica del Tempo Ordinario, 23 febbraio 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-c4068393f851",
+      "category": "omelia",
+      "title": "DE (Estratto 1)",
+      "content": "JUBILÄUM DER DIAKONEN\n\nHEILIGE MESSE\n\nVON S.E. MONS. RINO FISICHELLA VERLESENE\n\nPREDIGT DES HEILIGEN VATERS\n\nPetersdom\n\n7. Sonntag im Jahreskreis, 23. Februar 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-1c6cd151bd73",
+      "category": "omelia",
+      "title": "EN (Estratto 1)",
+      "content": "JUBILEE OF DEACONS\n\nHOLY MASS AND ORDINATIONS TO THE DIACONATE\n\nHOMILY OF THE HOLY FATHER\n\nREAD BY H.E. MSGR. RINO FISICHELLA\n\nSaint Peter's Basilica\n\nSunday in Ordinary Time, 23 February 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-2d9fb5975e87",
+      "category": "omelia",
+      "title": "ES (Estratto 1)",
+      "content": "JUBILEO DE LOS DIÁCONOS\n\nSANTA MISA Y ORDENACIONES DIACONALES\n\nHOMILÍA DEL SANTO PADRE FRANCISCO\n\nLEÍDA POR S.E. MONS. RINO FISICHELLA\n\nBasílica de San Pedro\n\nVII Domingo del Tiempo Ordinario, 23 de febrero de 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-c9d3627f9be4",
+      "category": "omelia",
+      "title": "FR (Estratto 1)",
+      "content": "JUBILÉ DES DIACRES\n\nSAINTE MESSE ET ORDINATIONS DIACONALES\n\nHOMÉLIE DU PAPE FRANÇOIS\n\nLUE PAR S.EXC. MGR RINO FISICHELLA\n\nBasilique Saint-Pierre\n\nVII\n\ndimanche du Temps ordinaire, 23 février 2025\n\nMultimédia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-da40950e3fe7",
+      "category": "omelia",
+      "title": "HR (Estratto 1)",
+      "content": "JUBILEJ ĐAKONÂ\n\nSVETA MISA I ĐAKONSKO REĐENJE\n\nHOMILIJA SVETOGA OCA\n\nKOJU JE PROČITAO MONS. RINO FISICHELLA\n\nBazilika svetog Petra\n\nSedma nedjelja kroz godinu, 23. veljače 2025.\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-0851c60bf875",
+      "category": "omelia",
+      "title": "PL (Estratto 1)",
+      "content": "JUBILEUSZ DIAKONÓW\n\nMSZA ŚWIĘTA I ŚWIĘCENIA DIAKONATU\n\nHOMILIA OJCA ŚWIĘTEGO FRANCISZKA\n\nODCZYTANA PRZEZ KS. ABPA RINO FISICHELLĘ\n\nBazylika Świętego Piotra\n\nVII Niedziela Zwykła, 23 lutego 2025 r.\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-b1e7148dccf2",
+      "category": "omelia",
+      "title": "PT (Estratto 1)",
+      "content": "JUBILEU DOS DIÁCONOS\n\nSANTA MISSA E ORDENAÇÕES DIACONAIS\n\nHOMILIA DO PAPA FRANCISCO FRANCESCO\n\nLIDA POR DOM RINO FISICHELLA\n\nBasílica de São Pedro\n\nVII Domingo do Tempo Comum, 23 de fevereiro de 2025\n\nMultimídia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-62957939c003",
+      "category": "omelia",
+      "title": "Giubileo degli Artisti e del Mondo della Cultura – Santa Messa (16 febbraio 2025) (Estratto 1)",
+      "content": "GIUBILEO DEGLI ARTISTI E DEL MONDO DELLA CULTURA\n\nSANTA MESSA\n\nOMELIA DEL SANTO PADRE FRANCESCO\n\nLETTA DAL CARDINALE JOSÉ TOLENTINO DE MENDONÇA\n\nBasilica di San Pietro\n\nVI Domenica del Tempo Ordinario, 16 febbraio 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-c5c771b86728",
+      "category": "omelia",
+      "title": "AR (Estratto 1)",
+      "content": "عظة قداسة البابا فرنسيس\n\nألقاها الكاردينال خوسيه تولنتينو دي ميندونكا\n\nفي القدّاس الإلهيّ في سنة اليوبيل\n\nللفنّانين\n\nيوم الأحد 16 شباط/فبراير 2025\n\nبازيليكا القدّيس بطرس\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-e5c43efc528f",
+      "category": "omelia",
+      "title": "DE (Estratto 1)",
+      "content": "JUBILÄUM DER KÜNSTLER UND DER WELT DER KULTUR\n\nHEILIGE MESSE\n\nVON KARDINAL JOSÉ TOLENTINO DE MENDONÇA\n\nVERLESENE PREDIGT DES HEILIGEN VATERS\n\nPetersdom\n\n6. Sonntag im Jahreskreis, 16. Februar 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-e11882335956",
+      "category": "omelia",
+      "title": "EN (Estratto 1)",
+      "content": "JUBILEE OF ARTISTS AND THE WORLD OF CULTURE\n\nHOLY MASS\n\nHOMILY OF HIS HOLINESS POPE FRANCIS\n\nREAD BY CARDINAL JOSÉ TOLENTINO DE MENDONÇA\n\nSaint Peter's Basilica\n\nSunday in Ordinary Time, 16 February 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-c79955813837",
+      "category": "omelia",
+      "title": "ES (Estratto 1)",
+      "content": "JUBILEO DE LOS ARTISTAS Y DEL MUNDO DE LA CULTURA\n\nSANTA MISA\n\nHOMILÍA DEL SANTO PADRE FRANCISCO\n\nLEÍDA POR EL CARDENAL JOSÉ TOLENTINO DE MENDONÇA\n\nBasílica de San Pedro,\n\nVI Domingo del Tiempo Ordinario, 16 de febrero de 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-c288da4530c4",
+      "category": "omelia",
+      "title": "FR (Estratto 1)",
+      "content": "JUBILÉ DES ARTISTES ET DU MONDE DE LA CULTURE\n\nMESSE\n\nHOMÉLIE DU PAPE FRANÇOIS\n\nLUE PAR LE CARDINAL JOSÉ TOLENTINO DE MENDONÇA\n\nBasilique Saint-Pierre\n\ndimanche du Temps ordinaire, 16 février 2025\n\nMultimédia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-6baf82bb9998",
+      "category": "omelia",
+      "title": "PL (Estratto 1)",
+      "content": "JUBILEUSZ ARTYSTÓW I ŚWIATA KULTURY\n\nMSZA ŚWIĘTA\n\nHOMILIA OJCA ŚWIĘTEGO FRANCISZKA\n\nODCZYTANA PRZEZ KS. KARD. JOSÉ TOLENTINO DE MENDONÇA\n\nBazylika Świętego Piotra\n\nVI Niedziela Zwykła, 16 lutego 2025 r.\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-b44185645262",
+      "category": "omelia",
+      "title": "PT (Estratto 1)",
+      "content": "JUBILEU DOS ARTISTAS E DO MUNDO DA CULTURA\n\nSANTA MISSA\n\nHOMILIA DO PAPA FRANCISCO\n\nLIDA PELO CARDEAL JOSÉ TOLENTINO DE MENDONÇA\n\nBasílica de São Pedro\n\nVI Domingo do Tempo Comum, 16 de fevereiro de 2025\n\nMultimídia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-4f7c060ddf1f",
+      "category": "omelia",
+      "title": "Giubileo delle Forze Armate, di Polizia e di Sicurezza – Santa Messa (9 febbraio 2025) (Estratto 1)",
+      "content": "GIUBILEO DELLE FORZE ARMATE, DI POLIZIA E DI SICUREZZA\n\nSANTA MESSA\n\nOMELIA DEL SANTO PADRE FRANCESCO\n\nPiazza San Pietro\n\nV Domenica del Tempo Ordinario, 9 febbraio 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-a58001fce097",
+      "category": "omelia",
+      "title": "DE (Estratto 1)",
+      "content": "JUBILÄUM DER STREITKRÄFTE, POLIZEI UND SICHERHEITSKRÄFTE\n\nHEILIGE MESSE\n\nPREDIGT DES HEILIGEN VATERS\n\nPetersplatz\n\n5. Sonntag im Jahreskreis, 9. Februar 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-6c51440854a1",
+      "category": "omelia",
+      "title": "EN (Estratto 1)",
+      "content": "JUBILEE OF THE ARMED FORCES, POLICE AND SECURITY PERSONNEL\n\nHOLY MASS\n\nHOMILY OF THE HOLY FATHER\n\nSaint Peter's Square\n\n5th Sunday in Ordinary Time, 9 February 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-6983130b91a9",
+      "category": "omelia",
+      "title": "ES (Estratto 1)",
+      "content": "JUBILEO DE LAS FUERZAS ARMADAS, POLICIA Y CUERPOS DE SEGURIDAD\n\nSANTA MISA\n\nHOMILÍA DEL SANTO PADRE FRANCISCO\n\nPlaza de San Pedro\n\nV Domingo del Tiempo Ordinario, 9 de febrero de 2025\n\nMultimedia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-1adc8e5afcc7",
+      "category": "omelia",
+      "title": "FR (Estratto 1)",
+      "content": "JUBILÉ DES FORCES ARMÉES, DE LA POLICE, ET DES AGENTS DE SÉCURITÉ\n\nSAINTE MESSE\n\nHOMÉLIE DU PAPE FRANÇOIS\n\nPlace Saint-Pierre\n\ndimanche du temps ordinaire, 9 février 2025\n\nMultimédia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-e63508b309df",
+      "category": "omelia",
+      "title": "PT (Estratto 1)",
+      "content": "FESTA DA APRESENTAÇÃO DO SENHOR\n\nCELEBRAÇÃO DAS PRIMEIRAS VÉSPERAS\n\nXXIX DIA MUNDIAL DA VIDA CONSAGRADA\n\nHOMILIA DO PAPA FRANCISCO\n\nBasílica Vaticana\n\nSábado, 1 de fevereiro de 2025\n\nMultimídia\n\n______________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-e1c96112f9dd",
+      "category": "omelia",
+      "title": "Domenica della Parola di Dio - Giubileo del Mondo della Comunicazione (26 gennaio 2025) (Estratto 1)",
+      "content": "DOMENICA DELLA PAROLA DI DIO\n\nGIUBILEO DEL MONDO DELLA COMUNICAZIONE\n\nSANTA MESSA\n\nOMELIA DEL SANTO PADRE FRANCESCO\n\nBasilica di San Pietro\n\nIII Domenica del Tempo Ordinario, 26 gennaio 2025\n\nMultimedia\n\n__________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-5860e296ca17",
+      "category": "omelia",
+      "title": "EN (Estratto 1)",
+      "content": "SUNDAY OF THE WORD OF GOD\n\nJUBILEE OF THE WORLD OF COMMUNICATION\n\nHOLY MASS\n\nHOMILY OF THE HOLY FATHER\n\nSaint Peter's Basilica\n\nIII Sunday in Ordinary Time, 26 January 2025\n\nMultimedia\n\n__________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-189569b9ad6a",
+      "category": "omelia",
+      "title": "ES (Estratto 1)",
+      "content": "DOMINGO DE LA PALABRA DE DIOS\n\nJUBILEO DEL MUNDO DE LA COMUNICACIÓN\n\nSANTA MISA\n\nHOMILÍA DEL SANTO PADRE FRANCISCO\n\nBasílica de San Pedro\n\nIII Domingo del Tiempo Ordinario, 26 de enero de 2025\n\nMultimedia\n\n__________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    },
+    {
+      "id": "vatican-4265d5637fea",
+      "category": "omelia",
+      "title": "FR (Estratto 1)",
+      "content": "DIMANCHE DE LA PAROLE DE DIEU\n\nJUBILÉ DU MONDE DE LA COMMUNICATION\n\nSAINTE MESSE\n\nHOMÉLIE DU PAPE FRANÇOIS\n\nBasilique Saint-Pierre\n\nIII\n\ndimanche du Temps ordinaire, 26 janvier 2025\n\nMultimédia\n\n__________________________",
+      "author": "Papa Francesco",
+      "theme": "Misericordia"
+    }
+  ]
 }

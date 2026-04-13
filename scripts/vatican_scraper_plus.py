@@ -74,7 +74,10 @@ def get_links_recursive(url, depth=1):
             if any(x in href for x in ['index.html', 'year.dir']):
                 # Don't recurse into everything, only if it looks promising
                 if depth < 2:
-                    links.extend(get_links_recursive(href, depth + 1))
+                    # Filter for 2025 when recursing from a general index
+                    if '2025' in href or 'index.html' in href:
+                        links.extend(get_links_recursive(href, depth + 1))
+
             else:
                 if any(x in href for x in ['encyclicals', 'homilies', 'angelus']):
                     links.append({"title": title, "url": href})
@@ -115,20 +118,34 @@ def scrape_doc(url):
 
 def main():
     start_urls = [
-        f"{FRANCESCO_URL}/homilies.index.html",
-        f"{FRANCESCO_URL}/encyclicals.index.html",
-        f"{FRANCESCO_URL}/angelus.index.html"
+        f"{FRANCESCO_URL}/homilies/2025.index.html",
+        f"{FRANCESCO_URL}/angelus/2025.index.html",
+        f"{FRANCESCO_URL}/speeches/2025.index.html",
+        f"{FRANCESCO_URL}/messages/pont-messages/2025.index.html"
     ]
     
     all_links = []
     seen_urls = set()
     
     for url in start_urls:
-        links = get_links_recursive(url)
-        for l in links:
-            if l['url'] not in seen_urls:
-                all_links.append(l)
-                seen_urls.add(l['url'])
+        print(f"Direct fetching index: {url}")
+        try:
+            response = requests.get(url)
+            if response.status_code != 200: continue
+            soup = BeautifulSoup(response.content, 'html.parser')
+            for a in soup.select('a[href*=".html"]'):
+                href = a['href']
+                if href.startswith('/'): href = BASE_URL + href
+                elif not href.startswith('http'): 
+                    base_path = url.rsplit('/', 1)[0]
+                    href = f"{base_path}/{href}"
+                
+                if '2025' in href and 'index.html' not in href and href not in seen_urls:
+                    all_links.append({"title": a.get_text(strip=True), "url": href})
+                    seen_urls.add(href)
+        except Exception as e:
+            print(f"Error fetching index {url}: {e}")
+
                 
     import hashlib
     print(f"Found {len(all_links)} total candidate links.")
