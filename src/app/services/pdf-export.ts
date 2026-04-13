@@ -43,74 +43,118 @@ export class PdfExportService {
     // Sections
     adoration.sections.forEach((section, index) => {
       // Check for page break
-      if (cursorY > 260) {
+      if (cursorY > 250) {
         doc.addPage();
         cursorY = margin;
       }
 
-      // Section Title
+      // Section Header (Type and Title)
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(14);
-      doc.setTextColor(41, 128, 185); // Professional blue
-      doc.text(section.title, margin, cursorY);
-      cursorY += 7;
+      doc.setFontSize(10);
+      doc.setTextColor(59, 130, 246); // Modern blue
+      doc.text(this.getSectionTypeItalian(section.type).toUpperCase(), margin, cursorY);
+      cursorY += 6;
 
-      // Section Content
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(11);
-      doc.setTextColor(52, 73, 94);
+      doc.setFontSize(16);
+      doc.setTextColor(30, 41, 59); // Slate 800
+      doc.text(section.title, margin, cursorY);
+      doc.setDrawColor(226, 232, 240); // Slate 200
+      doc.line(margin, cursorY + 2, pageWidth - margin, cursorY + 2);
+      cursorY += 12;
 
       (section.items || []).forEach((item, itemIdx) => {
-        // Optional item title if it's not the same as section title or generic
+        // Optional item title
         if (item.title && item.title !== section.title && (section.items.length > 1)) {
           doc.setFont('helvetica', 'bold');
-          doc.setFontSize(10);
-          doc.text(item.title, margin, cursorY);
-          cursorY += 5;
-          doc.setFont('helvetica', 'normal');
           doc.setFontSize(11);
+          doc.setTextColor(51, 65, 85); // Slate 700
+          doc.text(item.title, margin, cursorY);
+          cursorY += 6;
         }
 
         const paragraphs = this.normalizeContent(item.content || ' ').split('\n\n');
         
         paragraphs.forEach((para, paraIdx) => {
-          const lines = doc.splitTextToSize(para.trim(), contentWidth);
-          const blockHeight = lines.length * 5.5;
+          let currentPara = para.trim();
+          if (!currentPara) return;
 
-          // Handle page break before starting a paragraph
+          // Style logic based on markers
+          let fontSize = 11;
+          let fontStyle = 'normal';
+          let xOffset = 0;
+          let textColor = [51, 65, 85] as [number, number, number];
+
+          if (currentPara.startsWith('[[H1]]')) {
+            currentPara = currentPara.replace('[[H1]]', '').trim();
+            fontSize = 15;
+            fontStyle = 'bold';
+            textColor = [15, 23, 42];
+          } else if (currentPara.startsWith('[[H2]]')) {
+            currentPara = currentPara.replace('[[H2]]', '').trim();
+            fontSize = 13;
+            fontStyle = 'bold';
+            textColor = [30, 41, 59];
+          } else if (currentPara.startsWith('[[QUOTE]]')) {
+            currentPara = currentPara.replace('[[QUOTE]]', '').trim();
+            fontStyle = 'italic';
+            xOffset = 10;
+            textColor = [71, 85, 105];
+            // Draw a quote border link
+            doc.setDrawColor(203, 213, 225);
+            doc.setLineWidth(0.8);
+          }
+
+          doc.setFont('helvetica', fontStyle);
+          doc.setFontSize(fontSize);
+          doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+
+          const lines = doc.splitTextToSize(currentPara, contentWidth - xOffset);
+          const blockHeight = lines.length * (fontSize * 0.5);
+
           if (cursorY + blockHeight > 275) {
             doc.addPage();
             cursorY = margin;
           }
 
-          doc.text(lines, margin, cursorY);
-          cursorY += blockHeight + (paraIdx < paragraphs.length - 1 ? 5 : 0);
+          if (xOffset > 0) {
+            doc.line(margin + 2, cursorY - 2, margin + 2, cursorY + blockHeight - 2);
+          }
+
+          doc.text(lines, margin + xOffset, cursorY);
+          cursorY += blockHeight + 5;
         });
 
-        cursorY += 6; // Spacing after item
+        cursorY += 4;
       });
-
 
       // Reflection Hints
       const validHints = (section.reflectionHints || []).filter(h => h && h.trim().length > 0);
       if (validHints.length > 0) {
+        // Draw a light background for hints
+        const hintsStartY = cursorY - 2;
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(100, 116, 139);
+        doc.text('SPUNTI DI RIFLESSIONE', margin, cursorY);
+        cursorY += 6;
+
         doc.setFont('helvetica', 'italic');
         doc.setFontSize(10);
-        doc.setTextColor(100, 100, 100);
+        doc.setTextColor(71, 85, 105);
 
         validHints.forEach(hint => {
           if (cursorY > 275) {
             doc.addPage();
             cursorY = margin;
           }
-          const hintLines = doc.splitTextToSize(`• ${hint}`, contentWidth - 5);
+          const hintLines = doc.splitTextToSize(`• ${hint}`, contentWidth - 10);
           doc.text(hintLines, margin + 5, cursorY);
-          cursorY += (hintLines.length * 4) + 2;
+          cursorY += (hintLines.length * 5) + 2;
         });
         cursorY += 5;
       }
 
-      cursorY += 5; // Spacing between sections
+      cursorY += 8; // Spacing between sections
     });
 
     // Footer
@@ -130,17 +174,16 @@ export class PdfExportService {
 
     // 0. Preliminary: Handle HTML tags from WYSIWYG editor
     let content = text
-      // Convert Headings to bold uppercase for PDF
-      .replace(/<h1>(.*?)<\/h1>/gi, '\n\n$1\n\n')
-      .replace(/<h2>(.*?)<\/h2>/gi, '\n\n$1\n\n')
+      // Convert Headings to structural markers
+      .replace(/<h1>(.*?)<\/h1>/gi, '\n[[H1]]$1\n')
+      .replace(/<h2>(.*?)<\/h2>/gi, '\n[[H2]]$1\n')
       // Replace breaks with newlines
       .replace(/<br\s*\/?>/gi, '\n')
       // Close div/p tags with newlines
       .replace(/<\/div>/gi, '\n')
       .replace(/<\/p>/gi, '\n\n')
       // Handle Blockquotes
-      .replace(/<blockquote>/gi, '\n\n')
-      .replace(/<\/blockquote>/gi, '\n\n')
+      .replace(/<blockquote>([\s\S]*?)<\/blockquote>/gi, '\n[[QUOTE]]$1\n')
 
       // Handle Lists
       .replace(/<ul>/gi, '\n')
@@ -197,5 +240,19 @@ export class PdfExportService {
     clean = clean.replace(/####PARA####/g, '\n\n');
     
     return clean.trim();
+  }
+
+  private getSectionTypeItalian(type: string | undefined): string {
+    if (!type) return 'Sezione';
+    const map: Record<string, string> = {
+      'reading': 'Lettura',
+      'prayer': 'Preghiera',
+      'reflection': 'Riflessione',
+      'litany': 'Litania',
+      'hymn': 'Inno',
+      'psalm': 'Salmo',
+      'gospel': 'Vangelo'
+    };
+    return map[type.toLowerCase()] || 'Sezione';
   }
 }
