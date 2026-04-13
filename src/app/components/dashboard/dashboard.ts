@@ -9,7 +9,7 @@ import { ContentService } from '../../services/content';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterLink, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss'
 })

@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { LucideAngularModule, Bold, Italic, List, ListOrdered, Type, Trash2 } from 'lucide-angular';
+import { LucideAngularModule, Bold, Italic, List, ListOrdered, Trash2, Type } from 'lucide-angular';
 
 @Component({
   selector: 'app-text-editor',
@@ -52,7 +52,7 @@ import { LucideAngularModule, Bold, Italic, List, ListOrdered, Type, Trash2 } fr
 export class TextEditorComponent implements ControlValueAccessor {
   @ViewChild('editor') editorElement!: ElementRef<HTMLDivElement>;
   @Input() placeholder = 'Inserisci testo...';
-  
+
   readonly Bold = Bold;
   readonly Italic = Italic;
   readonly List = List;
@@ -61,8 +61,8 @@ export class TextEditorComponent implements ControlValueAccessor {
   readonly Trash2 = Trash2;
 
   private value = '';
-  private onChange: (value: string) => void = () => {};
-  private onTouched: () => void = () => {};
+  private onChange: (value: string) => void = () => { };
+  private onTouched: () => void = () => { };
 
   exec(command: string, value: string = '') {
     document.execCommand(command, false, value);

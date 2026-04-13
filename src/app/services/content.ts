@@ -54,6 +54,7 @@ export class ContentService {
 
   private libraryFiles = [
     '/assets/data/library.json',
+    '/assets/data/diario.json',
     '/assets/data/francesco.json',
     '/assets/data/matteo.json',
     '/assets/data/marco.json',

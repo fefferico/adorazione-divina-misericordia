@@ -66,7 +66,7 @@ export class ContentPickerComponent implements OnInit {
   selectedYear = signal<string | null>(null);
   searchQuery = signal('');
   debouncedQuery = signal(''); // Query to be used for searching
-  resultsLimit = signal(30);
+  resultsLimit = signal(50);
 
   // Expose global loading state
   isLoading = this.contentService.isLoading;

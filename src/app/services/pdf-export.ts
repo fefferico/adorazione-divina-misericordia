@@ -128,54 +128,60 @@ export class PdfExportService {
   private normalizeContent(text: string): string {
     if (!text) return '';
 
-    // 0. Preliminary: Strip HTML tags if any (from the new WYSIWYG editor)
-    // We replace <br> and <div> with \n first to preserve some structure
+    // 0. Preliminary: Handle HTML tags from WYSIWYG editor
     let content = text
+      // Replace breaks with newlines
       .replace(/<br\s*\/?>/gi, '\n')
+      // Close div/p tags with newlines
       .replace(/<\/div>/gi, '\n')
-      .replace(/<p>/gi, '')
       .replace(/<\/p>/gi, '\n\n')
+      // Treat list items as lines with bullets
+      .replace(/<li>/gi, '\n• ')
+      .replace(/<\/li>/gi, '')
+      // Strip remaining tags
       .replace(/<[^>]+>/g, '');
 
-    // 1. Remove carriage returns and normalize spaces
-    let clean = content.replace(/\r/g, '').replace(/[ \t]+/g, ' ');
+    // 1. Remove carriage returns and normalize non-breaking spaces etc
+    let clean = content
+      .replace(/\r/g, '')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/[ \t]+/g, ' ');
 
-    // 2. Protect intentional structure:
-    // - Paragraphs (double newlines)
-    // - List items (lines starting with -, *, or numbers)
-    // - Verse-like structure (lines starting with a capital letter)
-    
-    // Mark double newlines
-    clean = clean.replace(/\n\s*\n/g, '####PARA####');
+    // 2. Multi-stage structural cleaning:
+    // First, mark what are DEFINITELY intended paragraph breaks (double newlines or more)
+    clean = clean.replace(/\n\s*\n+/g, '####PARA####');
 
-    // For single newlines: 
-    // Join them if the next character is lowercase (definitely a mid-sentence break)
-    // OR if the current line doesn't end with a sentence-ending punctuation.
-    // We'll use a safer approach: join lines that don't start with a "structure trigger"
+    // For remaining single newlines, we use a balanced joining logic:
+    // We join lines if:
+    // - Next line starts with lowercase
+    // - OR Current line doesn't end with a "strong" terminator (. ! ? » :)
+    // - AND it's not a list item (starts with •)
     const lines = clean.split('\n');
     const processedLines: string[] = [];
     
     for (let i = 0; i < lines.length; i++) {
-        const currentLine = lines[i].trim();
-        if (!currentLine) continue;
+        const line = lines[i].trim();
+        if (!line) continue;
 
-        // If the NEXT line starts with structure, we must definitely keep a break after this one
-        const nextLine = lines[i+1]?.trim() || '';
+        const nextLine = (lines[i+1] || '').trim();
+        
+        // Don't join if current is a bullet
+        const isBullet = line.startsWith('•');
+        // Don't join if next starts with uppercase OR a bullet OR a number (likely new section)
         const nextStartsStructure = /^[A-ZÀÈÌÒÙ0-9\-\*•]/.test(nextLine);
-        const currentEndsSentence = /[.:;!?»]$/.test(currentLine);
+        // Don't join if current ends with strong punctuation
+        const currentEndsSentence = /[.!?»:]$/.test(line);
 
-        if (!nextStartsStructure && !currentEndsSentence && i < lines.length - 1) {
-            // Join with a space
-            processedLines.push(currentLine + ' ');
+        if (!isBullet && !nextStartsStructure && !currentEndsSentence && i < lines.length - 1) {
+            processedLines.push(line + ' ');
         } else {
-            // Keep the newline (well, will join with \n later)
-            processedLines.push(currentLine + '\n');
+            processedLines.push(line + '\n');
         }
     }
 
     clean = processedLines.join('').replace(/\n/g, ' ');
 
-    // Restore paragraphs
+    // 3. Restore intended paragraphs
     clean = clean.replace(/####PARA####/g, '\n\n');
     
     return clean.trim();
