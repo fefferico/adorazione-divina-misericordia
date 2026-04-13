@@ -6,7 +6,10 @@
       "themeId": "generale",
       "title": "Gospa Majka Moja",
       "content": "Gospa Majka Moja, Kraljice Mira.\nGospa Majka Moja, Kraljice Mira.\nGospa Majka Moja, Ti.\nAmen.",
-      "reflectionHints": ["Preghiera semplice e ripetitiva", "Invocazione alla Regina della Pace"]
+      "reflectionHints": [
+        "Preghiera semplice e ripetitiva",
+        "Invocazione alla Regina della Pace"
+      ]
     },
     {
       "id": "canto_002",
@@ -14,7 +17,9 @@
       "themeId": "generale",
       "title": "Gesù, ti adoriamo",
       "content": "Gesù, ti adoriamo.\nGesù, ti adoriamo.\nGesù, ti adoriamo.\nGesù, ti adoriamo.\n(Isuse, klanjamo ti se)",
-      "reflectionHints": ["Centrare il cuore sull'Eucaristia"]
+      "reflectionHints": [
+        "Centrare il cuore sull'Eucaristia"
+      ]
     },
     {
       "id": "canto_003",
@@ -22,15 +27,20 @@
       "themeId": "generale",
       "title": "Agnus Dei",
       "content": "Agnus Dei, qui tollis peccata mundi,\nmisere nobis.\nAgnus Dei, qui tollis peccata mundi,\ndona nobis pacem.",
-      "reflectionHints": ["L'Agnello di Dio che toglie i peccati del mondo"]
+      "reflectionHints": [
+        "L'Agnello di Dio che toglie i peccati del mondo"
+      ]
     },
     {
       "id": "canto_004",
       "categoryId": "canto",
       "themeId": "generale",
       "title": "Emmanuel",
-      "content": "Dall'orizzonte una grande luce viaggia nella storia...\nSiamo qui sotto la stessa luce, sotto la sua croce,\ncantando ad una voce: è l'Emmanuel!",
-      "reflectionHints": ["Dio con noi", "Cammino della Chiesa"]
+      "content": "Emmanuel\nnotte\nDall'orizzonte una grande luce\nviaggia nella storia\ne lungo gli anni ha vinto il buio\nfacendosi Memoria,\ne illuminando la nostra vita\nchiaro ci rivela\nche non si vive se non si cerca\nla Verità...\nDa mille strade arriviamo a Roma\nsui passi della fede,\nsentiamo l'eco della Parola\nche risuona ancora\nda queste mura, da questo cielo\nper il mondo intero:\nè vivo oggi, è l'Uomo Vero\nCristo tra noi.\nSiamo qui\nsotto la stessa luce\nsotto la sua croce\ncantando ad una voce.\nE' l'Emmanuel,\nEmmanuel, Emmanuel.\nE' l'Emmanuel, Emmanuel.\nDalla città di chi ha versato\nil sangue per amore\ned ha cambiato il vecchio mondo\nvogliamo ripartire.\nSeguendo Cristo, insieme a Pietro,\nrinasce in noi la fede,\nParola viva che ci rinnova\ne cresce in noi.\nSiamo qui\nsotto la stessa luce\nsotto la sua croce\ncantando ad una voce.\nE' l'Emmanuel,\nEmmanuel, Emmanuel.\nE' l'Emmanuel, Emmanuel.\nUn grande dono che Dio ci ha fatto\nè il Cristo suo Figlio,\nl'umanità è rinnovata,\nè in lui salvata.\nE' vero uomo, è vero Dio,\nè il Pane della Vita,\nche ad ogni uomo ai suoi fratelli\nridonerà.\nSiamo qui\nsotto la stessa luce\nsotto la sua croce\ncantando ad una voce.\nE' l'Emmanuel,\nEmmanuel, Emmanuel.\nE' l'Emmanuel, Emmanuel.\nLa morte è uccisa,\nla vita ha vinto,\nè Pasqua in tutto il mondo,\nun vento soffia in ogni uomo\nlo Spirito fecondo,\nche porta avanti nella storia\nla Chiesa sua sposa,\nsotto lo sguardo di Maria,\ncomunità.\nSiamo qui\nsotto la stessa luce\nsotto la sua croce\ncantando ad una voce.\nE' l'Emmanuel,\nEmmanuel, Emmanuel.\nE' l'Emmanuel, Emmanuel.\nNoi debitori dei passato\ndi secoli di storia,\ndi vite date per amore,.\ndi santi che han creduto,\ndi uomini che ad alta quota\ninsegnano a volare,\ndi chi la storia sa cambiare,\ncome Gesù.\nSiamo qui\nsotto la stessa luce\nsotto la sua croce\ncantando ad una voce.\nE' l'Emmanuel,\nEmmanuel, Emmanuel.\nE' l'Emmanuel, Emmanuel.\nE' giunta un'era di primavera,\nè tempo di cambiare.\nE' oggi il tempo sempre nuovo\nper ricominciare, per dare svolte, parole nuove\ne convertire il cuore,\nper dire al mondo, ad ogni uomo:\nSignore Gesù.\nSiamo qui\nsotto la stessa luce\nsotto la sua croce\ncantando ad una voce.\nE' l'Emmanuel,\nEmmanuel, Emmanuel.\nE' l'Emmanuel, Emmanuel.\nGesù",
+      "reflectionHints": [
+        "Dio con noi",
+        "Cammino della Chiesa"
+      ]
     },
     {
       "id": "canto_005",
@@ -38,7 +48,10 @@
       "themeId": "generale",
       "title": "Ave Maria (Medjugorje)",
       "content": "Ave Maria, Ave.\nAve Maria, Ave.\nAve piena di grazia, Ave.\nAve piena di grazia, Ave.",
-      "reflectionHints": ["Saluto a Maria", "Piena di grazia"]
+      "reflectionHints": [
+        "Saluto a Maria",
+        "Piena di grazia"
+      ]
     },
     {
       "id": "canto_006",
@@ -46,31 +59,39 @@
       "themeId": "generale",
       "title": "Bless the Lord",
       "content": "Bless the Lord, my soul,\nand bless His Holy Name.\nBless the Lord, my soul,\nwho leads me into life.",
-      "reflectionHints": ["Benedici il Signore anima mia"]
+      "reflectionHints": [
+        "Benedici il Signore anima mia"
+      ]
     },
     {
       "id": "canto_007",
       "categoryId": "canto",
       "themeId": "generale",
       "title": "Canta Alleluja al Signor",
-      "content": "Canta Alleluja al Signor, canta Alleluja al Signor.\nCanta Alleluja, canta Alleluja, canta Alleluja al Signor.",
-      "reflectionHints": ["Gioia della risurrezione"]
+      "content": "Canta alleluia al Signor!\nCanta alleluia al Signor!\nCanta alleluia, Canta alleluia,\nCanta alleluia al Signor!\nCanta alleluia al Signor!\nCanta alleluia al Signor!\nCanta alleluia, Canta alleluia,\nCanta alleluia al Signor!",
+      "reflectionHints": [
+        "Gioia della risurrezione"
+      ]
     },
     {
       "id": "canto_008",
       "categoryId": "canto",
       "themeId": "generale",
       "title": "Come Maria",
-      "content": "Vogliamo vivere Signore offrendo a Te la nostra vita...\nVogliamo vivere come Maria, l'irraggiungibile,\nla madre amata che vince il mondo con l'amore.",
-      "reflectionHints": ["Disponibilità totale a Dio"]
+      "content": "Vogliamo vivere, Signore,\noffrendo a Te la nostra vita,\ncon questo pane e questo vino\naccetta quello che noi siamo.\nVogliamo vivere, Signore,\nabbandonati alla Tua voce,\nstaccati dalle cose vane,\nfissati nella vita vera.\n\nVogliamo vivere come Maria,\nl'irraggiungibile,\nla madre amata\nche vince il mondo con l'Amore\ne offrire sempre la tua vita\nche viene dal Cielo.\n\nAccetta dalle nostre mani\ncome un'offerta a Te gradita\ni desideri di ogni cuore,\nle ansie della nostra vita.\nVogliamo vivere, Signore,\naccesi dalle Tue parole\nper riportare in ogni uomo\nla fiamma viva del Tuo amore.\n\nVogliamo vivere come Maria,\nl'irraggiungibile,\nla madre amata\nche vince il mondo con l'Amore\ne offrire sempre la tua vita\nche viene dal Cielo.\n",
+      "reflectionHints": [
+        "Disponibilità totale a Dio"
+      ]
     },
     {
       "id": "canto_009",
       "categoryId": "canto",
       "themeId": "generale",
       "title": "Dona la pace",
-      "content": "Dona la pace ai nostri cuori o Signore.\nResta qui insieme a noi e la Pace regnerà.",
-      "reflectionHints": ["Invocazione per la pace interiore e nel mondo"]
+      "content": "Dona la pace, dona la pace\nai nostri cuori o Signore.\nDona la pace, dona la pace\nai nostri cuori o Signore.\nResta qui insieme a noi, \nresta qui insieme a noi,\n e la pace regnerà, e la pace regnerà.",
+      "reflectionHints": [
+        "Invocazione per la pace interiore e nel mondo"
+      ]
     },
     {
       "id": "canto_010",
@@ -78,23 +99,31 @@
       "themeId": "generale",
       "title": "Jesus Christ you are my life",
       "content": "Jesus Christ you are my life, alleluja, alleluja.\nTu sei via, sei verità, Tu sei la nostra vita.",
-      "reflectionHints": ["Cristo centro della nostra vita"]
+      "reflectionHints": [
+        "Cristo centro della nostra vita"
+      ]
     },
     {
       "id": "canto_011",
       "categoryId": "canto",
       "themeId": "generale",
       "title": "Resta qui con noi",
-      "content": "Le ombre si distendono, scende ormai la sera...\nResta qui con noi, il sole scende già;\nresta qui con noi, Signore è sera ormai.",
-      "reflectionHints": ["Comunione con Gesù", "I discepoli di Emmaus"]
+      "content": "Le ombre si distendono,\nscende ormai la sera,\ne s'allontanano dietro ai monti\ni riflessi di un giorno che non finirà,\ndi un giorno che ora scorrerà sempre,\nperché sappiamo che una nuova vita\nda qui è partita e mai più si fermerà.\nResta qui con noi, il sole scende già,\nresta qui con noi, Signore è sera ormai.\nResta qui con noi, il sole scende già,\nse tu sei tra noi la notte non verrà.\nS'allarga verso il mare\nil tuo cerchio d'onda\nche il vento spingerà fino a quando\ngiungerà ai confini di ogni cuore,\nalle porte dell'amore vero.\nCome una fiamma che dove passa brucia,\ncosì il tuo amore tutto il mondo invaderà.\nDavanti a noi l'umanità\nlotta, soffre e spera,\ncome una terra che nell'arsura\nchieda l'acqua da un cielo senza nuvole,\nma che sempre le può dare vita.\nCon te saremo sorgenti d'acqua pura,\ncon te fra noi il deserto fiorirà.",
+      "reflectionHints": [
+        "Comunione con Gesù",
+        "I discepoli di Emmaus"
+      ]
     },
     {
       "id": "canto_012",
       "categoryId": "canto",
       "themeId": "generale",
       "title": "Salve Regina",
-      "content": "Salve Regina, Madre di misericordia.\nVita, dolcezza, speranza nostra, salve!\nSalve Regina!",
-      "reflectionHints": ["Affidamento a Maria", "Madre di Misericordia"]
+      "content": "Salve, o Regina, Madre di misericordia,\nnostra vita, dolcezza e speranza nostra, salve.\nA Te noi gridiamo, esuli figli di Eva,\na Te sospiriamo, piangendo e gemendo\nin questa valle di lacrime.\nDeh, volgi a noi, o Madre pietosa,\ni tuoi occhi misericordiosi\ne mostraci dopo questo esilio\nGesù, frutto benedetto del tuo grembo.\nO clemente, o pia,\no dolce Vergine Maria!",
+      "reflectionHints": [
+        "Affidamento a Maria",
+        "Madre di Misericordia"
+      ]
     },
     {
       "id": "canto_013",
@@ -102,7 +131,9 @@
       "themeId": "generale",
       "title": "Lode a Dio",
       "content": "Lode a Dio, lode a Dio, lode a Dio.\nMio Dio, mio Re.\nTi offro il mio cuore e la mia voce.",
-      "reflectionHints": ["Lode e ringraziamento"]
+      "reflectionHints": [
+        "Lode e ringraziamento"
+      ]
     },
     {
       "id": "canto_014",
@@ -110,7 +141,9 @@
       "themeId": "generale",
       "title": "Kyrie Eleison",
       "content": "Kyrie Eleison, Kyrie Eleison.\nKyrie Eleison, Kyrie Eleison.",
-      "reflectionHints": ["Richiesta di misericordia"]
+      "reflectionHints": [
+        "Richiesta di misericordia"
+      ]
     },
     {
       "id": "canto_015",
@@ -118,7 +151,9 @@
       "themeId": "generale",
       "title": "Veni Sancte Spiritus",
       "content": "Veni Sancte Spiritus.\nVeni Sancte Spiritus.\nVeni Sancte Spiritus.\nVeni Sancte Spiritus.",
-      "reflectionHints": ["Invocazione dello Spirito Santo"]
+      "reflectionHints": [
+        "Invocazione dello Spirito Santo"
+      ]
     }
   ]
 }
