@@ -71,16 +71,23 @@ export class PdfExportService {
           doc.setFontSize(11);
         }
 
-        const lines = doc.splitTextToSize(item.content || ' ', contentWidth);
+        const paragraphs = this.normalizeContent(item.content || ' ').split('\n\n');
         
-        // Handle page break within item content
-        if (cursorY + (lines.length * 5) > 280) {
-          doc.addPage();
-          cursorY = margin;
-        }
+        paragraphs.forEach((para, paraIdx) => {
+          const lines = doc.splitTextToSize(para.trim(), contentWidth);
+          const blockHeight = lines.length * 5.5;
 
-        doc.text(lines, margin, cursorY);
-        cursorY += (lines.length * 5) + 6;
+          // Handle page break before starting a paragraph
+          if (cursorY + blockHeight > 275) {
+            doc.addPage();
+            cursorY = margin;
+          }
+
+          doc.text(lines, margin, cursorY);
+          cursorY += blockHeight + (paraIdx < paragraphs.length - 1 ? 5 : 0);
+        });
+
+        cursorY += 6; // Spacing after item
       });
 
 
@@ -116,5 +123,61 @@ export class PdfExportService {
     }
 
     doc.save(`${adoration.title.replace(/\s+/g, '_')}.pdf`);
+  }
+
+  private normalizeContent(text: string): string {
+    if (!text) return '';
+
+    // 0. Preliminary: Strip HTML tags if any (from the new WYSIWYG editor)
+    // We replace <br> and <div> with \n first to preserve some structure
+    let content = text
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<\/div>/gi, '\n')
+      .replace(/<p>/gi, '')
+      .replace(/<\/p>/gi, '\n\n')
+      .replace(/<[^>]+>/g, '');
+
+    // 1. Remove carriage returns and normalize spaces
+    let clean = content.replace(/\r/g, '').replace(/[ \t]+/g, ' ');
+
+    // 2. Protect intentional structure:
+    // - Paragraphs (double newlines)
+    // - List items (lines starting with -, *, or numbers)
+    // - Verse-like structure (lines starting with a capital letter)
+    
+    // Mark double newlines
+    clean = clean.replace(/\n\s*\n/g, '####PARA####');
+
+    // For single newlines: 
+    // Join them if the next character is lowercase (definitely a mid-sentence break)
+    // OR if the current line doesn't end with a sentence-ending punctuation.
+    // We'll use a safer approach: join lines that don't start with a "structure trigger"
+    const lines = clean.split('\n');
+    const processedLines: string[] = [];
+    
+    for (let i = 0; i < lines.length; i++) {
+        const currentLine = lines[i].trim();
+        if (!currentLine) continue;
+
+        // If the NEXT line starts with structure, we must definitely keep a break after this one
+        const nextLine = lines[i+1]?.trim() || '';
+        const nextStartsStructure = /^[A-ZÀÈÌÒÙ0-9\-\*•]/.test(nextLine);
+        const currentEndsSentence = /[.:;!?»]$/.test(currentLine);
+
+        if (!nextStartsStructure && !currentEndsSentence && i < lines.length - 1) {
+            // Join with a space
+            processedLines.push(currentLine + ' ');
+        } else {
+            // Keep the newline (well, will join with \n later)
+            processedLines.push(currentLine + '\n');
+        }
+    }
+
+    clean = processedLines.join('').replace(/\n/g, ' ');
+
+    // Restore paragraphs
+    clean = clean.replace(/####PARA####/g, '\n\n');
+    
+    return clean.trim();
   }
 }

@@ -7,11 +7,12 @@ import { AdorationStoreService, AdorationSection } from '../../services/adoratio
 import { PdfExportService } from '../../services/pdf-export';
 import { ThemeService } from '../../services/theme';
 import { ContentPickerComponent } from '../content-picker/content-picker';
+import { TextEditorComponent } from './text-editor/text-editor';
 
 @Component({
   selector: 'app-builder',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule, RouterLink, ContentPickerComponent],
+  imports: [CommonModule, FormsModule, LucideAngularModule, RouterLink, ContentPickerComponent, TextEditorComponent],
   templateUrl: './builder.html',
   styleUrl: './builder.scss'
 })

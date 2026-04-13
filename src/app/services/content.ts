@@ -40,7 +40,7 @@ export interface Library {
 })
 export class ContentService {
   private http = inject(HttpClient);
-  
+
   // Internal state as a Signal for maximum reactivity
   private libraryState = signal<Library>({
     categories: [],
@@ -71,7 +71,7 @@ export class ContentService {
 
   private loadAllData() {
     this.isLoading.set(true);
-    
+
     // Load files sequentially or in parallel? Parallel is usually faster.
     // We use mergeMap with a concurrency limit to not choke the browser
     from(this.libraryFiles).pipe(
@@ -130,7 +130,7 @@ export class ContentService {
             catMap.set(item.categoryId, {
               id: item.categoryId,
               label: item.categoryId.replace(/_/g, ' ').charAt(0).toUpperCase() + item.categoryId.replace(/_/g, ' ').slice(1),
-              icon: 'scroll'
+              icon: this.getIconForCategory(item.categoryId)
             });
           }
 
@@ -156,6 +156,21 @@ export class ContentService {
         items: Array.from(itemMap.values())
       };
     });
+  }
+
+  private getIconForCategory(id: string): string {
+    const idLower = id.toLowerCase();
+    if (idLower.includes('vangelo')) return 'book-open';
+    if (idLower.includes('apocalisse')) return 'sparkles';
+    if (idLower.includes('atti')) return 'compass';
+    if (idLower.includes('lettere')) return 'mail';
+    if (idLower.includes('angelus')) return 'bell';
+    if (idLower.includes('udienza')) return 'users';
+    if (idLower.includes('omelia') || idLower.includes('discorso') || idLower.includes('benedict-xvi') || idLower.includes('francesco')) return 'mic';
+    if (idLower.includes('enciclica') || idLower.includes('esortazione')) return 'scroll';
+    if (idLower.includes('diario')) return 'heart';
+
+    return 'scroll';
   }
 
   getCategories(): Observable<Category[]> {

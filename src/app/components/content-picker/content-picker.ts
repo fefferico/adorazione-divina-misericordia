@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject, signal, computed, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LucideAngularModule, X, Search, Filter, BookOpen, Heart, Scroll, Mic, Mail, Music, Plus, Bell, Users, MessageSquare, User, Calendar, Loader2 } from 'lucide-angular';
+import { LucideAngularModule, X, Search, Filter, BookOpen, Heart, Scroll, Mic, Mail, Music, Plus, Bell, Users, MessageSquare, User, Calendar, Loader2, Sparkles, Compass } from 'lucide-angular';
 import { ContentService, LibraryItem } from '../../services/content';
 
 @Component({
@@ -30,14 +30,29 @@ export class ContentPickerComponent implements OnInit {
     'mic': Mic,
     'mail': Mail,
     'music': Music,
-    'angelus': Bell,
-    'udienza': Users,
-    'discorso': MessageSquare,
-    'meditazione': BookOpen,
-    'lettera': Mail,
-    'lettera_apostolica': Scroll,
-    'esortazione_apostolica': Scroll,
-    'enciclica': Scroll
+    'bell': Bell,
+    'users': Users,
+    'message-square': MessageSquare,
+    'sparkles': Sparkles,
+    'compass': Compass
+  };
+
+  categoryPlurals: Record<string, string> = {
+    'vangelo': 'Vangeli',
+    'atti': 'Atti degli Apostoli',
+    'lettere': 'Lettere',
+    'apocalisse': 'Apocalisse',
+    'omelia': 'Omelie',
+    'discorso': 'Discorsi',
+    'angelus': 'Angelus',
+    'meditazione': 'Meditazioni',
+    'lettera': 'Lettere',
+    'lettera_apostolica': 'Lettere Apostoliche',
+    'esortazione_apostolica': 'Esortazioni Apostoliche',
+    'enciclica': 'Encicliche',
+    'diario': 'Diario',
+    'benedict-xvi': 'Benedetto XVI',
+    'francesco': 'Papa Francesco'
   };
 
   @Input() categoryFilter?: string;
@@ -70,7 +85,7 @@ export class ContentPickerComponent implements OnInit {
 
   // Reactive Data directly from ContentService signals
   categories = computed(() => this.contentService.library().categories);
-  
+
   // Themes reactive to library data AND selected category
   themes = computed(() => {
     const lib = this.contentService.library();
@@ -111,9 +126,9 @@ export class ContentPickerComponent implements OnInit {
     // If we have theme search terms
     let themeSearchTerms: string[] = [];
     if (themeId && !query) {
-       themeSearchTerms.push(themeId);
-       const themeObj = lib.themes.find(t => t.id === themeId);
-       if (themeObj) themeSearchTerms.push(themeObj.label.toLowerCase());
+      themeSearchTerms.push(themeId);
+      const themeObj = lib.themes.find(t => t.id === themeId);
+      if (themeObj) themeSearchTerms.push(themeObj.label.toLowerCase());
     }
 
     // Single pass filter (most efficient)
@@ -187,5 +202,32 @@ export class ContentPickerComponent implements OnInit {
 
   close() {
     this.onClose.emit();
+  }
+
+  getCategoryLabel(id: string, originalLabel: string): string {
+    return this.categoryPlurals[id] || originalLabel;
+  }
+
+  getAuthorCategory(): string {
+    switch (this.selectedCategoryId()) {
+      case 'vangelo':
+      case 'atti':
+        return 'Evangelista';
+      case 'diario':
+        return 'Santa';
+      case 'lettere':
+      case 'apocalisse':
+        return 'Apostolo';
+      case 'omelia':
+      case 'discorso':
+      case 'angelus':
+      case 'benedict-xvi':
+      case 'francesco':
+        return 'Pontefice';
+      case 'dottore':
+        return 'Dottore della Chiesa';
+      default:
+        return 'Autore';
+    }
   }
 }

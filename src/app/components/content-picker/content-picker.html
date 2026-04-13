@@ -14,10 +14,11 @@
           <p class="text-[10px] sm:text-sm text-slate-500 dark:text-slate-400">Seleziona un brano</p>
         </div>
         @if (isLoading()) {
-          <div class="flex items-center gap-2 px-3 py-1.5 bg-primary-50 dark:bg-primary-950/30 text-primary-600 rounded-full animate-pulse">
-            <lucide-icon [name]="Loader2" class="w-4 h-4 animate-spin"></lucide-icon>
-            <span class="text-[10px] font-bold uppercase tracking-wider hidden sm:inline">Indicizzazione...</span>
-          </div>
+        <div
+          class="flex items-center gap-2 px-3 py-1.5 bg-primary-50 dark:bg-primary-950/30 text-primary-600 rounded-full animate-pulse">
+          <lucide-icon [name]="Loader2" class="w-4 h-4 animate-spin"></lucide-icon>
+          <span class="text-[10px] font-bold uppercase tracking-wider hidden sm:inline">Indicizzazione...</span>
+        </div>
         }
       </div>
       <button (click)="close()"
@@ -52,7 +53,7 @@
               [ngClass]="{'bg-primary-600 text-white shadow-lg shadow-primary-200 dark:shadow-none': selectedCategoryId() === cat.id, 'hover:bg-white dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400': selectedCategoryId() !== cat.id}"
               class="w-full text-left px-4 py-3 rounded-xl transition-all font-medium text-sm flex items-center gap-3 border border-transparent">
               <lucide-icon [name]="icons[cat.icon]" class="w-4 h-4"></lucide-icon>
-              {{ cat.label }}
+              {{ getCategoryLabel(cat.id, cat.label) }}
             </button>
             }
           </div>
@@ -88,7 +89,7 @@
               [ngClass]="{'bg-primary-600 text-white shadow-lg': selectedCategoryId() === cat.id, 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400': selectedCategoryId() !== cat.id}"
               class="px-4 py-2 rounded-xl text-xs whitespace-nowrap transition-all font-medium border border-transparent flex items-center gap-2">
               <lucide-icon [name]="icons[cat.icon]" class="w-3 h-3"></lucide-icon>
-              {{ cat.label }}
+              {{ getCategoryLabel(cat.id, cat.label) }}
             </button>
             }
           </div>
@@ -108,7 +109,7 @@
               <div class="flex items-center gap-1.5 text-slate-400 dark:text-slate-600 mr-2 flex-shrink-0">
                 <lucide-icon [name]="User" class="w-3.5 h-3.5"></lucide-icon>
                 <span class="text-[10px] font-bold uppercase tracking-wider">
-                  {{ selectedCategoryId() === 'vangelo' ? 'Evangelista' : 'Pontefice' }}
+                  {{ getAuthorCategory() }}
                 </span>
               </div>
               @for (author of authors(); track author) {
@@ -157,7 +158,8 @@
           <div class="mb-4 flex justify-between items-center" *ngIf="totalCount() > 0">
             <span class="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-widest">
               {{ totalCount() }} risultati trovati
-              <span *ngIf="hasMore()" class="text-primary-500 lowercase font-bold"> (mostrando i primi {{ resultsLimit() }})</span>
+              <span *ngIf="hasMore()" class="text-primary-500 lowercase font-bold"> (mostrando i primi {{ resultsLimit()
+                }})</span>
             </span>
           </div>
 
@@ -224,9 +226,10 @@
           }
           @if (hasMore()) {
           <div class="flex justify-center p-12">
-            <button (click)="loadMore()" 
+            <button (click)="loadMore()"
               class="group px-10 py-4 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md border-2 border-slate-100 dark:border-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-[2rem] hover:border-primary-500 hover:text-primary-600 hover:shadow-xl hover:shadow-primary-500/10 transition-all active:scale-95 flex items-center gap-3">
-              <lucide-icon [name]="Plus" class="w-5 h-5 group-hover:rotate-90 transition-transform duration-300"></lucide-icon>
+              <lucide-icon [name]="Plus"
+                class="w-5 h-5 group-hover:rotate-90 transition-transform duration-300"></lucide-icon>
               Carica altri brani
             </button>
           </div>

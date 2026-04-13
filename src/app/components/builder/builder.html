@@ -153,9 +153,9 @@
               <lucide-icon [name]="Minus" class="w-5 h-5"></lucide-icon>
             </button>
           </div>
-          <textarea [ngModel]="item.content" (ngModelChange)="updateItem(i, {content: $event})"
-            placeholder="Scrivi qui il contenuto..."
-            class="w-full min-h-[400px] border-none focus:ring-0 text-lg leading-relaxed text-slate-600 dark:text-slate-200 bg-transparent resize-y placeholder:text-slate-200 dark:placeholder:text-slate-800 p-1"></textarea>
+          <app-text-editor [ngModel]="item.content" (ngModelChange)="updateItem(i, {content: $event})"
+            class="block w-full min-h-[400px]">
+          </app-text-editor>
         </div>
         }
 
