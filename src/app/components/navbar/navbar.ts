@@ -9,7 +9,7 @@ import { ThemeService } from '../../services/theme';
   standalone: true,
   imports: [CommonModule, RouterLink, LucideAngularModule],
   templateUrl: './navbar.html',
-  styleUrls: ['./navbar.css']
+  styleUrl: './navbar.scss'
 })
 export class NavbarComponent {
   themeService = inject(ThemeService);

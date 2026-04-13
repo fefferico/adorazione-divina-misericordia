@@ -11,7 +11,7 @@ import { ContentService, LibraryItem, Category, Theme } from '../../services/con
   standalone: true,
   imports: [CommonModule, FormsModule, LucideAngularModule],
   templateUrl: './content-picker.html',
-  styleUrls: ['./content-picker.css']
+  styleUrl: './content-picker.scss'
 })
 export class ContentPickerComponent implements OnInit {
   private contentService = inject(ContentService);

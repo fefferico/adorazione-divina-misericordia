@@ -13,7 +13,7 @@ import { ContentPickerComponent } from '../content-picker/content-picker';
   standalone: true,
   imports: [CommonModule, FormsModule, LucideAngularModule, RouterLink, ContentPickerComponent],
   templateUrl: './builder.html',
-  styleUrls: ['./builder.css']
+  styleUrl: './builder.scss'
 })
 export class BuilderComponent implements OnInit {
   private store = inject(AdorationStoreService);

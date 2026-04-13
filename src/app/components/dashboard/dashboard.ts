@@ -11,7 +11,7 @@ import { ContentService } from '../../services/content';
   standalone: true,
   imports: [CommonModule, RouterLink, LucideAngularModule],
   templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.css']
+  styleUrl: './dashboard.scss'
 })
 export class DashboardComponent {
   themeService = inject(ThemeService);

@@ -1,0 +1,45 @@
+@reference "../../../styles.css";
+
+.line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.no-scrollbar {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+// Search bar premium focus
+input:focus {
+    box-shadow: 0 10px 25px -5px rgba(var(--color-primary-500-rgb), 0.1), 0 8px 10px -6px rgba(var(--color-primary-500-rgb), 0.1);
+}
+
+// Ensure the library content is not hidden by the fixed navbar
+:host {
+    display: block;
+}
+
+.glass-search {
+    @apply bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border-2 border-slate-100 dark:border-slate-800 transition-all;
+    
+    &:focus-within {
+        @apply border-primary-500 shadow-xl shadow-primary-500/10;
+    }
+}
+
+// Mobile specific tweaks
+@media (max-width: 768px) {
+    .max-w-7xl {
+        padding-top: 1rem;
+    }
+    
+    h1 {
+        @apply text-3xl;
+    }
+}

@@ -1,0 +1,76 @@
+<!-- Mobile Toggle Button (only visible on small screens when sidebar is closed) -->
+<button (click)="isMobileOpen.set(true)" 
+  class="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary-600 text-white rounded-full shadow-2xl flex items-center justify-center z-[110] transition-transform active:scale-90"
+  [ngClass]="{'scale-0': isMobileOpen()}">
+  <lucide-icon [name]="Menu" class="w-6 h-6"></lucide-icon>
+</button>
+
+<!-- Backdrop (Mobile) -->
+<div *ngIf="isMobileOpen()" (click)="isMobileOpen.set(false)"
+  class="md:hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[95] transition-opacity"></div>
+
+<aside 
+  class="fixed left-0 top-0 h-screen z-[100] border-r border-slate-200/50 dark:border-white/5 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl flex flex-col"
+  [ngClass]="{
+    'w-20': isCollapsed() && !isMobileOpen(), 
+    'w-72': !isCollapsed() || isMobileOpen(),
+    'mobile-open': isMobileOpen()
+  }">
+  
+  <!-- Logo Area -->
+  <div class="h-24 flex items-center px-6 mb-8">
+    <div class="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center shrink-0 shadow-lg shadow-primary-500/30">
+        <span class="text-white font-black text-xs">AD</span>
+    </div>
+    <div class="ml-4 transition-opacity duration-300 whitespace-nowrap overflow-hidden" 
+         [ngClass]="isCollapsed() ? 'opacity-0 w-0' : 'opacity-100 w-auto'">
+        <span class="font-serif font-bold text-slate-800 dark:text-white uppercase tracking-tighter">Divina Misericordia</span>
+    </div>
+
+    <!-- Mobile Close Button -->
+    <button (click)="isMobileOpen.set(false)" class="md:hidden ml-auto p-2 text-slate-400">
+        <lucide-icon [name]="X" class="w-6 h-6"></lucide-icon>
+    </button>
+  </div>
+
+  <!-- Menu items -->
+  <nav class="flex-1 px-4 space-y-2">
+    @for (item of menuItems; track item.path) {
+    <a [routerLink]="item.path" routerLinkActive="bg-primary-500/10 text-primary-600 dark:text-primary-400" [routerLinkActiveOptions]="{exact: true}"
+       class="flex items-center h-12 px-3 rounded-2xl transition-all duration-300 group hover:bg-slate-50 dark:hover:bg-white/5 relative overflow-hidden">
+      
+      <!-- Active Indicator -->
+      <div routerLinkActive="opacity-100" [routerLinkActiveOptions]="{exact: true}"
+        class="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-primary-500 rounded-r-full opacity-0 transition-opacity"></div>
+      
+      <lucide-icon [name]="item.icon" 
+        class="w-6 h-6 shrink-0 transition-transform duration-300 group-hover:scale-110"
+        [ngClass]="{'mx-auto': isCollapsed()}"></lucide-icon>
+      
+      <span class="ml-4 font-bold text-sm tracking-wide whitespace-nowrap transition-all duration-300 overflow-hidden"
+            [ngClass]="isCollapsed() ? 'opacity-0 w-0' : 'opacity-100 w-auto text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-100'">
+        {{ item.label }}
+      </span>
+
+      <!-- Tooltip for collapsed mode -->
+      @if (isCollapsed()) {
+        <div class="absolute left-full ml-4 px-3 py-1 bg-slate-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
+          {{ item.label }}
+        </div>
+      }
+    </a>
+    }
+  </nav>
+
+  <!-- Bottom Actions -->
+  <div class="p-4 space-y-2">
+    <!-- Collapse Toggle -->
+    <button (click)="toggleCollapse()" 
+      class="w-full h-12 flex items-center justify-center rounded-2xl hover:bg-slate-50 dark:hover:bg-white/5 text-slate-400 transition-all active:scale-95 group">
+      <lucide-icon [name]="isCollapsed() ? ChevronRight : ChevronLeft" 
+        class="w-5 h-5 transition-transform duration-500 group-hover:text-primary-500"></lucide-icon>
+      <span class="ml-4 text-sm font-bold transition-all duration-300 overflow-hidden whitespace-nowrap"
+            [ngClass]="isCollapsed() ? 'opacity-0 w-0' : 'opacity-100 w-auto'">Nascondi</span>
+    </button>
+  </div>
+</aside>

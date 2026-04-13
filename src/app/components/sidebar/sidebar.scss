@@ -1,0 +1,53 @@
+// Sidebar Premium Styling
+:host {
+    display: block;
+}
+
+aside {
+    // Glassmorphism effect
+    box-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.05);
+    
+    // Smooth transitions for all properties
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.collapsed {
+        @media (min-width: 768px) {
+            width: 80px;
+        }
+    }
+
+    // Mobile Handling: Drawer Mode
+    @media (max-width: 767px) {
+        width: 280px;
+        transform: translateX(-100%);
+        visibility: hidden;
+        opacity: 0;
+        box-shadow: 20px 0 50px rgba(0,0,0,0.1);
+
+        &.mobile-open {
+            transform: translateX(0);
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+// Active link glow
+.active-item {
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, var(--color-primary-500) 0%, transparent 100%);
+        opacity: 0.05;
+        pointer-events: none;
+    }
+}
+
+.no-scrollbar {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
