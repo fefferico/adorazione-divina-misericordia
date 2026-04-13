@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { LucideAngularModule, Search, Book, User, Calendar, ChevronRight, FileText, Heart, Scroll, Mic, Mail, Music, Bell, Users, MessageSquare } from 'lucide-angular';
 import { ContentService, LibraryItem, Category, Theme } from '../../services/content';
 import { toSignal, toObservable } from '@angular/core/rxjs-interop';
-import { switchMap, combineLatest, debounceTime, startWith } from 'rxjs';
+import { switchMap, combineLatest, debounceTime, startWith, map } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-library',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule],
+  imports: [CommonModule, FormsModule, LucideAngularModule, RouterLink],
   templateUrl: './library.html',
   styleUrl: './library.scss'
 })
@@ -45,13 +46,19 @@ export class LibraryComponent {
 
   selectedCategoryId = signal<string | null>(null);
   searchQuery = signal('');
+  visibleLimit = signal(24);
 
   categories = toSignal(this.contentService.getCategories(), { initialValue: [] });
 
-  results = toSignal(
+  allResults = toSignal(
     combineLatest([
       toObservable(this.selectedCategoryId),
-      toObservable(this.searchQuery).pipe(debounceTime(300), startWith(''))
+      toObservable(this.searchQuery).pipe(
+        debounceTime(300),
+        startWith(''),
+        // Reset limit when search or category changes
+        map(q => { this.visibleLimit.set(24); return q; })
+      )
     ]).pipe(
       switchMap(([cat, query]) =>
         this.contentService.searchItems(cat || undefined, undefined, query)
@@ -59,6 +66,13 @@ export class LibraryComponent {
     ),
     { initialValue: [] }
   );
+
+  visibleResults = computed(() => this.allResults().slice(0, this.visibleLimit()));
+  hasMore = computed(() => this.allResults().length > this.visibleLimit());
+
+  loadMore() {
+    this.visibleLimit.update(l => l + 24);
+  }
 
   selectCategory(id: string | null) {
     this.selectedCategoryId.set(this.selectedCategoryId() === id ? null : id);

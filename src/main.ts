@@ -4,6 +4,6 @@ import { App } from './app/app';
 import { registerLocaleData } from '@angular/common';
 import localeIt from '@angular/common/locales/it';
 
-registerLocaleData(localeIt);
+registerLocaleData(localeIt, 'it-IT');
 
 bootstrapApplication(App, appConfig).catch((err) => console.error(err));

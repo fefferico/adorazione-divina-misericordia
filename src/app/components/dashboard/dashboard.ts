@@ -54,21 +54,26 @@ export class DashboardComponent {
     this.themeService.setTheme(next);
   }
 
+  startNewAdoration() {
+    this.store.reset();
+    this.router.navigate(['/builder']);
+  }
+
   goToBuilder(themeName: string) {
     // 1. Find the actual theme ID if possible, otherwise use the name
     const themeId = themeName.toLowerCase();
 
     this.contentService.searchItems(undefined, themeId).subscribe(items => {
+      // 1. Reset and initialize the adoration first
+      this.store.reset();
+      this.store.updateTheme(themeName);
+      this.store.updateTitle(`Adorazione: ${themeName}`);
+
       if (items.length === 0) {
         console.warn('No items found for theme:', themeId);
         this.router.navigate(['/builder']);
         return;
       }
-
-      // 1. Reset and initialize the adoration
-      this.store.reset();
-      this.store.updateTheme(themeName);
-      this.store.updateTitle(`Adorazione: ${themeName}`);
 
       // 2. Map existing sections to thematic items
       const currentAdoration = this.store.currentAdoration();

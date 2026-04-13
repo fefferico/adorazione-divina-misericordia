@@ -1,6 +1,10 @@
-<nav class="fixed top-0 left-0 md:left-20 right-0 z-[100] px-6 py-3 transition-all duration-300" [ngClass]="{
+<nav class="fixed top-0 right-0 z-[100] px-6 py-3 transition-all duration-500" [ngClass]="{
     'bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm': !isDashboard() || isScrolled(), 
-    'bg-transparent': isDashboard() && !isScrolled()
+    'bg-transparent': isDashboard() && !isScrolled(),
+    'left-0': uiService.isSidebarMobileOpen(),
+    'md:left-20': uiService.isSidebarCollapsed(),
+    'md:left-72': !uiService.isSidebarCollapsed(),
+    'left-0 md:left-20': false 
   }">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
     <!-- Logo/Brand -->

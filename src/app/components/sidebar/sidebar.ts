@@ -5,6 +5,7 @@ import { LucideAngularModule, Home, Edit3, Book, Settings, ChevronLeft, ChevronR
 import { ThemeService } from '../../services/theme';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs';
+import { UIService } from '../../services/ui';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,17 +16,18 @@ import { filter } from 'rxjs';
 })
 export class SidebarComponent {
   themeService = inject(ThemeService);
+  uiService = inject(UIService);
   private router = inject(Router);
 
-  isCollapsed = signal(true);
-  isMobileOpen = signal(false);
+  isCollapsed = this.uiService.isSidebarCollapsed;
+  isMobileOpen = this.uiService.isSidebarMobileOpen;
 
   constructor() {
     this.router.events.pipe(
       filter(event => event instanceof NavigationStart),
       takeUntilDestroyed()
     ).subscribe(() => {
-      this.isMobileOpen.set(false);
+      this.uiService.setMobileSidebar(false);
     });
   }
 
@@ -47,6 +49,6 @@ export class SidebarComponent {
   ];
 
   toggleCollapse() {
-    this.isCollapsed.set(!this.isCollapsed());
+    this.uiService.toggleSidebar();
   }
 }

@@ -3,6 +3,7 @@ import { RouterLink, Router } from '@angular/router';
 import { LucideAngularModule, Sun, Moon, Plus, Minus, Sparkles } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../services/theme';
+import { UIService } from '../../services/ui';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +14,7 @@ import { ThemeService } from '../../services/theme';
 })
 export class NavbarComponent {
   themeService = inject(ThemeService);
+  uiService = inject(UIService);
   private router = inject(Router);
 
   readonly Sun = Sun;

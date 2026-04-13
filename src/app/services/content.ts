@@ -1,6 +1,6 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, shareReplay, forkJoin, of, catchError } from 'rxjs';
+import { Observable, map, of, catchError, from, mergeMap, tap, toArray } from 'rxjs';
 
 export interface Category {
   id: string;
@@ -24,6 +24,9 @@ export interface LibraryItem {
   publishedDate?: string;
   reflectionHints?: string[];
   source_url?: string;
+  _searchTitle?: string;
+  _searchContent?: string;
+  _searchAuthor?: string;
 }
 
 export interface Library {
@@ -37,202 +40,196 @@ export interface Library {
 })
 export class ContentService {
   private http = inject(HttpClient);
+  
+  // Internal state as a Signal for maximum reactivity
+  private libraryState = signal<Library>({
+    categories: [],
+    themes: [],
+    items: []
+  });
+
+  // Expose parts of the state
+  library = this.libraryState.asReadonly();
+  isLoading = signal(true);
+
   private libraryFiles = [
-    'assets/data/library.json', 
-    'assets/data/francesco.json',
-    'assets/data/matteo.json',
-    'assets/data/marco.json',
-    'assets/data/luca.json',
-    'assets/data/giovanni.json',
-    'assets/data/atti.json',
-    'assets/data/lettere.json',
-    'assets/data/apocalisse.json'
+    '/assets/data/library.json',
+    '/assets/data/francesco.json',
+    '/assets/data/matteo.json',
+    '/assets/data/marco.json',
+    '/assets/data/luca.json',
+    '/assets/data/giovanni.json',
+    '/assets/data/atti.json',
+    '/assets/data/lettere.json',
+    '/assets/data/apocalisse.json',
+    '/assets/data/benedict-xvi.json'
   ];
 
-  private library$ = forkJoin(
-    this.libraryFiles.map(url => this.http.get<any>(url).pipe(
-      catchError(() => of({ items: [], categories: [], themes: [] }))
-    ))
-  ).pipe(
-    map(results => {
-      const merged: Library = { categories: [], themes: [], items: [] };
-      
-      // First pass: register explicit categories and themes from library.json
-      results.forEach(res => {
-        if (res.categories) {
-          res.categories.forEach((c: Category) => {
-            if (!merged.categories.find(mc => mc.id === c.id)) {
-              merged.categories.push(c);
-            }
-          });
-        }
-        if (res.themes) {
-          res.themes.forEach((t: Theme) => {
-            if (!merged.themes.find(mt => mt.id === t.id)) {
-              merged.themes.push(t);
-            }
-          });
-        }
-      });
-
-      // Second pass: process items and auto-register missing categories/themes
-      results.forEach(res => {
-        if (res.items) {
-          res.items.forEach((item: any) => {
-            // Normalize themeId/themeIds
-            if (!item.themeId && item.themeIds && item.themeIds.length > 0) {
-              item.themeId = item.themeIds[0].toLowerCase();
-            } else if (item.themeId) {
-              item.themeId = item.themeId.toLowerCase();
-            }
-
-            // Auto-assign author for Vangelo if missing
-            if (item.categoryId === 'vangelo' && !item.author) {
-              const title = item.title.toLowerCase();
-              if (title.includes('(mt') || item.id.includes('matthew')) item.author = 'Matteo';
-              else if (title.includes('(mc') || item.id.includes('mark')) item.author = 'Marco';
-              else if (title.includes('(lc') || item.id.includes('luke')) item.author = 'Luca';
-              else if (title.includes('(gv') || item.id.includes('john')) item.author = 'Giovanni';
-              else item.author = 'Evangelista';
-            }
-
-            // Auto-register theme if missing
-            if (item.themeId && !merged.themes.find(t => t.id === item.themeId)) {
-              merged.themes.push({ 
-                id: item.themeId, 
-                label: item.themeIds && item.themeIds.length > 0 ? item.themeIds[0] : item.themeId.charAt(0).toUpperCase() + item.themeId.slice(1)
-              });
-            }
-
-            // Auto-register category if missing
-            if (item.categoryId && !merged.categories.find(c => c.id === item.categoryId)) {
-              merged.categories.push({ 
-                id: item.categoryId, 
-                label: item.categoryId.replace(/_/g, ' ').charAt(0).toUpperCase() + item.categoryId.replace(/_/g, ' ').slice(1),
-                icon: 'scroll' // default icon for new categories
-              });
-            }
-
-            merged.items.push(item);
-          });
-        }
-      });
-
-      // Deduplicate items
-      merged.items = Array.from(new Map(merged.items.map(i => [i.id, i])).values());
-      
-      return merged;
-    }),
-    shareReplay(1)
-  );
-
-  getCategories(): Observable<Category[]> {
-    return this.library$.pipe(map(l => l.categories));
+  constructor() {
+    this.loadAllData();
   }
 
+  private loadAllData() {
+    this.isLoading.set(true);
+    
+    // Load files sequentially or in parallel? Parallel is usually faster.
+    // We use mergeMap with a concurrency limit to not choke the browser
+    from(this.libraryFiles).pipe(
+      mergeMap(url => this.http.get<any>(url).pipe(
+        catchError(() => of({ items: [], categories: [], themes: [] })),
+        tap(res => this.mergeData(res))
+      ), 3), // max 3 parallel requests
+      toArray()
+    ).subscribe({
+      next: () => this.isLoading.set(false),
+      error: () => this.isLoading.set(false)
+    });
+  }
+
+  private mergeData(newData: any) {
+    this.libraryState.update(current => {
+      const catMap = new Map(current.categories.map(c => [c.id, c]));
+      const themeMap = new Map(current.themes.map(t => [t.id, t]));
+      const itemMap = new Map(current.items.map(i => [i.id, i]));
+
+      // 1. Process Categories
+      if (newData.categories) {
+        newData.categories.forEach((c: Category) => {
+          if (!catMap.has(c.id)) catMap.set(c.id, c);
+        });
+      }
+
+      // 2. Process Themes
+      if (newData.themes) {
+        newData.themes.forEach((t: Theme) => {
+          if (!themeMap.has(t.id)) themeMap.set(t.id, t);
+        });
+      }
+
+      // 3. Process Items
+      if (newData.items) {
+        newData.items.forEach((item: any) => {
+          // Normalization
+          if (!item.themeId && item.themeIds && item.themeIds.length > 0) {
+            item.themeId = item.themeIds[0].toLowerCase();
+          } else if (item.themeId) {
+            item.themeId = item.themeId.toLowerCase();
+          }
+
+          // Author assignment
+          if (item.categoryId === 'vangelo' && !item.author) {
+            const title = item.title.toLowerCase();
+            if (title.includes('(mt') || item.id.includes('matthew')) item.author = 'Matteo';
+            else if (title.includes('(mc') || item.id.includes('mark')) item.author = 'Marco';
+            else if (title.includes('(lc') || item.id.includes('luke')) item.author = 'Luca';
+            else if (title.includes('(gv') || item.id.includes('john')) item.author = 'Giovanni';
+          }
+
+          // Auto-register categories/themes if missing
+          if (item.categoryId && !catMap.has(item.categoryId)) {
+            catMap.set(item.categoryId, {
+              id: item.categoryId,
+              label: item.categoryId.replace(/_/g, ' ').charAt(0).toUpperCase() + item.categoryId.replace(/_/g, ' ').slice(1),
+              icon: 'scroll'
+            });
+          }
+
+          if (item.themeId && !themeMap.has(item.themeId)) {
+            themeMap.set(item.themeId, {
+              id: item.themeId,
+              label: item.themeIds && item.themeIds.length > 0 ? item.themeIds[0] : item.themeId.charAt(0).toUpperCase() + item.themeId.slice(1)
+            });
+          }
+
+          // Search optimization
+          item._searchTitle = (item.title || '').toLowerCase();
+          item._searchContent = (item.content || '').toLowerCase();
+          item._searchAuthor = (item.author || '').toLowerCase();
+
+          itemMap.set(item.id, item);
+        });
+      }
+
+      return {
+        categories: Array.from(catMap.values()),
+        themes: Array.from(themeMap.values()),
+        items: Array.from(itemMap.values())
+      };
+    });
+  }
+
+  getCategories(): Observable<Category[]> {
+    return from(new Promise<Category[]>(resolve => resolve(this.libraryState().categories)));
+  }
+
+  // Still providing Observables for compatibility if needed, but signal is better
   getThemes(categoryId?: string): Observable<Theme[]> {
-    return this.library$.pipe(
-      map(lib => {
-        if (!categoryId) return lib.themes;
-        // Filter themes that have at least one item in the current category
-        const themeIds = new Set(
-          lib.items
-            .filter(i => i.categoryId === categoryId)
-            .map(i => i.themeId)
-            .filter(t => !!t)
-        );
-        // Include themes that were explicitly registered for this category or are present in items
-        return lib.themes.filter(t => themeIds.has(t.id));
-      })
-    );
+    const lib = this.libraryState();
+    if (!categoryId) return of(lib.themes);
+    const themeIds = new Set(lib.items.filter(i => i.categoryId === categoryId).map(i => i.themeId).filter(t => !!t));
+    return of(lib.themes.filter(t => themeIds.has(t.id)));
   }
 
   getAuthors(categoryId?: string): Observable<string[]> {
-    return this.library$.pipe(
-      map(lib => {
-        const authors = lib.items
-          .filter(i => !categoryId || i.categoryId === categoryId)
-          .map(i => i.author)
-          .filter((a): a is string => !!a);
-        return Array.from(new Set(authors)).sort();
-      })
-    );
+    const lib = this.libraryState();
+    const authors = lib.items.filter(i => !categoryId || i.categoryId === categoryId).map(i => i.author).filter((a): a is string => !!a);
+    return of(Array.from(new Set(authors)).sort());
   }
 
   getYears(categoryId?: string): Observable<string[]> {
-    return this.library$.pipe(
-      map(lib => {
-        const years = lib.items
-          .filter(i => !categoryId || i.categoryId === categoryId)
-          .map(i => i.publishedDate ? new Date(i.publishedDate).getFullYear().toString() : null)
-          .filter((y): y is string => !!y && y !== 'NaN');
-        return Array.from(new Set(years)).sort((a, b) => b.localeCompare(a));
-      })
-    );
+    const lib = this.libraryState();
+    const years = lib.items.filter(i => !categoryId || i.categoryId === categoryId)
+      .map(i => i.publishedDate ? new Date(i.publishedDate).getFullYear().toString() : null)
+      .filter((y): y is string => !!y && y !== 'NaN');
+    return of(Array.from(new Set(years)).sort((a, b) => b.localeCompare(a)));
   }
 
   searchItems(
-    categoryId?: string, 
-    themeId?: string, 
+    categoryId?: string,
+    themeId?: string,
     query?: string,
     author?: string,
     year?: string
   ): Observable<LibraryItem[]> {
-    return this.library$.pipe(
-      map(lib => {
-        const filtered = lib.items.filter(item => {
-          const matchCategory = !categoryId || item.categoryId === categoryId;
-          
-          let matchTheme = !themeId;
-          if (themeId) {
-            const normalizedThemeId = themeId.toLowerCase();
-            const itemThemeId = item.themeId?.toLowerCase();
-            const itemThemeIds = item.themeIds?.map(t => t.toLowerCase()) || [];
-            matchTheme = itemThemeId === normalizedThemeId || itemThemeIds.includes(normalizedThemeId);
-          }
+    const lib = this.libraryState();
+    const lowerQuery = query?.toLowerCase() || '';
+    const lowerAuthor = author?.toLowerCase();
+    const lowerThemeId = themeId?.toLowerCase();
 
-          const matchAuthor = !author || item.author === author;
-          const matchYear = !year || (item.publishedDate && new Date(item.publishedDate).getFullYear().toString() === year);
+    // Prepare search terms for theme enrichment
+    let themeSearchTerms: string[] = [];
+    if (lowerThemeId && !lowerQuery) {
+      themeSearchTerms.push(lowerThemeId);
+      const themeObj = lib.themes.find(t => t.id === lowerThemeId);
+      if (themeObj) themeSearchTerms.push(themeObj.label.toLowerCase());
+    }
 
-          const matchQuery = !query ||
-            item.title.toLowerCase().includes(query.toLowerCase()) ||
-            item.content.toLowerCase().includes(query.toLowerCase());
-            
-          return matchCategory && matchTheme && matchQuery && matchAuthor && matchYear;
-        });
+    const results = lib.items.filter(item => {
+      if (categoryId && item.categoryId !== categoryId) return false;
+      if (lowerAuthor && item._searchAuthor !== lowerAuthor) return false;
+      if (year && (!item.publishedDate || new Date(item.publishedDate).getFullYear().toString() !== year)) return false;
 
-        let results = filtered;
-        
-        // If themeId is provided, also try to fetch items by text search to enrich results
-        if (themeId && !query) {
-          const themeObj = lib.themes.find(t => t.id === themeId.toLowerCase());
-          const searchTerms = [themeId.toLowerCase()];
-          if (themeObj) searchTerms.push(themeObj.label.toLowerCase());
-          
-          const textMatches = lib.items.filter(item => {
-            const matchCategory = !categoryId || item.categoryId === categoryId;
-            const alreadyInResults = results.some(r => r.id === item.id);
-            if (alreadyInResults) return false;
-
-            const contentLower = item.content.toLowerCase();
-            const titleLower = item.title.toLowerCase();
-            
-            return matchCategory && searchTerms.some(term => 
-              contentLower.includes(term) || titleLower.includes(term)
-            );
-          });
-          
-          results = [...results, ...textMatches];
+      let isMatch = true;
+      if (lowerThemeId) {
+        isMatch = item.themeId?.toLowerCase() === lowerThemeId || (item.themeIds?.map(t => t.toLowerCase()) || []).includes(lowerThemeId);
+        if (!isMatch && themeSearchTerms.length > 0) {
+          isMatch = themeSearchTerms.some(term => item._searchTitle?.includes(term) || item._searchContent?.includes(term));
         }
+        if (!isMatch) return false;
+      }
 
-        return results;
-      })
-    );
+      if (lowerQuery) {
+        const queryMatch = (item._searchTitle?.includes(lowerQuery) || item._searchContent?.includes(lowerQuery));
+        if (!queryMatch) return false;
+      }
+
+      return true;
+    });
+
+    return of(results);
   }
 
   getItemById(id: string): Observable<LibraryItem | undefined> {
-    return this.library$.pipe(
-      map(lib => lib.items.find(i => i.id === id))
-    );
+    return of(this.libraryState().items.find(i => i.id === id));
   }
 }

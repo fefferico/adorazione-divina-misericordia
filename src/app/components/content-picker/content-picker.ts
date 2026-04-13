@@ -1,10 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output, inject, signal, computed } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject, signal, computed, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { switchMap, combineLatest, debounceTime, startWith, map, tap } from 'rxjs';
-import { LucideAngularModule, X, Search, Filter, BookOpen, Heart, Scroll, Mic, Mail, Music, Plus, Bell, Users, MessageSquare, FileText, User, Calendar } from 'lucide-angular';
-import { ContentService, LibraryItem, Category, Theme } from '../../services/content';
+import { LucideAngularModule, X, Search, Filter, BookOpen, Heart, Scroll, Mic, Mail, Music, Plus, Bell, Users, MessageSquare, User, Calendar, Loader2 } from 'lucide-angular';
+import { ContentService, LibraryItem } from '../../services/content';
 
 @Component({
   selector: 'app-content-picker',
@@ -22,6 +20,7 @@ export class ContentPickerComponent implements OnInit {
   readonly Plus = Plus;
   readonly User = User;
   readonly Calendar = Calendar;
+  readonly Loader2 = Loader2;
 
   // Icon mapping
   icons: Record<string, any> = {
@@ -51,52 +50,101 @@ export class ContentPickerComponent implements OnInit {
   selectedAuthor = signal<string | null>(null);
   selectedYear = signal<string | null>(null);
   searchQuery = signal('');
+  debouncedQuery = signal(''); // Query to be used for searching
+  resultsLimit = signal(30);
 
-  // Reactive Data
-  categories = toSignal(this.contentService.getCategories(), { initialValue: [] });
+  // Expose global loading state
+  isLoading = this.contentService.isLoading;
+
+  constructor() {
+    // Implement manual debounce for the search query to avoid heavy re-computations
+    let timeout: any;
+    effect(() => {
+      const query = this.searchQuery();
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        this.debouncedQuery.set(query);
+      }, 300);
+    }, { allowSignalWrites: true });
+  }
+
+  // Reactive Data directly from ContentService signals
+  categories = computed(() => this.contentService.library().categories);
   
-  // Themes reactive to category
-  themes = toSignal(
-    toObservable(this.selectedCategoryId).pipe(
-      switchMap(catId => this.contentService.getThemes(catId || undefined))
-    ),
-    { initialValue: [] }
-  );
+  // Themes reactive to library data AND selected category
+  themes = computed(() => {
+    const lib = this.contentService.library();
+    const catId = this.selectedCategoryId();
+    if (!catId) return lib.themes;
+    const themeIds = new Set(lib.items.filter(i => i.categoryId === catId).map(i => i.themeId).filter(t => !!t));
+    return lib.themes.filter(t => themeIds.has(t.id));
+  });
 
-  // Authors reactive to category
-  authors = toSignal(
-    toObservable(this.selectedCategoryId).pipe(
-      switchMap(catId => this.contentService.getAuthors(catId || undefined))
-    ),
-    { initialValue: [] }
-  );
+  // Authors reactive to library data AND category
+  authors = computed(() => {
+    const lib = this.contentService.library();
+    const catId = this.selectedCategoryId();
+    const authors = lib.items.filter(i => !catId || i.categoryId === catId).map(i => i.author).filter((a): a is string => !!a);
+    return Array.from(new Set(authors)).sort();
+  });
 
-  // Years reactive to category
-  years = toSignal(
-    toObservable(this.selectedCategoryId).pipe(
-      switchMap(catId => this.contentService.getYears(catId || undefined))
-    ),
-    { initialValue: [] }
-  );
+  // Years reactive to library data AND category
+  years = computed(() => {
+    const lib = this.contentService.library();
+    const catId = this.selectedCategoryId();
+    const years = lib.items.filter(i => !catId || i.categoryId === catId)
+      .map(i => i.publishedDate ? new Date(i.publishedDate).getFullYear().toString() : null)
+      .filter((y): y is string => !!y && y !== 'NaN');
+    return Array.from(new Set(years)).sort((a, b) => b.localeCompare(a));
+  });
 
-  // Search Results
-  results = toSignal(
-    combineLatest([
-      toObservable(this.selectedCategoryId),
-      toObservable(this.selectedThemeId),
-      toObservable(this.searchQuery).pipe(debounceTime(300), startWith('')),
-      toObservable(this.selectedAuthor),
-      toObservable(this.selectedYear)
-    ]).pipe(
-      switchMap(([cat, theme, query, author, year]) => 
-        this.contentService.searchItems(cat || undefined, theme || undefined, query, author || undefined, year || undefined)
-      )
-    ),
-    { initialValue: [] }
-  );
+  // CORE SEARCH LOGIC - Entirely reactive to signals!
+  // This will update automatically when filters change OR when library data loads in background.
+  allResults = computed(() => {
+    const lib = this.contentService.library();
+    const catId = this.selectedCategoryId();
+    const themeId = this.selectedThemeId();
+    const query = this.debouncedQuery().toLowerCase();
+    const author = this.selectedAuthor()?.toLowerCase();
+    const year = this.selectedYear();
+
+    // If we have theme search terms
+    let themeSearchTerms: string[] = [];
+    if (themeId && !query) {
+       themeSearchTerms.push(themeId);
+       const themeObj = lib.themes.find(t => t.id === themeId);
+       if (themeObj) themeSearchTerms.push(themeObj.label.toLowerCase());
+    }
+
+    // Single pass filter (most efficient)
+    return lib.items.filter(item => {
+      if (catId && item.categoryId !== catId) return false;
+      if (author && item._searchAuthor !== author) return false;
+      if (year && (!item.publishedDate || new Date(item.publishedDate).getFullYear().toString() !== year)) return false;
+
+      let isMatch = true;
+      if (themeId) {
+        isMatch = item.themeId?.toLowerCase() === themeId || (item.themeIds?.map(t => t.toLowerCase()) || []).includes(themeId);
+        if (!isMatch && themeSearchTerms.length > 0) {
+          isMatch = themeSearchTerms.some(term => item._searchTitle?.includes(term) || item._searchContent?.includes(term));
+        }
+        if (!isMatch) return false;
+      }
+
+      if (query) {
+        if (!(item._searchTitle?.includes(query) || item._searchContent?.includes(query))) return false;
+      }
+
+      return true;
+    });
+  });
+
+  // Computed signals for view
+  visibleResults = computed(() => this.allResults().slice(0, this.resultsLimit()));
+  hasMore = computed(() => this.allResults().length > this.resultsLimit());
+  totalCount = computed(() => this.allResults().length);
 
   ngOnInit() {
-    // Auto-select category if provided as input
     if (this.categoryFilter) {
       this.selectedCategoryId.set(this.categoryFilter);
     }
@@ -107,19 +155,22 @@ export class ContentPickerComponent implements OnInit {
     this.selectedThemeId.set(null);
     this.selectedAuthor.set(null);
     this.selectedYear.set(null);
-    this.searchQuery.set('');
+    this.resultsLimit.set(30);
   }
 
   selectTheme(id: string | null) {
     this.selectedThemeId.set(this.selectedThemeId() === id ? null : id);
+    this.resultsLimit.set(30);
   }
 
   selectAuthor(author: string | null) {
     this.selectedAuthor.set(this.selectedAuthor() === author ? null : author);
+    this.resultsLimit.set(30);
   }
 
   selectYear(year: string | null) {
     this.selectedYear.set(this.selectedYear() === year ? null : year);
+    this.resultsLimit.set(30);
   }
 
   onSearchChange(query: string) {
@@ -128,6 +179,10 @@ export class ContentPickerComponent implements OnInit {
 
   selectItem(item: LibraryItem) {
     this.onSelect.emit(item);
+  }
+
+  loadMore() {
+    this.resultsLimit.update(l => l + 30);
   }
 
   close() {

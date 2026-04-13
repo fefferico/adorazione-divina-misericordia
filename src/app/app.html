@@ -1,5 +1,9 @@
 <app-sidebar></app-sidebar>
-<div class="md:pl-20 transition-all duration-300">
+<div class="transition-all duration-500"
+     [ngClass]="{
+       'md:pl-20': uiService.isSidebarCollapsed(),
+       'md:pl-72': !uiService.isSidebarCollapsed()
+     }">
   <app-navbar></app-navbar>
   <router-outlet></router-outlet>
 </div>

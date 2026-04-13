@@ -203,8 +203,6 @@ export class BuilderComponent implements OnInit {
         return 'Salmo';
       case 'gospel':
         return 'Vangelo';
-      case 'reading':
-        return 'Lettura';
       default:
         return 'Lettura';
     }

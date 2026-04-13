@@ -1,0 +1,51 @@
+@reference "../../../styles.css";
+
+:host {
+    display: block;
+}
+
+article {
+    // Premium shadow and entrance animation
+    box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.05), 
+                0 30px 60px -30px rgba(15, 23, 42, 0.1);
+    animation: articleEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes articleEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+// Custom drop-cap styling
+.first-letter\:text-5xl::first-letter {
+    line-height: 1;
+    margin-top: 0.2em;
+    font-family: var(--font-serif);
+}
+
+@media print {
+    // Hide everything except the article
+    .min-h-screen > .max-w-4xl > div:first-child,
+    footer,
+    aside,
+    nav {
+        display: none !important;
+    }
+
+    article {
+        border: none !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .prose {
+        color: black !important;
+    }
+}
