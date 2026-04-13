@@ -37,7 +37,15 @@ export interface Library {
 })
 export class ContentService {
   private http = inject(HttpClient);
-  private libraryFiles = ['assets/data/library.json', 'assets/data/francesco.json'];
+  private libraryFiles = [
+    'assets/data/library.json', 
+    'assets/data/francesco.json',
+    'assets/data/matteo.json',
+    'assets/data/marco.json',
+    'assets/data/luca.json',
+    'assets/data/giovanni.json',
+    'assets/data/atti.json'
+  ];
 
   private library$ = forkJoin(
     this.libraryFiles.map(url => this.http.get<any>(url).pipe(
