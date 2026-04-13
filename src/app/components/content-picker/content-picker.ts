@@ -83,8 +83,10 @@ export class ContentPickerComponent implements OnInit {
 
   selectCategory(id: string | null) {
     this.selectedCategoryId.set(id);
+    this.selectedThemeId.set(null);
     this.selectedAuthor.set(null);
     this.selectedYear.set(null);
+    this.searchQuery.set('');
     
     // Refresh coherent filters
     this.contentService.getAuthors(id || undefined).subscribe((a: string[]) => this.authors.set(a));

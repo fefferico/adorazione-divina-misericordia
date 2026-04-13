@@ -1,7 +1,7 @@
 import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LucideAngularModule, ChevronLeft, Save, Download, Search, Plus, Trash2, Edit3, CheckCircle, X, Sun, Moon, Minus } from 'lucide-angular';
+import { LucideAngularModule, ChevronLeft, ChevronRight, Sidebar, Save, Download, Search, Plus, Trash2, Edit3, CheckCircle, X, Sun, Moon, Minus } from 'lucide-angular';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { AdorationStoreService, AdorationSection } from '../../services/adoration-store';
 import { PdfExportService } from '../../services/pdf-export';
@@ -22,6 +22,8 @@ export class BuilderComponent implements OnInit {
   themeService = inject(ThemeService);
 
   readonly ChevronLeft = ChevronLeft;
+  readonly ChevronRight = ChevronRight;
+  readonly Sidebar = Sidebar;
   readonly Save = Save;
   readonly Download = Download;
   readonly Search = Search;
@@ -52,6 +54,7 @@ export class BuilderComponent implements OnInit {
   adoration = this.store.currentAdoration;
   selectedSectionId = signal<string | null>(null);
   showPicker = signal(false);
+  isSidebarCollapsed = signal(false);
 
   get selectedSection() {
     return this.adoration().sections.find(s => s.id === this.selectedSectionId());
@@ -179,6 +182,29 @@ export class BuilderComponent implements OnInit {
     if (section && section.reflectionHints) {
       const hints = section.reflectionHints.filter((_, i) => i !== index);
       this.updateSection({ reflectionHints: hints });
+    }
+  }
+
+  protected getSectionTypeItalianString(type: string): string {
+    switch (type) {
+      case 'reading':
+        return 'Lettura';
+      case 'prayer':
+        return 'Preghiera';
+      case 'reflection':
+        return 'Riflessione';
+      case 'litany':
+        return 'Litania';
+      case 'hymn':
+        return 'Inno';
+      case 'psalm':
+        return 'Salmo';
+      case 'gospel':
+        return 'Vangelo';
+      case 'reading':
+        return 'Lettura';
+      default:
+        return 'Lettura';
     }
   }
 }

@@ -1,7 +1,10 @@
-<div class="flex h-[calc(100vh-64px)] mt-16 bg-slate-100 dark:bg-slate-900 transition-colors duration-300">
+<div class="flex flex-col md:flex-row h-[calc(100vh-64px)] mt-16 bg-slate-100 dark:bg-slate-900 transition-colors duration-300">
   <!-- Sidebar: Section List -->
   <aside
-    class="w-80 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 flex flex-col shadow-sm z-30 transition-colors duration-300">
+    [class.hidden]="(selectedSectionId() && !isSidebarCollapsed()) || isSidebarCollapsed()"
+    [class.md:flex]="!isSidebarCollapsed()"
+    [class.flex]="!selectedSectionId() && !isSidebarCollapsed()"
+    class="w-full md:w-80 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 flex-col shadow-sm z-30 transition-all duration-300 overflow-y-auto">
     <div class="p-6 border-b border-slate-100 dark:border-slate-900 flex items-center justify-between">
       <button [routerLink]="['/']"
         class="p-2 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl text-slate-400 transition-colors">
@@ -20,8 +23,8 @@
         [ngClass]="{'ring-2 ring-primary-500 bg-primary-50 dark:bg-primary-950/20': selectedSectionId() === section.id, 'hover:bg-slate-50 dark:hover:bg-slate-900': selectedSectionId() !== section.id}"
         class="p-4 rounded-2xl cursor-pointer transition-all group border border-transparent">
         <div class="flex items-center justify-between mb-1">
-          <span class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">{{ section.type
-            }}</span>
+          <span class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">{{
+            getSectionTypeItalianString(section.type) }}</span>
           @if (section.items && section.items.length > 0) {
           <lucide-icon [name]="CheckCircle" class="w-4 h-4 text-green-500"></lucide-icon>
           }
@@ -42,17 +45,37 @@
   </aside>
 
   <!-- Main Area: Editor -->
-  <main class="flex-1 overflow-y-auto relative dark:bg-slate-900 transition-colors duration-300">
+  <main 
+    [ngClass]="{'hidden md:block': !selectedSectionId(), 'block': selectedSectionId()}"
+    class="flex-1 overflow-y-auto relative dark:bg-slate-900 transition-colors duration-300">
     @if (selectedSection) {
-    <div class="max-w-4xl mx-auto p-10">
+    <div class="max-w-4xl mx-auto p-4 md:p-10">
+      <!-- Mobile View Title & Back -->
+      <div class="md:hidden flex items-center justify-between mb-6">
+        <button (click)="selectedSectionId.set(null)" 
+          class="flex items-center gap-2 text-primary-600 dark:text-primary-400 font-bold text-sm">
+          <lucide-icon [name]="ChevronLeft" class="w-4 h-4"></lucide-icon>
+          Sezioni
+        </button>
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-400">{{ getSectionTypeItalianString(selectedSection.type) }}</span>
+      </div>
       <!-- Section Header -->
       <div class="flex items-center justify-between mb-8">
-        <div>
-          <span class="text-primary-500 font-bold tracking-widest uppercase text-xs">Sezione {{ selectedSection.order +
-            1 }}</span>
-          <input [(ngModel)]="selectedSection.title" (ngModelChange)="updateSection({title: $event})"
-            class="block w-full text-4xl font-serif bg-transparent border-none focus:ring-0 p-0 text-slate-800 dark:text-slate-100 placeholder:text-slate-200 dark:placeholder:text-slate-800"
-            placeholder="Titolo della sezione">
+        <div class="flex items-center gap-4">
+          <!-- Toggle Sidebar Button (Desktop) -->
+          <button (click)="isSidebarCollapsed.set(!isSidebarCollapsed())" 
+            class="hidden md:flex p-2 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl text-slate-400 transition-colors"
+            [title]="isSidebarCollapsed() ? 'Mostra sezioni' : 'Nascondi sezioni'">
+            <lucide-icon [name]="isSidebarCollapsed() ? Sidebar : ChevronLeft" class="w-5 h-5"></lucide-icon>
+          </button>
+          
+          <div>
+            <span class="text-primary-500 font-bold tracking-widest uppercase text-xs">Sezione {{ selectedSection.order +
+              1 }}</span>
+            <input [(ngModel)]="selectedSection.title" (ngModelChange)="updateSection({title: $event})"
+              class="block w-full text-4xl font-serif bg-transparent border-none focus:ring-0 p-0 text-slate-800 dark:text-slate-100 placeholder:text-slate-200 dark:placeholder:text-slate-800"
+              placeholder="Titolo della sezione">
+          </div>
         </div>
         <button (click)="removeSection(selectedSection.id)"
           class="p-3 text-slate-300 dark:text-slate-700 hover:text-red-500 transition-colors">
@@ -77,14 +100,14 @@
       </div>
 
       <!-- Toolbar -->
-      <div class="flex gap-4 mb-6">
+      <div class="flex flex-col sm:flex-row gap-4 mb-6">
         <button (click)="openPicker()"
           class="flex-1 py-4 bg-white dark:bg-slate-950 hover:bg-primary-50 dark:hover:bg-primary-950/20 border-2 border-slate-100 dark:border-slate-800 hover:border-primary-200 dark:hover:border-primary-700 rounded-2xl flex items-center justify-center gap-3 transition-all text-slate-600 dark:text-slate-400 font-semibold group">
           <lucide-icon [name]="Search" class="group-hover:text-primary-500"></lucide-icon>
           Cerca nella Libreria
         </button>
         <button (click)="addManualItem()"
-          class="px-6 py-4 bg-white dark:bg-slate-950 hover:bg-slate-50 dark:hover:bg-slate-900 border-2 border-slate-100 dark:border-slate-800 rounded-2xl flex items-center justify-center gap-3 transition-all text-slate-400 hover:text-slate-600 font-semibold group">
+          class="flex-1 sm:flex-none sm:px-6 py-4 bg-white dark:bg-slate-950 hover:bg-slate-50 dark:hover:bg-slate-900 border-2 border-slate-100 dark:border-slate-800 rounded-2xl flex items-center justify-center gap-3 transition-all text-slate-400 hover:text-slate-600 font-semibold group">
           <lucide-icon [name]="Plus"></lucide-icon>
           Testo Libero
         </button>
@@ -151,7 +174,14 @@
 
     </div>
     } @else {
-    <div class="h-full flex flex-col items-center justify-center text-center p-10">
+    <div class="h-full flex flex-col items-center justify-center text-center p-10 relative">
+      <!-- Toggle Sidebar Button when no section selected (Desktop) -->
+      <button (click)="isSidebarCollapsed.set(!isSidebarCollapsed())" 
+        *ngIf="isSidebarCollapsed()"
+        class="absolute top-10 left-10 hidden md:flex p-3 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-2xl text-primary-500 shadow-md transition-all">
+        <lucide-icon [name]="Sidebar" class="w-6 h-6"></lucide-icon>
+      </button>
+
       <div class="w-24 h-24 bg-slate-200 dark:bg-slate-800 rounded-full flex items-center justify-center mb-6">
         <lucide-icon [name]="Edit3" class="w-10 h-10 text-slate-400 dark:text-slate-600"></lucide-icon>
       </div>
