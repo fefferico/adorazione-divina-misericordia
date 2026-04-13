@@ -318,25 +318,36 @@ def scrape_doc(url):
     try:
         soup = BeautifulSoup(response.content, 'html.parser')
         
-        # Selettori possibili per il contenuto
-        content = (
-            soup.select_one('.document-content') or
-            soup.select_one('#document-content') or
-            soup.select_one('.vaticanrichtext') or
-            soup.select_one('.default') or
-            soup.select_one('article') or
-            soup.select_one('main') or
-            soup.select_one('body')
-        )
+        # Cerca i blocchi vaticanrichtext (specificato come .text.parbase.vaticanrichtext)
+        text_blocks = soup.select('.text.parbase.vaticanrichtext')
         
-        if not content:
-            return ""
-        
-        # Rimuovi elementi indesiderati
-        for tag in content.select('.header, .footer, nav, script, style, .languages, .breadcrumb, .headerpdf, .zoom-text, .sidebar, .navigation'):
-            tag.decompose()
-        
-        text = content.get_text(separator='\n')
+        if len(text_blocks) >= 2:
+            # Uniamo tutti i blocchi dal secondo in poi (il primo è l'header di solito)
+            text = '\n\n'.join([b.get_text(separator='\n') for b in text_blocks[1:]])
+        elif len(text_blocks) == 1:
+            # Se ce n'è solo uno, lo prendiamo
+            text = text_blocks[0].get_text(separator='\n')
+        else:
+            # Selettori possibili per il contenuto (fallback)
+            content = (
+                soup.select_one('.document-content') or
+                soup.select_one('#document-content') or
+                soup.select_one('.vaticanrichtext') or
+                soup.select_one('.default') or
+                soup.select_one('article') or
+                soup.select_one('main') or
+                soup.select_one('body')
+            )
+            
+            if not content:
+                return ""
+            
+            # Rimuovi elementi indesiderati
+            for tag in content.select('.header, .footer, nav, script, style, .languages, .breadcrumb, .headerpdf, .zoom-text, .sidebar, .navigation'):
+                tag.decompose()
+            
+            text = content.get_text(separator='\n')
+            
         return clean_text(text)
     
     except Exception as e:

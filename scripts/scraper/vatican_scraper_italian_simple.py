@@ -160,20 +160,31 @@ def scrape_doc(url):
         r.raise_for_status()
         soup = BeautifulSoup(r.content, 'html.parser')
         
-        content = (
-            soup.select_one('.document-content') or
-            soup.select_one('#document-content') or
-            soup.select_one('.vaticanrichtext') or
-            soup.select_one('body')
-        )
+        # Cerca i blocchi vaticanrichtext
+        text_blocks = soup.select('.text.parbase.vaticanrichtext')
         
-        if not content:
-            return "", None
+        if len(text_blocks) >= 2:
+            # Uniamo tutti i blocchi dal secondo in poi
+            text = '\n\n'.join([b.get_text(separator='\n') for b in text_blocks[1:]])
+        elif len(text_blocks) == 1:
+            text = text_blocks[0].get_text(separator='\n')
+        else:
+            # Fallback
+            content = (
+                soup.select_one('.document-content') or
+                soup.select_one('#document-content') or
+                soup.select_one('.vaticanrichtext') or
+                soup.select_one('body')
+            )
+            
+            if not content:
+                return "", None
+            
+            for tag in content.select('.header, .footer, nav, script, style'):
+                tag.decompose()
+            
+            text = content.get_text(separator='\n')
         
-        for tag in content.select('.header, .footer, nav, script, style'):
-            tag.decompose()
-        
-        text = content.get_text(separator='\n')
         clean = clean_text(text)
         
         # Estrai data
