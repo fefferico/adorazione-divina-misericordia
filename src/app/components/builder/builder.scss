@@ -11,10 +11,10 @@
 
 .sequence-item {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    
+
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
     }
 
     &.cdk-drag-placeholder {
@@ -24,11 +24,40 @@
 
 .empty-state-glow {
     position: relative;
+
     &::after {
         content: '';
         position: absolute;
         inset: -20px;
         background: radial-gradient(circle, rgba(var(--color-primary-500-rgb), 0.05), transparent 70%);
         pointer-events: none;
+    }
+}
+
+/* Forza la visibilità delle liste nell'editor */
+.prose {
+    ul {
+        list-style-type: disc !important;
+        padding-left: 1.5rem !important;
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    ol {
+        list-style-type: decimal !important;
+        padding-left: 1.5rem !important;
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    li {
+        display: list-item !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    h1,
+    h2 {
+        font-weight: 800 !important;
+        margin-top: 2rem !important;
     }
 }

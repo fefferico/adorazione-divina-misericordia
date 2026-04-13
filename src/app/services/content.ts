@@ -56,14 +56,20 @@ export class ContentService {
     '/assets/data/library.json',
     '/assets/data/diario.json',
     '/assets/data/francesco.json',
+    '/assets/data/benedict-xvi.json',
+    '/assets/data/john-paul-ii.json',
+    '/assets/data/john-paul-i.json',
+    '/assets/data/paul-vi.json',
+    '/assets/data/john-xxiii.json',
+    '/assets/data/pius-xii.json',
+    '/assets/data/pius-xi.json',
     '/assets/data/matteo.json',
     '/assets/data/marco.json',
     '/assets/data/luca.json',
     '/assets/data/giovanni.json',
     '/assets/data/atti.json',
     '/assets/data/lettere.json',
-    '/assets/data/apocalisse.json',
-    '/assets/data/benedict-xvi.json'
+    '/assets/data/apocalisse.json'
   ];
 
   constructor() {

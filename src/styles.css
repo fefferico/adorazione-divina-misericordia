@@ -1,4 +1,7 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+
 @import './theme.css';
 
 @variant dark (&:is(.dark, .dark *));
@@ -11,7 +14,7 @@
   :is(.dark, [data-theme='dark']) body {
     @apply bg-slate-950 text-slate-50;
   }
-  
+
   .dark {
     color-scheme: dark;
   }
@@ -22,4 +25,41 @@
   h4 {
     @apply font-serif font-semibold tracking-tight;
   }
+}
+
+.ProseMirror:focus {
+  outline: none;
+}
+
+.ProseMirror > * + * {
+  margin-top: 0.75em;
+}
+
+/* Custom Editor Styles to ensure lists and headings are visible */
+.custom-editor .ProseMirror {
+  @apply min-h-[400px] outline-none;
+}
+
+.custom-editor .ProseMirror h1 {
+  @apply text-3xl font-serif font-bold mb-4 mt-6 text-slate-800 dark:text-slate-100;
+}
+
+.custom-editor .ProseMirror h2 {
+  @apply text-2xl font-serif font-semibold mb-3 mt-5 text-slate-700 dark:text-slate-200;
+}
+
+.custom-editor .ProseMirror ul {
+  @apply list-disc pl-6 mb-4 space-y-1;
+}
+
+.custom-editor .ProseMirror ol {
+  @apply list-decimal pl-6 mb-4 space-y-1;
+}
+
+.custom-editor .ProseMirror li {
+  @apply text-slate-600 dark:text-slate-400;
+}
+
+.custom-editor .ProseMirror blockquote {
+  @apply border-l-4 border-primary-200 dark:border-primary-800 pl-4 italic text-slate-500 my-4;
 }

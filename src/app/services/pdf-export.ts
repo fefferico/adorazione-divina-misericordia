@@ -130,16 +130,24 @@ export class PdfExportService {
 
     // 0. Preliminary: Handle HTML tags from WYSIWYG editor
     let content = text
+      // Convert Headings to bold uppercase for PDF
+      .replace(/<h1>(.*?)<\/h1>/gi, '\n\n$1\n\n')
+      .replace(/<h2>(.*?)<\/h2>/gi, '\n\n$1\n\n')
       // Replace breaks with newlines
       .replace(/<br\s*\/?>/gi, '\n')
       // Close div/p tags with newlines
       .replace(/<\/div>/gi, '\n')
       .replace(/<\/p>/gi, '\n\n')
+      // Handle Lists
+      .replace(/<ul>/gi, '\n')
+      .replace(/<\/ul>/gi, '\n')
+      .replace(/<ol>/gi, '\n')
+      .replace(/<\/ol>/gi, '\n')
       // Treat list items as lines with bullets
-      .replace(/<li>/gi, '\n• ')
-      .replace(/<\/li>/gi, '')
+      .replace(/<li>(.*?)<\/li>/gi, '\n• $1')
       // Strip remaining tags
       .replace(/<[^>]+>/g, '');
+
 
     // 1. Remove carriage returns and normalize non-breaking spaces etc
     let clean = content
