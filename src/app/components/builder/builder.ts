@@ -1,7 +1,7 @@
 import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LucideAngularModule, ChevronLeft, ChevronRight, Sidebar, Save, Download, Search, Plus, Trash2, Edit3, CheckCircle, X, Sun, Moon, Minus } from 'lucide-angular';
+import { LucideAngularModule, ChevronLeft, ChevronRight, Sidebar, Save, Download, Search, Plus, Trash2, Edit3, CheckCircle, X, Sun, Moon, Minus, User, ArrowRight } from 'lucide-angular';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { AdorationStoreService, AdorationSection } from '../../services/adoration-store';
 import { PdfExportService } from '../../services/pdf-export';
@@ -35,6 +35,8 @@ export class BuilderComponent implements OnInit {
   readonly Sun = Sun;
   readonly Moon = Moon;
   readonly Minus = Minus;
+  readonly User = User;
+  readonly ArrowRight = ArrowRight;
 
   currentTheme = computed(() => this.themeService.theme());
 

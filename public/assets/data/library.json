@@ -6,6 +6,21 @@
       "icon": "book-open"
     },
     {
+      "id": "atti",
+      "label": "Atti degli Apostoli",
+      "icon": "compass"
+    },
+    {
+      "id": "lettere",
+      "label": "Lettere (Epistole)",
+      "icon": "mail"
+    },
+    {
+      "id": "apocalisse",
+      "label": "Apocalisse",
+      "icon": "sparkles"
+    },
+    {
       "id": "diario",
       "label": "Diario di S. Faustina",
       "icon": "heart"
@@ -19,11 +34,6 @@
       "id": "omelia",
       "label": "Omelia / Scritti dei Santi",
       "icon": "mic"
-    },
-    {
-      "id": "atti-lettere",
-      "label": "Atti / Lettere",
-      "icon": "mail"
     },
     {
       "id": "preghiera",
@@ -51,6 +61,22 @@
     {
       "id": "perdono",
       "label": "Perdono e Riconciliazione"
+    },
+    {
+      "id": "pace",
+      "label": "Pace e Giustizia"
+    },
+    {
+      "id": "famiglia",
+      "label": "Famiglia e Vita"
+    },
+    {
+      "id": "parola",
+      "label": "La Parola"
+    },
+    {
+      "id": "sacro cuore",
+      "label": "Sacro Cuore"
     }
   ],
   "items": [
@@ -3018,7 +3044,7 @@
       "categoryId": "diario",
       "themeId": "misericordia",
       "title": "Diario - Paragrafo 270",
-      "content": "a lenire la mia anima, ma mi procurano una nostalgia sempre maggiore.\nAl solo ricordo del Tuo Nome, il mio spirito si lancia verso di Te, Signore.\n28.XII.1936. Oggi ho cominciato una novena alla Divina Misericordia.\nMi porto in ispirito davanti a quell'immagine e recito la coroncina che mi\nha insegnato il Signore. Il secondo giorno della novena ho visto\nl'immagine come fosse viva; attorno c'erano appesi innumerevoli ex voto\ned ho visto una gran folla di gente che accorreva ed ho visto che molti di\nloro erano felici. O Gesù, quanta gioia ho provato nel mio cuore! Faccio\nquesta novena per due persone, cioè per l'arcivescovo e Don Sopocko.\nPrego fervorosamente il Signore perché ispiri all'arcivescovo di voler\napprovare questa coroncina tanto gradita a Dio e questa immagine,\naffinché non rinvii e non sia motivo di ritardo per quest'opera. Oggi\nimprovvisamente mi penetrò come un lampo lo sguardo del Signore e\nconobbi subito i più minuscoli pulviscoli della mia anima ed avendo\nconosciuto il mio nulla fino in fondo caddi in ginocchio e domandai\nperdono al Signore e con grande fiducia mi affidai alla Sua infinita\nMisericordia. Questa conoscenza non mi deprime, né mi allontana dal\nSignore, anzi suscita nella mia anima un maggior amore ed una fiducia\nillimitata ed il pentimento del mio cuore è unito all'amore. Questi lampi\nparticolari plasmano la mia anima. O dolce Raggio Divino, illuminami fin\nnei punti più segreti e profondi, poiché desidero giungere alla più grande\npurezza di cuore e di anima. Verso sera una grande nostalgia s'impadronì\ndella mia anima. Presi l'opuscolo con l'immagine di Gesù Misericordioso\ne lo strinsi al cuore e mi uscirono dall'anima queste parole: « Gesù,\nAmore eterno, per Te vivo, per Te muoio e desidero unirmi a Te ».\nAll'improvviso vidi il Signore di una bellezza inconcepibile, che mi\nguardò benevolmente e disse: «Figlia Mia, anch'Io per amor tuo\nsono sceso dal cielo, per te ho vissuto, per te sono morto e per\nte ho creato i cieli». E Gesù mi strinse al Suo Cuore e mi disse: « Fra\nnon molto; sta' tranquilla, figlia Mia ». Quando rimasi sola, l'anima\nmia s'infiammò dal desiderio di soffrire fino al momento in cui il Signore\ndirà: ora basta. Ed anche se dovessi vivere migliaia di anni, alla luce di\nDio\nvedo\nche\nè\nsoltanto\nun\nmomento.\nLe anime... [La frase è rimasta incompiuta].\n29.XII.l936. Oggi dopo la santa Comunione ho udito una voce\nnell'anima: «Figlia Mia, vigila, poiché verrò inavvertitamente». «\nGesù, non vuoi dirmi l'ora che attendo con tanta nostalgia? ». « Figlia\nMia, per il tuo bene la saprai, ma non ora, vigila ». O Gesù, fa' di\nme quello che Ti piace. So che sei il Salvatore misericordioso e so che non\ncambierai per me nell'ora della morte. Se ora mi dimostri un amore così\nparticolare e se Ti degni unirTi a me in una maniera così confidenziale ed\namorevole, per questo spero ancora di più nell'ora della morte. Tu",
+      "content": "a lenire la mia anima, ma mi procurano una nostalgia sempre maggiore.\nAl solo ricordo del Tuo Nome, il mio spirito si lancia verso di Te, Signore.\n28.XII.1936. Oggi ho cominciato una novena alla Divina Misericordia.\nMi porto in ispirito davanti a quell'immagine e recito la coroncina che mi\nha insegnato il Signore. Il secondo giorno della novena ho visto\nl'immagine come fosse viva; attorno c'erano appesi innumerevoli ex voto\ned ho visto una gran folla di gente che accorreva ed ho visto che molti di\nloro erano felici. O Gesù, quanta gioia ho provato nel mio cuore! Faccio\nquesta novena per due persone, cioè per l'arcivescovo e Don Sopocko.\nPrego fervorosamente il Signore perché ispiri all'arcivescovo di voler\napprovare questa coroncina tanto gradita a Dio e questa immagine,\naffinché non rinvii e non sia motivo di ritardo per quest'opera. Oggi\nimprovvisamente mi penetrò come un lampo lo sguardo del Signore e\nconobbi subito i più minuscoli pulviscoli della mia anima ed avendo\nconosciuto il mio nulla fino in fondo caddi in ginocchio e domandai\nperdono al Signore e con grande fiducia mi affidai alla Sua infinita\nMisericordia. Questa conoscenza non mi deprime, né mi allontana dal\nSignore, anzi suscita nella mia anima un maggior amore ed una fiducia\nillimitata ed il pentimento del mio cuore è unito all'amore. Questi lampi\nparticolari plasmano la mia anima. O dolce Raggio Divino, illuminami fin\nnei punti più segreti e profondi, poiché desidero giungere alla più grande\npurezza di cuore e di anima. Verso sera una grande nostalgia s'impadronì\ndella mia anima. Presi l'opuscolo con l'immagine di Gesù Misericordioso\ne lo strinsi al cuore e mi uscirono dall'anima queste parole: « Gesù,\nAmore eterno, per Te vivo, per Te muoio e desidero unirmi a Te ».\nAll'improvviso vidi il Signore di una bellezza inconcepibile, che mi\nguardò benevolmente e disse: «Figlia Mia, anch'Io per amor tuo\nsono sceso dal cielo, per te ho vissuto, per te sono morto e per\nte ho creato i cieli». E Gesù mi strinse al Suo Cuore e mi disse: « Fra\nnon molto; sta' tranquilla, figlia Mia ». Quando rimasi sola, l'anima\nmia s'infiammò dal desiderio di soffrire fino al momento in cui il Signore\ndirà: ora basta. Ed anche se dovessi vivere migliaia di anni, alla luce di Dio vedo che è soltanto un momento. Le anime... [La frase è rimasta incompiuta].\n29.XII.l936. Oggi dopo la santa Comunione ho udito una voce\nnell'anima: «Figlia Mia, vigila, poiché verrò inavvertitamente». «\nGesù, non vuoi dirmi l'ora che attendo con tanta nostalgia? ». « Figlia\nMia, per il tuo bene la saprai, ma non ora, vigila ». O Gesù, fa' di\nme quello che Ti piace. So che sei il Salvatore misericordioso e so che non\ncambierai per me nell'ora della morte. Se ora mi dimostri un amore così\nparticolare e se Ti degni unirTi a me in una maniera così confidenziale ed\namorevole, per questo spero ancora di più nell'ora della morte. Tu",
       "reflectionHints": [
         "Cosa mi dice Gesù in questo brano?",
         "Come posso vivere la misericordia oggi?"

@@ -44,7 +44,9 @@ export class ContentService {
     'assets/data/marco.json',
     'assets/data/luca.json',
     'assets/data/giovanni.json',
-    'assets/data/atti.json'
+    'assets/data/atti.json',
+    'assets/data/lettere.json',
+    'assets/data/apocalisse.json'
   ];
 
   private library$ = forkJoin(
@@ -165,10 +167,9 @@ export class ContentService {
   ): Observable<LibraryItem[]> {
     return this.library$.pipe(
       map(lib => {
-        return lib.items.filter(item => {
+        const filtered = lib.items.filter(item => {
           const matchCategory = !categoryId || item.categoryId === categoryId;
           
-          // Check both themeId and themeIds for matching
           let matchTheme = !themeId;
           if (themeId) {
             const normalizedThemeId = themeId.toLowerCase();
@@ -186,6 +187,32 @@ export class ContentService {
             
           return matchCategory && matchTheme && matchQuery && matchAuthor && matchYear;
         });
+
+        let results = filtered;
+        
+        // If themeId is provided, also try to fetch items by text search to enrich results
+        if (themeId && !query) {
+          const themeObj = lib.themes.find(t => t.id === themeId.toLowerCase());
+          const searchTerms = [themeId.toLowerCase()];
+          if (themeObj) searchTerms.push(themeObj.label.toLowerCase());
+          
+          const textMatches = lib.items.filter(item => {
+            const matchCategory = !categoryId || item.categoryId === categoryId;
+            const alreadyInResults = results.some(r => r.id === item.id);
+            if (alreadyInResults) return false;
+
+            const contentLower = item.content.toLowerCase();
+            const titleLower = item.title.toLowerCase();
+            
+            return matchCategory && searchTerms.some(term => 
+              contentLower.includes(term) || titleLower.includes(term)
+            );
+          });
+          
+          results = [...results, ...textMatches];
+        }
+
+        return results;
       })
     );
   }

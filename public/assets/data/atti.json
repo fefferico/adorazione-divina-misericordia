@@ -2,7 +2,7 @@
   "items": [
     {
       "id": "bibbia_atti_1",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -17,7 +17,7 @@
     },
     {
       "id": "bibbia_atti_2",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -32,7 +32,7 @@
     },
     {
       "id": "bibbia_atti_3",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -47,7 +47,7 @@
     },
     {
       "id": "bibbia_atti_4",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -62,7 +62,7 @@
     },
     {
       "id": "bibbia_atti_5",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -77,7 +77,7 @@
     },
     {
       "id": "bibbia_atti_6",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -92,7 +92,7 @@
     },
     {
       "id": "bibbia_atti_7",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -107,7 +107,7 @@
     },
     {
       "id": "bibbia_atti_8",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -122,7 +122,7 @@
     },
     {
       "id": "bibbia_atti_9",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -137,7 +137,7 @@
     },
     {
       "id": "bibbia_atti_10",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -152,7 +152,7 @@
     },
     {
       "id": "bibbia_atti_11",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -167,7 +167,7 @@
     },
     {
       "id": "bibbia_atti_12",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -182,7 +182,7 @@
     },
     {
       "id": "bibbia_atti_13",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -197,7 +197,7 @@
     },
     {
       "id": "bibbia_atti_14",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -212,7 +212,7 @@
     },
     {
       "id": "bibbia_atti_15",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -227,7 +227,7 @@
     },
     {
       "id": "bibbia_atti_16",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -242,7 +242,7 @@
     },
     {
       "id": "bibbia_atti_17",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -257,7 +257,7 @@
     },
     {
       "id": "bibbia_atti_18",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -272,7 +272,7 @@
     },
     {
       "id": "bibbia_atti_19",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -287,7 +287,7 @@
     },
     {
       "id": "bibbia_atti_20",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -302,7 +302,7 @@
     },
     {
       "id": "bibbia_atti_21",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -317,7 +317,7 @@
     },
     {
       "id": "bibbia_atti_22",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -332,7 +332,7 @@
     },
     {
       "id": "bibbia_atti_23",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -347,7 +347,7 @@
     },
     {
       "id": "bibbia_atti_24",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -362,7 +362,7 @@
     },
     {
       "id": "bibbia_atti_25",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -377,7 +377,7 @@
     },
     {
       "id": "bibbia_atti_26",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -392,7 +392,7 @@
     },
     {
       "id": "bibbia_atti_27",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
@@ -407,7 +407,7 @@
     },
     {
       "id": "bibbia_atti_28",
-      "categoryId": "lettura",
+      "categoryId": "atti",
       "themeIds": [
         "Fede",
         "Misericordia"
