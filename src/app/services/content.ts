@@ -69,7 +69,8 @@ export class ContentService {
     '/assets/data/giovanni.json',
     '/assets/data/atti.json',
     '/assets/data/lettere.json',
-    '/assets/data/apocalisse.json'
+    '/assets/data/apocalisse.json',
+    '/assets/data/canti.json'
   ];
 
   constructor() {
@@ -176,6 +177,8 @@ export class ContentService {
     if (idLower.includes('omelia') || idLower.includes('discorso') || idLower.includes('benedict-xvi') || idLower.includes('francesco')) return 'mic';
     if (idLower.includes('enciclica') || idLower.includes('esortazione')) return 'scroll';
     if (idLower.includes('diario')) return 'heart';
+    if (idLower.includes('canto')) return 'music';
+    if (idLower.includes('preghiera')) return 'message-square';
 
     return 'scroll';
   }

@@ -77,12 +77,24 @@ export class AdorationStoreService {
     return [
       { id: 'sec_intro', type: 'intro', title: 'Introduzione', items: [], order: 0 },
       { id: 'sec_1', type: 'reading', title: '1° Brano: Vangelo', items: [], order: 1, category: 'vangelo' },
-      { id: 'sec_2', type: 'reading', title: '2° Brano: Diario', items: [], order: 2, category: 'diario' },
-      { id: 'sec_3', type: 'reading', title: '3° Brano: Enciclica', items: [], order: 3, category: 'enciclica' },
-      { id: 'sec_4', type: 'reading', title: '4° Brano: Omelia/Santo', items: [], order: 4, category: 'omelia' },
-      { id: 'sec_5', type: 'reading', title: '5° Brano: Atti/Lettere', items: [], order: 5, category: 'atti-lettere' },
-      { id: 'sec_conclusion', type: 'conclusion', title: 'Riflessione conclusiva', items: [], order: 6 },
-      { id: 'sec_thanks', type: 'prayer', title: 'Preghiera di ringraziamento', items: [], order: 7 }
+      // add section song
+      { id: 'sec_song_1', type: 'song', title: 'Canto', items: [], order: 2, category: 'canto' },
+      { id: 'sec_2', type: 'reading', title: '2° Brano: Diario', items: [], order: 3, category: 'diario' },
+      // add section song
+      { id: 'sec_song_2', type: 'song', title: 'Canto', items: [], order: 4, category: 'canto' },
+      { id: 'sec_3', type: 'reading', title: '3° Brano: Enciclica', items: [], order: 5, category: 'enciclica' },
+      // add section song
+      { id: 'sec_song_3', type: 'song', title: 'Canto', items: [], order: 6, category: 'canto' },
+      { id: 'sec_4', type: 'reading', title: '4° Brano: Omelia/Santo', items: [], order: 7, category: 'omelia' },
+      // add section song
+      { id: 'sec_song_4', type: 'song', title: 'Canto', items: [], order: 8, category: 'canto' },
+      { id: 'sec_5', type: 'reading', title: '5° Brano: Atti/Lettere', items: [], order: 9, category: 'atti-lettere' },
+      // add section song
+      { id: 'sec_song_5', type: 'song', title: 'Canto', items: [], order: 10, category: 'canto' },
+      { id: 'sec_conclusion', type: 'conclusion', title: 'Riflessione conclusiva', items: [], order: 11 },
+      // add section song
+      { id: 'sec_song_6', type: 'song', title: 'Canto', items: [], order: 12, category: 'canto' },
+      { id: 'sec_thanks', type: 'prayer', title: 'Preghiera di ringraziamento', items: [], order: 13 }
     ];
   }
 

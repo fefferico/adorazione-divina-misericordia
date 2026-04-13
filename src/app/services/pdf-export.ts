@@ -266,7 +266,7 @@ export class PdfExportService {
       'prayer': 'Preghiera',
       'reflection': 'Riflessione',
       'litany': 'Litania',
-      'hymn': 'Inno',
+      'hymn': 'Canto',
       'psalm': 'Salmo',
       'gospel': 'Vangelo'
     };

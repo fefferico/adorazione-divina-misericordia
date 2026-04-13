@@ -40,7 +40,7 @@ export class ContentPickerComponent implements OnInit {
   categoryPlurals: Record<string, string> = {
     'vangelo': 'Vangeli',
     'atti': 'Atti degli Apostoli',
-    'lettere': 'Lettere',
+    'lettere': 'Lettere (Epistole)',
     'apocalisse': 'Apocalisse',
     'omelia': 'Omelie',
     'discorso': 'Discorsi',
@@ -52,7 +52,11 @@ export class ContentPickerComponent implements OnInit {
     'enciclica': 'Encicliche',
     'diario': 'Diario',
     'benedict-xvi': 'Benedetto XVI',
-    'francesco': 'Papa Francesco'
+    'francesco': 'Papa Francesco',
+    'canto': 'Canti',
+    'preghiera': 'Preghiere',
+    'riflessione': 'Riflessioni',
+
   };
 
   @Input() categoryFilter?: string;

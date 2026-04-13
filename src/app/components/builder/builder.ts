@@ -199,7 +199,7 @@ export class BuilderComponent implements OnInit {
       case 'litany':
         return 'Litania';
       case 'hymn':
-        return 'Inno';
+        return 'Canto';
       case 'psalm':
         return 'Salmo';
       case 'gospel':

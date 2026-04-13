@@ -1,0 +1,124 @@
+{
+  "items": [
+    {
+      "id": "canto_001",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Gospa Majka Moja",
+      "content": "Gospa Majka Moja, Kraljice Mira.\nGospa Majka Moja, Kraljice Mira.\nGospa Majka Moja, Ti.\nAmen.",
+      "reflectionHints": ["Preghiera semplice e ripetitiva", "Invocazione alla Regina della Pace"]
+    },
+    {
+      "id": "canto_002",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Gesù, ti adoriamo",
+      "content": "Gesù, ti adoriamo.\nGesù, ti adoriamo.\nGesù, ti adoriamo.\nGesù, ti adoriamo.\n(Isuse, klanjamo ti se)",
+      "reflectionHints": ["Centrare il cuore sull'Eucaristia"]
+    },
+    {
+      "id": "canto_003",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Agnus Dei",
+      "content": "Agnus Dei, qui tollis peccata mundi,\nmisere nobis.\nAgnus Dei, qui tollis peccata mundi,\ndona nobis pacem.",
+      "reflectionHints": ["L'Agnello di Dio che toglie i peccati del mondo"]
+    },
+    {
+      "id": "canto_004",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Emmanuel",
+      "content": "Dall'orizzonte una grande luce viaggia nella storia...\nSiamo qui sotto la stessa luce, sotto la sua croce,\ncantando ad una voce: è l'Emmanuel!",
+      "reflectionHints": ["Dio con noi", "Cammino della Chiesa"]
+    },
+    {
+      "id": "canto_005",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Ave Maria (Medjugorje)",
+      "content": "Ave Maria, Ave.\nAve Maria, Ave.\nAve piena di grazia, Ave.\nAve piena di grazia, Ave.",
+      "reflectionHints": ["Saluto a Maria", "Piena di grazia"]
+    },
+    {
+      "id": "canto_006",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Bless the Lord",
+      "content": "Bless the Lord, my soul,\nand bless His Holy Name.\nBless the Lord, my soul,\nwho leads me into life.",
+      "reflectionHints": ["Benedici il Signore anima mia"]
+    },
+    {
+      "id": "canto_007",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Canta Alleluja al Signor",
+      "content": "Canta Alleluja al Signor, canta Alleluja al Signor.\nCanta Alleluja, canta Alleluja, canta Alleluja al Signor.",
+      "reflectionHints": ["Gioia della risurrezione"]
+    },
+    {
+      "id": "canto_008",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Come Maria",
+      "content": "Vogliamo vivere Signore offrendo a Te la nostra vita...\nVogliamo vivere come Maria, l'irraggiungibile,\nla madre amata che vince il mondo con l'amore.",
+      "reflectionHints": ["Disponibilità totale a Dio"]
+    },
+    {
+      "id": "canto_009",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Dona la pace",
+      "content": "Dona la pace ai nostri cuori o Signore.\nResta qui insieme a noi e la Pace regnerà.",
+      "reflectionHints": ["Invocazione per la pace interiore e nel mondo"]
+    },
+    {
+      "id": "canto_010",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Jesus Christ you are my life",
+      "content": "Jesus Christ you are my life, alleluja, alleluja.\nTu sei via, sei verità, Tu sei la nostra vita.",
+      "reflectionHints": ["Cristo centro della nostra vita"]
+    },
+    {
+      "id": "canto_011",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Resta qui con noi",
+      "content": "Le ombre si distendono, scende ormai la sera...\nResta qui con noi, il sole scende già;\nresta qui con noi, Signore è sera ormai.",
+      "reflectionHints": ["Comunione con Gesù", "I discepoli di Emmaus"]
+    },
+    {
+      "id": "canto_012",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Salve Regina",
+      "content": "Salve Regina, Madre di misericordia.\nVita, dolcezza, speranza nostra, salve!\nSalve Regina!",
+      "reflectionHints": ["Affidamento a Maria", "Madre di Misericordia"]
+    },
+    {
+      "id": "canto_013",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Lode a Dio",
+      "content": "Lode a Dio, lode a Dio, lode a Dio.\nMio Dio, mio Re.\nTi offro il mio cuore e la mia voce.",
+      "reflectionHints": ["Lode e ringraziamento"]
+    },
+    {
+      "id": "canto_014",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Kyrie Eleison",
+      "content": "Kyrie Eleison, Kyrie Eleison.\nKyrie Eleison, Kyrie Eleison.",
+      "reflectionHints": ["Richiesta di misericordia"]
+    },
+    {
+      "id": "canto_015",
+      "categoryId": "canto",
+      "themeId": "generale",
+      "title": "Veni Sancte Spiritus",
+      "content": "Veni Sancte Spiritus.\nVeni Sancte Spiritus.\nVeni Sancte Spiritus.\nVeni Sancte Spiritus.",
+      "reflectionHints": ["Invocazione dello Spirito Santo"]
+    }
+  ]
+}

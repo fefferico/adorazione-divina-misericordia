@@ -32,7 +32,12 @@
     },
     {
       "id": "preghiera",
-      "label": "Preghiere / Canti",
+      "label": "Preghiere",
+      "icon": "message-square"
+    },
+    {
+      "id": "canto",
+      "label": "Canti di Adorazione",
       "icon": "music"
     }
   ],
