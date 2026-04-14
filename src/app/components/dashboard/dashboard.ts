@@ -121,7 +121,7 @@ export class DashboardComponent {
                   title: selected.title,
                   content: selected.content
                 }],
-                reflectionHints: (selected.reflectionHints || []).slice(0, 3)
+                reflectionHints: (section.type === 'song' || section.type === 'hymn') ? [] : (selected.reflectionHints || []).slice(0, 3)
               });
             }
           }

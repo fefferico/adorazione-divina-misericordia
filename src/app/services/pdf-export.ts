@@ -40,13 +40,16 @@ export class PdfExportService {
     doc.line(margin, cursorY, pageWidth - margin, cursorY);
     cursorY += 10;
 
-    // Sections
-    adoration.sections.forEach((section, index) => {
-      // Check for page break
-      if (cursorY > 250) {
-        doc.addPage();
-        cursorY = margin;
-      }
+    // Sections - Filter out empty ones (no items and no hints)
+    const activeSections = adoration.sections.filter(s => {
+      const hasContent = (s.items || []).some(item => (item.content || '').trim().length > 0);
+      const hasHints = (s.reflectionHints || []).some(hint => (hint || '').trim().length > 0);
+      return hasContent || hasHints;
+    });
+
+    activeSections.forEach((section, index) => {
+      // 1. Ensure space for Section Header + minimal content (approx 35mm)
+      cursorY = this.requestSpace(doc, 35, cursorY, margin);
 
       // Section Header (Type and Title)
       doc.setFont('helvetica', 'bold');
@@ -62,9 +65,12 @@ export class PdfExportService {
       doc.line(margin, cursorY + 2, pageWidth - margin, cursorY + 2);
       cursorY += 12;
 
-      (section.items || []).forEach((item, itemIdx) => {
+      const validItems = (section.items || []).filter(item => (item.content || '').trim().length > 0);
+      validItems.forEach((item, itemIdx) => {
         // Optional item title
-        if (item.title && item.title !== section.title && (section.items.length > 1)) {
+        if (item.title && item.title.trim().toLowerCase() !== section.title.trim().toLowerCase()) {
+          // Ensure space for item title + at least 3 lines of content
+          cursorY = this.requestSpace(doc, 15, cursorY, margin);
           doc.setFont('helvetica', 'bold');
           doc.setFontSize(11);
           doc.setTextColor(51, 65, 85); // Slate 700
@@ -73,7 +79,7 @@ export class PdfExportService {
         }
 
         const paragraphs = this.normalizeContent(item.content || ' ').split('\n\n');
-        
+
         paragraphs.forEach((para, paraIdx) => {
           let currentPara = para.trim();
           if (!currentPara) return;
@@ -112,21 +118,35 @@ export class PdfExportService {
           const rawLines = doc.splitTextToSize(currentPara, contentWidth - xOffset);
           const blockHeight = rawLines.length * (fontSize * 0.55);
 
-          if (cursorY + blockHeight > 275) {
-            doc.addPage();
-            cursorY = margin;
+          // If the paragraph is short, we try to keep it together.
+          // If it's long, we allow it to break between lines.
+          if (blockHeight < 40) {
+            cursorY = this.requestSpace(doc, blockHeight, cursorY, margin);
           }
 
-          if (xOffset >= 10 && fontStyle === 'italic') { // Quote border
-             doc.line(margin + 2, cursorY - 3, margin + 2, cursorY + blockHeight - 2);
+          if (xOffset >= 10 && fontStyle === 'italic') { // Quote border start
+            // We'll draw the border line by line if it breaks pages, 
+            // but for now let's just draw the initial one
+            doc.line(margin + 2, cursorY - 3, margin + 2, Math.min(275, cursorY + blockHeight - 2));
           }
 
           // Use our new styled text renderer for each line to support [[B]] and [[I]]
           rawLines.forEach((line: string, lineIdx: number) => {
-             this.drawStyledLine(doc, line, margin + xOffset, cursorY, fontStyle);
-             cursorY += (fontSize * 0.55);
+            // Exact line-by-line page break check for long readings
+            if (cursorY > 275) {
+              doc.addPage();
+              cursorY = margin;
+              // If it's a quote, continue the border on the new page
+              if (xOffset >= 10 && fontStyle === 'italic') {
+                doc.setDrawColor(203, 213, 225);
+                doc.setLineWidth(0.8);
+              }
+            }
+
+            this.drawStyledLine(doc, line, margin + xOffset, cursorY, fontStyle);
+            cursorY += (fontSize * 0.55);
           });
-          
+
           cursorY += 2; // Paragraph spacing
         });
 
@@ -169,7 +189,7 @@ export class PdfExportService {
       doc.setPage(i);
       doc.setFontSize(8);
       doc.setTextColor(150, 150, 150);
-      doc.text(`Generato con Adorazione Builder - Pagina ${i} di ${pageCount}`, pageWidth / 2, 285, { align: 'center' });
+      // doc.text(`Generato con Adorazione Builder - Pagina ${i} di ${pageCount}`, pageWidth / 2, 285, { align: 'center' });
     }
 
     doc.save(`${adoration.title.replace(/\s+/g, '_')}.pdf`);
@@ -230,32 +250,32 @@ export class PdfExportService {
     // - AND it's not a list item (starts with •)
     const lines = clean.split('\n');
     const processedLines: string[] = [];
-    
+
     for (let i = 0; i < lines.length; i++) {
-        const line = lines[i].trim();
-        if (!line) continue;
+      const line = lines[i].trim();
+      if (!line) continue;
 
-        const nextLine = (lines[i+1] || '').trim();
-        
-        // Don't join if current is a bullet
-        const isBullet = line.startsWith('•');
-        // Don't join if next starts with uppercase OR a bullet OR a number (likely new section)
-        const nextStartsStructure = /^[A-ZÀÈÌÒÙ0-9\-\*•]/.test(nextLine);
-        // Don't join if current ends with strong punctuation
-        const currentEndsSentence = /[.!?»:]$/.test(line);
+      const nextLine = (lines[i + 1] || '').trim();
 
-        if (!isBullet && !nextStartsStructure && !currentEndsSentence && i < lines.length - 1) {
-            processedLines.push(line + ' ');
-        } else {
-            processedLines.push(line + '\n');
-        }
+      // Don't join if current is a bullet
+      const isBullet = line.startsWith('•');
+      // Don't join if next starts with uppercase OR a bullet OR a number (likely new section)
+      const nextStartsStructure = /^[A-ZÀÈÌÒÙ0-9\-\*•]/.test(nextLine);
+      // Don't join if current ends with strong punctuation
+      const currentEndsSentence = /[.!?»:]$/.test(line);
+
+      if (!isBullet && !nextStartsStructure && !currentEndsSentence && i < lines.length - 1) {
+        processedLines.push(line + ' ');
+      } else {
+        processedLines.push(line + '\n');
+      }
     }
 
     clean = processedLines.join('').replace(/\n/g, ' ');
 
     // 3. Restore intended paragraphs
     clean = clean.replace(/####PARA####/g, '\n\n');
-    
+
     return clean.trim();
   }
 
@@ -303,5 +323,14 @@ export class PdfExportService {
         }
       }
     });
+  }
+
+  private requestSpace(doc: jsPDF, requiredHeight: number, currentY: number, margin: number): number {
+    // Only break if we are not already at the top of a page
+    if (currentY > margin && currentY + requiredHeight > 275) {
+      doc.addPage();
+      return margin;
+    }
+    return currentY;
   }
 }
