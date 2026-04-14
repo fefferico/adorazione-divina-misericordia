@@ -1,7 +1,7 @@
 import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LucideAngularModule, ChevronLeft, ChevronRight, Sidebar, Save, Download, Search, Plus, Trash2, Edit3, CheckCircle, X, Sun, Moon, Minus, User, ArrowRight } from 'lucide-angular';
+import { LucideAngularModule, ChevronLeft, ChevronRight, Sidebar, Save, Download, Search, Plus, Trash2, Edit3, CheckCircle, X, Sun, Moon, Minus, User, ArrowRight, ChevronDown, ChevronUp } from 'lucide-angular';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { AdorationStoreService, AdorationSection } from '../../services/adoration-store';
 import { PdfExportService } from '../../services/pdf-export';
@@ -38,6 +38,8 @@ export class BuilderComponent implements OnInit {
   readonly Minus = Minus;
   readonly User = User;
   readonly ArrowRight = ArrowRight;
+  readonly ChevronDown = ChevronDown;
+  readonly ChevronUp = ChevronUp;
 
   currentTheme = computed(() => this.themeService.theme());
 
@@ -186,6 +188,31 @@ export class BuilderComponent implements OnInit {
       const hints = section.reflectionHints.filter((_, i) => i !== index);
       this.updateSection({ reflectionHints: hints });
     }
+  }
+
+  expandedItems = signal<Set<string>>(new Set());
+
+  toggleItemExpand(id: string) {
+    this.expandedItems.update(set => {
+      const newSet = new Set(set);
+      if (newSet.has(id)) newSet.delete(id);
+      else newSet.add(id);
+      return newSet;
+    });
+  }
+
+  isItemExpanded(id: string): boolean {
+    return this.expandedItems().has(id);
+  }
+
+  shouldTruncate(content: string): boolean {
+    return (content || '').split('\n').length > 12;
+  }
+
+  getSnippet(content: string): string {
+    const lines = (content || '').split('\n');
+    if (lines.length <= 12) return content;
+    return lines.slice(0, 12).join('\n') + '\n...';
   }
 
   protected getSectionTypeItalianString(type: string): string {

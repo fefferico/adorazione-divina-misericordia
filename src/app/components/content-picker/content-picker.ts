@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject, signal, computed, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LucideAngularModule, X, Search, Filter, BookOpen, Heart, Scroll, Mic, Mail, Music, Plus, Bell, Users, MessageSquare, User, Calendar, Loader2, Sparkles, Compass } from 'lucide-angular';
+import { LucideAngularModule, X, Search, Filter, BookOpen, Heart, Scroll, Mic, Mail, Music, Plus, Bell, Users, MessageSquare, User, Calendar, Loader2, Sparkles, Compass, ChevronDown, ChevronUp } from 'lucide-angular';
 import { ContentService, LibraryItem } from '../../services/content';
 
 @Component({
@@ -34,7 +34,9 @@ export class ContentPickerComponent implements OnInit {
     'users': Users,
     'message-square': MessageSquare,
     'sparkles': Sparkles,
-    'compass': Compass
+    'compass': Compass,
+    'chevron-down': ChevronDown,
+    'chevron-up': ChevronUp
   };
 
   categoryPlurals: Record<string, string> = {
@@ -196,7 +198,85 @@ export class ContentPickerComponent implements OnInit {
     this.searchQuery.set(query);
   }
 
+  expandedItems = signal<Set<string>>(new Set());
+
+  toggleExpand(id: string, event: Event) {
+    event.stopPropagation();
+    this.expandedItems.update(set => {
+      const newSet = new Set(set);
+      if (newSet.has(id)) newSet.delete(id);
+      else newSet.add(id);
+      return newSet;
+    });
+  }
+
+  isExpanded(id: string): boolean {
+    return this.expandedItems().has(id);
+  }
+
+  getItemDisplayContent(item: LibraryItem): { text: string; isTruncated: boolean; isExpanded: boolean } {
+    const isExpanded = this.isExpanded(item.id);
+    if (isExpanded) {
+      return { text: item.content, isTruncated: false, isExpanded: true };
+    }
+
+    const query = this.debouncedQuery().toLowerCase() || this.selectedThemeId()?.toLowerCase() || '';
+    const lines = item.content.split('\n');
+
+    // If text is short, no truncation needed
+    if (lines.length <= 12) {
+      return { text: item.content, isTruncated: false, isExpanded: false };
+    }
+
+    // Attempt to find a match to center the snippet
+    let matchIndex = -1;
+    if (query) {
+      matchIndex = lines.findIndex(line => line.toLowerCase().includes(query));
+    }
+
+    let start = 0;
+    let end = 12;
+
+    if (matchIndex !== -1) {
+      start = Math.max(0, matchIndex - 6);
+      end = Math.min(lines.length, matchIndex + 7);
+      
+      // Adjust if snippet is less than planned size
+      if (end - start < 12) {
+        if (start === 0) end = Math.min(lines.length, 12);
+        else if (end === lines.length) start = Math.max(0, lines.length - 12);
+      }
+    }
+
+    let snippet = lines.slice(start, end).join('\n');
+    const isActuallyTruncated = start > 0 || end < lines.length;
+
+    if (start > 0) snippet = '...\n' + snippet;
+    if (end < lines.length) snippet = snippet + '\n...';
+
+    return {
+      text: snippet,
+      isTruncated: isActuallyTruncated,
+      isExpanded: false
+    };
+  }
+
+  getHighlightedSegments(text: string): { text: string, highlight: boolean }[] {
+    const query = this.debouncedQuery().trim();
+    if (!query || query.length < 2) return [{ text, highlight: false }];
+
+    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escapedQuery})`, 'gi');
+    const parts = text.split(regex);
+    
+    return parts.map(part => ({
+      text: part,
+      highlight: part.toLowerCase() === query.toLowerCase()
+    }));
+  }
+
   selectItem(item: LibraryItem) {
+    // ALWAYS emit the FULL content regardless of what's displayed in the picker's snippet
     this.onSelect.emit(item);
   }
 
