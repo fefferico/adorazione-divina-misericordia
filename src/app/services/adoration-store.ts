@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 
 export interface AdorationItem {
   id: string;
+  libraryId?: string; // Original ID from the library for data recovery
   title: string;
   content: string;
   author?: string;

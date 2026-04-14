@@ -116,13 +116,14 @@ export class DashboardComponent {
               const isSong = section.type === 'song' || section.type === 'hymn';
               const fullContent = selected.content || '';
               
-              const finalContent = isSong ? fullContent : this.limitLines(fullContent, 12);
+              const finalContent = isSong ? fullContent : this.limitLines(fullContent, 12, themeName);
 
               usedIds.add(selected.id);
               
               this.store.updateSection(section.id, {
                 items: [{
                   id: `item_${selected.id}_${Date.now()}`,
+                  libraryId: selected.id,
                   title: selected.title,
                   content: finalContent,
                   author: selected.author
@@ -139,9 +140,46 @@ export class DashboardComponent {
     });
   }
 
-  private limitLines(content: string, maxLines: number): string {
-    const lines = content.split('\n');
+  private limitLines(content: string, maxLines: number, theme?: string): string {
+    const lines = content.split('\n').filter(l => l.trim().length > 0); // Rimuoviamo righe vuote per un conteggio più accurato
     if (lines.length <= maxLines) return content;
-    return lines.slice(0, maxLines).join('\n') + '\n\n... (continua nel builder)';
+
+    let targetLineIndex = 0;
+    if (theme) {
+      // Ricerca parola esatta usando confini di parola (\b)
+      const exactWordRegex = new RegExp(`\\b${theme}\\b`, 'i');
+      const foundIndex = lines.findIndex(line => exactWordRegex.test(line));
+      if (foundIndex !== -1) {
+        targetLineIndex = foundIndex;
+      }
+    }
+
+    // Calcoliamo la finestra di contesto (max 12 righe) attorno al target
+    let start = Math.max(0, targetLineIndex - Math.floor(maxLines / 2));
+    let end = start + maxLines;
+
+    // Se andiamo oltre la fine, spostiamo la finestra indietro
+    if (end > lines.length) {
+      end = lines.length;
+      start = Math.max(0, end - maxLines);
+    }
+
+    // "Cercando di non troncare le frasi":
+    // Se l'ultima riga non finisce con un segno di punteggiatura forte, 
+    // proviamo ad estendere la finestra di qualche riga (max 3) per trovare una conclusione naturale.
+    let extension = 0;
+    while (end < lines.length && !/[.!?:]\s*$/.test(lines[end - 1]) && extension < 3) {
+      end++;
+      extension++;
+    }
+
+    let result = lines.slice(start, end).join('\n\n'); 
+    
+    let finalContent = '';
+    if (start > 0) finalContent += '... [inizio omesso]\n\n';
+    finalContent += result;
+    if (end < lines.length) finalContent += '\n\n... (continua nel builder)';
+    
+    return finalContent;
   }
 }

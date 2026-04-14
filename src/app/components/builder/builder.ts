@@ -8,6 +8,7 @@ import { PdfExportService } from '../../services/pdf-export';
 import { ThemeService } from '../../services/theme';
 import { ContentPickerComponent } from '../content-picker/content-picker';
 import { TextEditorComponent } from './text-editor/text-editor';
+import { ContentService } from '../../services/content';
 import { ConfirmModalComponent, LongSection } from '../ui/confirm-modal/confirm-modal';
 
 interface PendingExport {
@@ -26,6 +27,7 @@ export class BuilderComponent implements OnInit {
   private store = inject(AdorationStoreService);
   private pdfService = inject(PdfExportService);
   private route = inject(ActivatedRoute);
+  private contentService = inject(ContentService);
   themeService = inject(ThemeService);
 
   readonly ChevronLeft = ChevronLeft;
@@ -95,14 +97,16 @@ export class BuilderComponent implements OnInit {
       if (section) {
         const newItem = {
           id: `item_${Date.now()}`,
+          libraryId: item.id,
           title: item.title,
-          content: item.content
+          content: item.content,
+          author: item.author
         };
         const updatedItems = [...(section.items || []), newItem];
         this.store.updateSection(sectionId, {
           items: updatedItems,
           // Merge reflection hints if they don't exist
-          reflectionHints: [...(section.reflectionHints || []), ...(item.reflectionHints || [])]
+          reflectionHints: [...(section.reflectionHints || []), ...(item.reflectionHints || [])].slice(0, 5)
         });
       }
     }
@@ -227,12 +231,17 @@ export class BuilderComponent implements OnInit {
     }
   }
 
-  updateItem(index: number, updates: any) {
-    const section = this.selectedSection;
-    if (section && section.items) {
+  updateItem(index: number, updates: any, sectionId?: string) {
+    const id = sectionId || this.selectedSectionId();
+    if (!id) return;
+
+    const sections = this.adoration().sections;
+    const section = sections.find(s => s.id === id);
+    
+    if (section && section.items && section.items[index]) {
       const items = [...section.items];
       items[index] = { ...items[index], ...updates };
-      this.updateSection({ items });
+      this.store.updateSection(id, { items });
     }
   }
 
@@ -272,14 +281,27 @@ export class BuilderComponent implements OnInit {
   expandedItems = signal<Set<string>>(new Set());
 
   toggleItemExpand(id: string) {
+    // Recupero dinamico del testo completo se l'elemento proviene dalla dashboard ed è troncato
+    const currentSection = this.selectedSection;
+    if (currentSection) {
+      const itemIndex = currentSection.items.findIndex(i => i.id === id);
+      const item = currentSection.items[itemIndex];
+      
+      if (item && item.libraryId && item.content.includes('... (continua nel builder)')) {
+        this.contentService.getItemById(item.libraryId).subscribe(original => {
+          if (original) {
+            this.updateItem(itemIndex, { content: original.content }, currentSection.id);
+          }
+        });
+      }
+    }
+
     this.expandedItems.update(set => {
       const newSet = new Set(set);
       if (newSet.has(id)) newSet.delete(id);
       else newSet.add(id);
       return newSet;
     });
-    // scroll to top of the page
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   isItemExpanded(id: string): boolean {
