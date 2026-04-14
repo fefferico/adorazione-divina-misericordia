@@ -61,3 +61,37 @@
         margin-top: 2rem !important;
     }
 }
+
+/* Drag-and-Drop styles */
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 2rem;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    transform: scale(1.02);
+    pointer-events: none;
+    background: white;
+}
+
+.dark .cdk-drag-preview {
+    background: #0f172a; /* slate-900 */
+    border: 1px solid #1e293b; /* slate-800 */
+}
+
+.cdk-drag-placeholder {
+    opacity: 0.2 !important;
+    border: 2px dashed #cbd5e1 !important; /* slate-300 */
+    background: #f8fafc !important; /* slate-50 */
+}
+
+.dark .cdk-drag-placeholder {
+    border-color: #334155 !important; /* slate-700 */
+    background: #020617 !important; /* slate-950 */
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-dragging .cdk-drag {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

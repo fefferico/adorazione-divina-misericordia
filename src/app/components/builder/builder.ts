@@ -1,8 +1,9 @@
 import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LucideAngularModule, ChevronLeft, ChevronRight, Sidebar, Save, Download, Search, Plus, Trash2, Edit3, CheckCircle, X, Sun, Moon, Minus, User, ArrowRight, ChevronDown, FileText, ChevronUp } from 'lucide-angular';
+import { LucideAngularModule, ChevronLeft, ChevronRight, Sidebar, Save, Download, Search, Plus, Trash2, Edit3, CheckCircle, X, Sun, Moon, Minus, User, ArrowRight, ChevronDown, FileText, ChevronUp, GripVertical } from 'lucide-angular';
 import { RouterLink, ActivatedRoute } from '@angular/router';
+import { DragDropModule, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { AdorationStoreService, AdorationSection } from '../../services/adoration-store';
 import { PdfExportService } from '../../services/pdf-export';
 import { ThemeService } from '../../services/theme';
@@ -19,7 +20,7 @@ interface PendingExport {
 @Component({
   selector: 'app-builder',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule, RouterLink, ContentPickerComponent, TextEditorComponent, ConfirmModalComponent],
+  imports: [CommonModule, FormsModule, LucideAngularModule, RouterLink, ContentPickerComponent, TextEditorComponent, ConfirmModalComponent, DragDropModule],
   templateUrl: './builder.html',
   styleUrl: './builder.scss'
 })
@@ -49,6 +50,7 @@ export class BuilderComponent implements OnInit {
   readonly FileText = FileText;
   readonly ChevronDown = ChevronDown;
   readonly ChevronUp = ChevronUp;
+  readonly GripVertical = GripVertical;
 
   currentTheme = computed(() => this.themeService.theme());
 
@@ -306,6 +308,17 @@ export class BuilderComponent implements OnInit {
 
   isItemExpanded(id: string): boolean {
     return this.expandedItems().has(id);
+  }
+
+  onSectionDrop(event: CdkDragDrop<AdorationSection[]>) {
+    this.store.moveSection(event.previousIndex, event.currentIndex);
+  }
+
+  onItemDrop(event: CdkDragDrop<any[]>) {
+    const sectionId = this.selectedSectionId();
+    if (sectionId) {
+      this.store.moveItem(sectionId, event.previousIndex, event.currentIndex);
+    }
   }
 
   shouldTruncate(content: string, type?: string): boolean {

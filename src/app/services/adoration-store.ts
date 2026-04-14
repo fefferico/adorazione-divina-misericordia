@@ -66,6 +66,32 @@ export class AdorationStoreService {
     }));
   }
 
+  moveSection(previousIndex: number, currentIndex: number) {
+    this._currentAdoration.update(a => {
+      const sections = [...a.sections];
+      const [moved] = sections.splice(previousIndex, 1);
+      sections.splice(currentIndex, 0, moved);
+      return {
+        ...a,
+        sections: sections.map((s, idx) => ({ ...s, order: idx }))
+      };
+    });
+  }
+
+  moveItem(sectionId: string, previousIndex: number, currentIndex: number) {
+    this._currentAdoration.update(a => ({
+      ...a,
+      sections: a.sections.map(s => {
+        if (s.id !== sectionId) return s;
+        const items = [...(s.items || [])];
+        if (items.length === 0) return s;
+        const [moved] = items.splice(previousIndex, 1);
+        items.splice(currentIndex, 0, moved);
+        return { ...s, items };
+      })
+    }));
+  }
+
   reset() {
     this._currentAdoration.set({
       title: 'Nuova Adorazione',
