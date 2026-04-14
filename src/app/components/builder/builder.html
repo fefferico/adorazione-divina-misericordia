@@ -173,10 +173,10 @@
             </button>
           </div>
           @let expanded = isItemExpanded(item.id);
-          @let long = shouldTruncate(item.content);
+          @let long = shouldTruncate(item.content, selectedSection.type);
 
           @if (long && !expanded) {
-          <div class="relative cursor-pointer group/preview" (click)="toggleItemExpand(item.id)">
+          <div class="relative cursor-pointer group/preview py-5" (click)="toggleItemExpand(item.id)">
             <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed font-light whitespace-pre-line">
               {{ getSnippet(item.content) }}
             </p>
@@ -273,14 +273,11 @@
 
   <!-- Export Warning Modal -->
   @if (pendingExport()) {
-    <app-confirm-modal
-      title="Sezioni Lunghe Rilevate"
-      message="Alcune sezioni superano le 30 righe consigliate per una lettura fluida. Puoi revisionarle singolarmente o esportare l'intero contenuto."
-      [longSections]="pendingExport()?.sections || []"
-      (cancel)="onModalCancel()"
-      (confirm)="onModalConfirm()"
-      (review)="onModalReview($event)">
-    </app-confirm-modal>
+  <app-confirm-modal title="Sezioni Lunghe Rilevate"
+    message="Alcune sezioni superano le 30 righe consigliate per una lettura fluida. Puoi revisionarle singolarmente o esportare l'intero contenuto."
+    [longSections]="pendingExport()?.sections || []" (cancel)="onModalCancel()" (confirm)="onModalConfirm()"
+    (review)="onModalReview($event)">
+  </app-confirm-modal>
   }
 </div>
 

@@ -223,8 +223,8 @@ export class ContentPickerComponent implements OnInit {
     const query = this.debouncedQuery().toLowerCase() || this.selectedThemeId()?.toLowerCase() || '';
     const lines = item.content.split('\n');
 
-    // If text is short, no truncation needed
-    if (lines.length <= 12) {
+    // If text is short or is a song, no truncation needed
+    if (lines.length <= 12 || item.categoryId === 'canto') {
       return { text: item.content, isTruncated: false, isExpanded: false };
     }
 

@@ -113,15 +113,21 @@ export class DashboardComponent {
               const shuffled = [...matchingItems].sort(() => 0.5 - Math.random());
               const selected = shuffled[0];
 
+              const isSong = section.type === 'song' || section.type === 'hymn';
+              const fullContent = selected.content || '';
+              
+              const finalContent = isSong ? fullContent : this.limitLines(fullContent, 12);
+
               usedIds.add(selected.id);
               
               this.store.updateSection(section.id, {
                 items: [{
-                  id: selected.id,
+                  id: `item_${selected.id}_${Date.now()}`,
                   title: selected.title,
-                  content: selected.content
+                  content: finalContent,
+                  author: selected.author
                 }],
-                reflectionHints: (section.type === 'song' || section.type === 'hymn') ? [] : (selected.reflectionHints || []).slice(0, 3)
+                reflectionHints: isSong ? [] : (selected.reflectionHints || []).slice(0, 3)
               });
             }
           }
@@ -131,5 +137,11 @@ export class DashboardComponent {
         this.router.navigate(['/builder']);
       });
     });
+  }
+
+  private limitLines(content: string, maxLines: number): string {
+    const lines = content.split('\n');
+    if (lines.length <= maxLines) return content;
+    return lines.slice(0, maxLines).join('\n') + '\n\n... (continua nel builder)';
   }
 }

@@ -121,14 +121,14 @@ export class BuilderComponent implements OnInit {
   private checkLengthAndExport(type: 'pdf' | 'doc') {
     const adoration = this.adoration();
     let tooLongSections: LongSection[] = [];
-    
+
     adoration.sections.forEach(s => {
       // Calculate total lines across all items in section
       const lineCount = (s.items || []).reduce((acc, item) => {
         const lines = (item.content || '').split('\n').filter(l => l.trim().length > 0).length;
         return acc + lines;
       }, 0);
-      
+
       if (lineCount > 30) {
         tooLongSections.push({
           id: s.id,
@@ -148,10 +148,23 @@ export class BuilderComponent implements OnInit {
 
   private executeExport(type: 'pdf' | 'doc') {
     const adoration = this.adoration();
+
+    // pulisci l'adorazione corrente da eventuali diciture da "interfaccia" come ad esempio "continua nel builder"
+    const cleanedAdoration = {
+      ...adoration,
+      sections: adoration.sections.map(s => ({
+        ...s,
+        items: s.items.map(i => ({
+          ...i,
+          content: i.content.replace('... (continua nel builder)', '')
+        }))
+      }))
+    };
+
     if (type === 'pdf') {
-      this.pdfService.exportToPdf(adoration);
+      this.pdfService.exportToPdf(cleanedAdoration);
     } else {
-      this.pdfService.exportToDoc(adoration);
+      this.pdfService.exportToDoc(cleanedAdoration);
     }
     this.pendingExport.set(null);
   }
@@ -265,13 +278,16 @@ export class BuilderComponent implements OnInit {
       else newSet.add(id);
       return newSet;
     });
+    // scroll to top of the page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   isItemExpanded(id: string): boolean {
     return this.expandedItems().has(id);
   }
 
-  shouldTruncate(content: string): boolean {
+  shouldTruncate(content: string, type?: string): boolean {
+    if (type === 'song' || type === 'hymn') return false;
     return (content || '').split('\n').length > 12;
   }
 
