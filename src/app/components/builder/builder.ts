@@ -1,18 +1,24 @@
 import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LucideAngularModule, ChevronLeft, ChevronRight, Sidebar, Save, Download, Search, Plus, Trash2, Edit3, CheckCircle, X, Sun, Moon, Minus, User, ArrowRight, ChevronDown, ChevronUp } from 'lucide-angular';
+import { LucideAngularModule, ChevronLeft, ChevronRight, Sidebar, Save, Download, Search, Plus, Trash2, Edit3, CheckCircle, X, Sun, Moon, Minus, User, ArrowRight, ChevronDown, FileText, ChevronUp } from 'lucide-angular';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { AdorationStoreService, AdorationSection } from '../../services/adoration-store';
 import { PdfExportService } from '../../services/pdf-export';
 import { ThemeService } from '../../services/theme';
 import { ContentPickerComponent } from '../content-picker/content-picker';
 import { TextEditorComponent } from './text-editor/text-editor';
+import { ConfirmModalComponent, LongSection } from '../ui/confirm-modal/confirm-modal';
+
+interface PendingExport {
+  type: 'pdf' | 'doc';
+  sections: LongSection[];
+}
 
 @Component({
   selector: 'app-builder',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule, RouterLink, ContentPickerComponent, TextEditorComponent],
+  imports: [CommonModule, FormsModule, LucideAngularModule, RouterLink, ContentPickerComponent, TextEditorComponent, ConfirmModalComponent],
   templateUrl: './builder.html',
   styleUrl: './builder.scss'
 })
@@ -38,6 +44,7 @@ export class BuilderComponent implements OnInit {
   readonly Minus = Minus;
   readonly User = User;
   readonly ArrowRight = ArrowRight;
+  readonly FileText = FileText;
   readonly ChevronDown = ChevronDown;
   readonly ChevronUp = ChevronUp;
 
@@ -60,6 +67,7 @@ export class BuilderComponent implements OnInit {
   selectedSectionId = signal<string | null>(null);
   showPicker = signal(false);
   isSidebarCollapsed = signal(false);
+  pendingExport = signal<PendingExport | null>(null);
 
   get selectedSection() {
     return this.adoration().sections.find(s => s.id === this.selectedSectionId());
@@ -103,7 +111,65 @@ export class BuilderComponent implements OnInit {
 
 
   exportPdf() {
-    this.pdfService.exportToPdf(this.adoration());
+    this.checkLengthAndExport('pdf');
+  }
+
+  exportDoc() {
+    this.checkLengthAndExport('doc');
+  }
+
+  private checkLengthAndExport(type: 'pdf' | 'doc') {
+    const adoration = this.adoration();
+    let tooLongSections: LongSection[] = [];
+    
+    adoration.sections.forEach(s => {
+      // Calculate total lines across all items in section
+      const lineCount = (s.items || []).reduce((acc, item) => {
+        const lines = (item.content || '').split('\n').filter(l => l.trim().length > 0).length;
+        return acc + lines;
+      }, 0);
+      
+      if (lineCount > 30) {
+        tooLongSections.push({
+          id: s.id,
+          title: s.title,
+          lineCount: lineCount
+        });
+      }
+    });
+
+    if (tooLongSections.length > 0) {
+      this.pendingExport.set({ type, sections: tooLongSections });
+      return;
+    }
+
+    this.executeExport(type);
+  }
+
+  private executeExport(type: 'pdf' | 'doc') {
+    const adoration = this.adoration();
+    if (type === 'pdf') {
+      this.pdfService.exportToPdf(adoration);
+    } else {
+      this.pdfService.exportToDoc(adoration);
+    }
+    this.pendingExport.set(null);
+  }
+
+  onModalConfirm() {
+    const pending = this.pendingExport();
+    if (pending) {
+      this.executeExport(pending.type);
+    }
+  }
+
+  onModalCancel() {
+    this.pendingExport.set(null);
+  }
+
+  onModalReview(sectionId: string) {
+    this.selectSection(sectionId);
+    this.pendingExport.set(null);
   }
 
   addSection() {

@@ -19,6 +19,13 @@ export class PdfExportService {
     const contentWidth = pageWidth - (margin * 2);
     let cursorY = margin;
 
+    // Date (top right)
+    const today = new Date().toLocaleDateString('it-IT');
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(150, 150, 150);
+    doc.text(`Data di creazione: ${today}`, pageWidth - margin, 12, { align: 'right' });
+
     // Title
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(22);
@@ -193,6 +200,126 @@ export class PdfExportService {
     }
 
     doc.save(`${adoration.title.replace(/\s+/g, '_')}.pdf`);
+  }
+
+  exportToDoc(adoration: Adoration) {
+    const today = new Date().toLocaleDateString('it-IT');
+    const filename = `${adoration.title.replace(/\s+/g, '_')}.doc`;
+
+    let html = `
+      <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+      <head>
+        <meta charset='utf-8'>
+        <style>
+          body { font-family: 'Calibri', 'Arial', sans-serif; line-height: 1.6; color: #1e293b; }
+          .date { text-align: right; color: #94a3b8; font-size: 10pt; margin-bottom: 20pt; }
+          .title { text-align: center; font-size: 24pt; font-weight: bold; color: #1e293b; text-transform: uppercase; margin-bottom: 10pt; }
+          .theme { text-align: center; font-size: 14pt; font-style: italic; color: #64748b; margin-bottom: 30pt; }
+          .section { margin-top: 30pt; }
+          .section-type { color: #3b82f6; font-weight: bold; font-size: 10pt; text-transform: uppercase; margin-bottom: 2pt; }
+          .section-title { font-size: 18pt; font-weight: bold; color: #1e293b; border-bottom: 1px solid #e2e8f0; margin-bottom: 10pt; }
+          .item { margin-bottom: 20pt; }
+          .item-title { font-weight: bold; font-size: 12pt; color: #334155; margin-bottom: 5pt; }
+          .para { margin-bottom: 10pt; text-align: justify; }
+          .quote { border-left: 4px solid #cbd5e1; padding-left: 15pt; font-style: italic; color: #475569; margin: 15pt 0; }
+          .hints-box { margin-top: 20pt; padding: 10pt; background: #f8fafc; }
+          .hints-title { color: #64748b; font-weight: bold; font-size: 10pt; text-transform: uppercase; margin-bottom: 5pt; }
+          .hint { font-style: italic; color: #475569; margin-left: 10pt; margin-bottom: 2pt; }
+          b { font-weight: bold; }
+          i { font-style: italic; }
+        </style>
+      </head>
+      <body>
+        <div class="date">Data di creazione: ${today}</div>
+        <div class="title">${adoration.title}</div>
+        ${adoration.theme ? `<div class="theme">Tema: ${adoration.theme}</div>` : ''}
+        
+        ${this.generateDocHtml(adoration)}
+        
+        <div style="margin-top: 50pt; text-align: center; font-size: 8pt; color: #94a3b8;">
+          Generato con Adorazione Builder
+        </div>
+      </body>
+      </html>
+    `;
+
+    const blob = new Blob(['\ufeff', html], { type: 'application/msword' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
+  private generateDocHtml(adoration: Adoration): string {
+    const activeSections = adoration.sections.filter(s => {
+      const hasContent = (s.items || []).some(item => (item.content || '').trim().length > 0);
+      const hasHints = (s.reflectionHints || []).some(hint => (hint || '').trim().length > 0);
+      return hasContent || hasHints;
+    });
+
+    return activeSections.map(section => {
+      const type = this.getSectionTypeItalian(section.type).toUpperCase();
+      const validItems = (section.items || []).filter(item => (item.content || '').trim().length > 0);
+      const validHints = (section.reflectionHints || []).filter(h => h && h.trim().length > 0);
+
+      const itemsHtml = validItems.map(item => {
+        const itemTitle = (item.title && item.title.trim().toLowerCase() !== section.title.trim().toLowerCase()) 
+          ? `<div class="item-title">${item.title}</div>`
+          : '';
+
+        const paragraphs = this.normalizeContent(item.content || '').split('\n\n');
+        const contentHtml = paragraphs.map(p => {
+          let text = p.trim();
+          if (!text) return '';
+          
+          let className = 'para';
+          if (text.startsWith('[[QUOTE]]')) {
+             text = text.replace('[[QUOTE]]', '');
+             className = 'quote';
+          } else if (text.startsWith('[[H1]]')) {
+             return `<h2 style="font-size: 16pt; color: #1e293b;">${text.replace('[[H1]]', '')}</h2>`;
+          } else if (text.startsWith('[[H2]]')) {
+             return `<h3 style="font-size: 14pt; color: #334155;">${text.replace('[[H2]]', '')}</h3>`;
+          }
+
+          // Replace markers with HTML
+          text = text
+            .replace(/\[\[B\]\]/g, '<b>')
+            .replace(/\[\[\/B\]\]/g, '</b>')
+            .replace(/\[\[I\]\]/g, '<i>')
+            .replace(/\[\[\/I\]\]/g, '</i>');
+
+          return `<div class="${className}">${text}</div>`;
+        }).join('');
+
+        return `
+          <div class="item">
+            ${itemTitle}
+            ${contentHtml}
+          </div>
+        `;
+      }).join('');
+
+      const hintsHtml = validHints.length > 0 ? `
+        <div class="hints-box">
+          <div class="hints-title">Spunti di riflessione</div>
+          ${validHints.map(h => `<div class="hint">• ${h}</div>`).join('')}
+        </div>
+      ` : '';
+
+      return `
+        <div class="section">
+          <div class="section-type">${type}</div>
+          <div class="section-title">${section.title}</div>
+          ${itemsHtml}
+          ${hintsHtml}
+        </div>
+      `;
+    }).join('');
   }
 
   private normalizeContent(text: string): string {
