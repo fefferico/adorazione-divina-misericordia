@@ -9,27 +9,35 @@
     </div>
 
     <!-- Toolbar -->
-    <div class="flex flex-col lg:flex-row gap-6 mb-12">
-      <!-- Search -->
-      <div class="flex-1 relative group glass-search rounded-2xl">
-        <lucide-icon [name]="Search"
-          class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 transition-colors group-focus-within:text-primary-500"></lucide-icon>
-        <input type="text" [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)"
-          placeholder="Cerca tra vangelo, discorsi, meditazioni..."
-          class="w-full pl-12 pr-6 py-4 bg-transparent border-none rounded-2xl outline-none text-slate-800 dark:text-white placeholder:text-slate-400">
+    <div class="flex flex-col gap-8 mb-12">
+      <!-- Search Bar -->
+      <div class="max-w-4xl">
+        <div
+          class="relative group glass-search rounded-3xl overflow-hidden border-2 border-slate-100 dark:border-white/5 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl transition-all hover:border-primary-200 dark:hover:border-primary-900/40 shadow-xl shadow-slate-200/40 dark:shadow-black/40">
+          <lucide-icon [name]="Search"
+            class="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-slate-400 transition-colors group-focus-within:text-primary-500"></lucide-icon>
+          <input type="text" [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)"
+            placeholder="Cerca tra vangelo, discorsi, meditazioni..."
+            class="w-full pl-20 pr-8 py-5 bg-transparent border-none outline-none text-lg md:text-xl text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-700 leading-relaxed font-serif">
+
+          <!-- Subtle Glow -->
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-primary-500/5 to-transparent opacity-0 group-focus-within:opacity-100 pointer-events-none transition-opacity">
+          </div>
+        </div>
       </div>
 
       <!-- Categories Scroll -->
-      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 lg:pb-0">
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
         <button (click)="selectCategory(null)"
-          [ngClass]="{'bg-slate-900 text-white shadow-lg': !selectedCategoryId(), 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-100 dark:border-slate-800': selectedCategoryId()}"
-          class="px-5 py-4 rounded-2xl font-bold text-sm whitespace-nowrap transition-all flex items-center gap-2 border-2 border-transparent">
+          [ngClass]="{'bg-slate-900 dark:bg-primary-600 text-white shadow-lg': !selectedCategoryId(), 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-100 dark:border-slate-800': selectedCategoryId()}"
+          class="px-6 py-4 rounded-2xl font-bold text-sm whitespace-nowrap transition-all flex items-center gap-2 border-2 border-transparent hover:border-slate-200 dark:hover:border-slate-700">
           Tutto
         </button>
         @for (cat of categories(); track cat.id) {
         <button (click)="selectCategory(cat.id)"
           [ngClass]="{'bg-primary-500 text-white shadow-lg': selectedCategoryId() === cat.id, 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-100 dark:border-slate-800': selectedCategoryId() !== cat.id}"
-          class="px-5 py-4 rounded-2xl font-bold text-sm whitespace-nowrap transition-all flex items-center gap-2 border-2 border-transparent">
+          class="px-6 py-4 rounded-2xl font-bold text-sm whitespace-nowrap transition-all flex items-center gap-2 border-2 border-transparent hover:border-slate-200 dark:hover:border-slate-700">
           <lucide-icon [name]="getIconForCategory(cat.id)" class="w-4 h-4"></lucide-icon>
           {{ cat.label }}
         </button>
@@ -65,8 +73,13 @@
         </div>
 
         <h3 [routerLink]="['/library/view', item.id]"
-          class="text-xl font-serif text-slate-800 dark:text-white mb-4 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors cursor-pointer">
-          {{ item.title }}
+          class="text-xl font-serif text-slate-800 dark:text-white mb-4 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors cursor-pointer leading-snug">
+          @for (segment of getHighlightedSegments(item.title); track $index) {
+          <span [class.text-primary-900]="segment.highlight" [class.dark:text-white]="segment.highlight"
+            [class.bg-amber-200]="segment.highlight" [class.dark:bg-amber-800/40]="segment.highlight"
+            [class.px-1.5]="segment.highlight" [class.py-0.5]="segment.highlight" [class.rounded-md]="segment.highlight"
+            [class.shadow-sm]="segment.highlight" [class.inline-block]="segment.highlight">{{ segment.text }}</span>
+          }
         </h3>
 
         @if (item.author) {
@@ -77,8 +90,14 @@
         </div>
         }
 
-        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed line-clamp-4 flex-1 mb-6 italic">
-          {{ item.content }}
+        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed flex-1 mb-6 italic whitespace-pre-line">
+          @for (segment of getHighlightedSegments(getItemSnippet(item)); track $index) {
+          <span [class.text-slate-900]="segment.highlight" [class.dark:text-white]="segment.highlight"
+            [class.bg-amber-100]="segment.highlight" [class.dark:bg-amber-900/30]="segment.highlight"
+            [class.not-italic]="segment.highlight" [class.font-bold]="segment.highlight"
+            [class.px-1]="segment.highlight" [class.py-0.5]="segment.highlight" [class.rounded-sm]="segment.highlight"
+            [class.border-b-2]="segment.highlight" [class.border-amber-400]="segment.highlight">{{ segment.text }}</span>
+          }
         </p>
 
         <div class="pt-6 border-t border-slate-50 dark:border-slate-800 flex items-center justify-between">
